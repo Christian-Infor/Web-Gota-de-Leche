@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corporación Gota de Leche de Miramar · Viña del Mar</title>
+<meta name="description" content="Organización sin fines de lucro fundada en 1918 en Viña del Mar. Fomento de la lactancia materna, apoyo nutricional infantil y fortalecimiento de buenas prácticas de crianza.">
+<!-- Iconos FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+  
+  /* ── VARIABLES CSS (PALETA ROSADA / LAVANDA ORIGINAL) ── */
+  :root {
+    --bg-body: #ebdff5; /* Tono rosado/lavanda cálido de base */
+    --bg-dots: rgba(74, 45, 100, 0.09);
+    --bg-hero-grad: linear-gradient(135deg, #e7daf6 0%, #ecd4f3 100%);
+    --bg-nav: rgba(235, 223, 245, 0.82);
+    --text-main: #321e54;
+    --text-sub: #5c437a;
+    --hero-wave: #ffffff;
+    --btn-fill-bg: #433068;
+    --btn-fill-txt: #ffffff;
+    --btn-ghost-border: #433068;
+    --btn-ghost-txt: #433068;
+    
+    /* Tarjetas con contraste blanco puro sobre el fondo rosáceo */
+    --card-bg: rgba(255, 255, 255, 0.94);
+    --card-border: rgba(255, 255, 255, 0.9);
+    --card-shadow: 0 14px 35px -5px rgba(50, 30, 84, 0.07), 0 4px 12px rgba(50, 30, 84, 0.03);
+    --icon-bg: #f4ecfb;
+    --icon-color: #553488;
+    --neon-hover: rgba(162, 118, 220, 0.28);
+    --accent-blue: #3273b5;
+    --spotlight-color: rgba(142, 95, 206, 0.09);
+    
+    --footer-bg: #ffffff;
+  }
+
+  /* ── TEMA OSCURO (MODO LACTANCIA) ── */
+  body.lactancia-mode {
+    --bg-body: #0d0817;
+    --bg-dots: rgba(255, 255, 255, 0.04);
+    --bg-hero-grad: linear-gradient(135deg, #180f2b 0%, #1c0d29 100%);
+    --bg-nav: rgba(13, 8, 23, 0.85);
+    --text-main: #eee6fa;
+    --text-sub: #aa9bc7;
+    --hero-wave: #160e26;
+    --btn-fill-bg: #cebdf5;
+    --btn-fill-txt: #0d0817;
+    --btn-ghost-border: #cebdf5;
+    --btn-ghost-txt: #cebdf5;
+    
+    --card-bg: rgba(28, 18, 43, 0.88);
+    --card-border: rgba(230, 224, 248, 0.08);
+    --card-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+    --icon-bg: rgba(230, 224, 248, 0.08);
+    --icon-color: #cebdf5;
+    --neon-hover: rgba(206, 189, 245, 0.2);
+    --accent-blue: #60a5fa;
+    --spotlight-color: rgba(206, 189, 245, 0.07);
+    
+    --footer-bg: #08040f;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body { 
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; 
+    background-color: var(--bg-body); 
+    background-image: radial-gradient(var(--bg-dots) 1.2px, transparent 1.2px);
+    background-size: 26px 26px;
+    color: var(--text-main); 
+    overflow-x: hidden; 
+    transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  body:not(.loaded) { overflow: hidden; }
+
+  /* ── PRELOADER CON LOGO TRANSPARENTE ── */
+  .preloader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg-body); z-index: 99999;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 1.5rem; transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+  body.loaded .preloader { opacity: 0; visibility: hidden; }
+  
+  .preloader-logo {
+    width: 140px; 
+    height: auto;
+    object-fit: contain;
+    animation: pulseLogo 1.8s ease-in-out infinite;
+    filter: drop-shadow(0 10px 25px rgba(56, 43, 92, 0.15));
+  }
+  body.lactancia-mode .preloader-logo { 
+    filter: drop-shadow(0 10px 25px rgba(226, 218, 247, 0.2)) brightness(1.1); 
+  }
+
+  @keyframes pulseLogo {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1.04); opacity: 1; }
+    100% { transform: scale(0.95); opacity: 0.8; }
+  }
+
+  /* ── NAVEGACIÓN ── */
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 4.5rem; height: 76px; 
+    background: var(--bg-nav); 
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--card-border);
+    position: sticky; top: 0; z-index: 100;
+    transition: all 0.4s ease;
+  }
+  .nav-logo { display: flex; align-items: center; gap: .9rem; cursor: pointer; text-decoration: none; }
+  .nav-logo img { 
+    height: 46px; 
+    width: auto; 
+    object-fit: contain;
+    filter: drop-shadow(0 3px 6px rgba(56, 43, 92, 0.12));
+    transition: transform 0.3s ease;
+  }
+  .nav-logo:hover img { transform: scale(1.05); }
+  .nav-brand { font-size: .92rem; font-weight: 800; color: var(--text-main); line-height: 1.2; letter-spacing: -0.3px; }
+  .nav-brand span { font-weight: 500; color: var(--text-sub); display: block; font-size: .75rem; letter-spacing: 0; }
+  
+  .nav-actions { display: flex; align-items: center; gap: 2.2rem; }
+  .nav-links { display: flex; gap: 2.2rem; }
+  .nav-links a { font-size: .92rem; color: var(--text-sub); text-decoration: none; font-weight: 600; transition: color .2s ease; }
+  .nav-links a:hover { color: var(--text-main); }
+  
+  .theme-toggle {
+    background: rgba(255, 255, 255, 0.5); 
+    border: 1px solid var(--card-border); 
+    border-radius: 50px;
+    color: var(--text-main); cursor: pointer; padding: 0.45rem 1.15rem;
+    font-size: 0.85rem; display: flex; align-items: center; gap: 0.55rem;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); font-weight: 700;
+    backdrop-filter: blur(8px);
+  }
+  .theme-toggle:hover { background: var(--text-main); color: var(--bg-body); transform: translateY(-1px); }
+
+  /* ── HERO SECCIÓN CON DEGRADADO ROSADO ── */
+  .hero-wrapper {
+    background: var(--bg-hero-grad);
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(74, 45, 100, 0.06);
+  }
+
+  .hero {
+    min-height: calc(100vh - 76px);
+    display: flex; align-items: center;
+    position: relative; padding: 0 5.5%;
+  }
+
+  .hero-svg-bg {
+    position: absolute; top: 0; right: 0;
+    width: 50%; height: 100%; z-index: 1; pointer-events: none;
+    transition: transform 0.1s ease-out;
+  }
+  .hero-svg-bg svg { width: 100%; height: 100%; object-fit: cover; }
+  .hero-svg-bg path.wave-fill { fill: var(--hero-wave); transition: fill 0.6s ease; }
+
+  .hero-container {
+    width: 100%; max-width: 1280px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    position: relative; z-index: 2;
+  }
+  
+  .hero-left { flex: 0 0 54%; max-width: 640px; padding-bottom: 2rem; }
+  
+  .hero-legal-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255, 255, 255, 0.88); 
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.95); 
+    border-radius: 50px;
+    padding: 6px 16px; font-size: 0.78rem; font-weight: 700;
+    color: var(--text-main); margin-bottom: 1.5rem; letter-spacing: 0.4px;
+    box-shadow: 0 4px 12px rgba(50, 30, 84, 0.05);
+  }
+  body.lactancia-mode .hero-legal-badge {
+    background: rgba(30, 18, 45, 0.8); border-color: rgba(230, 224, 248, 0.12);
+  }
+
+  .hero-left h1 {
+    font-size: clamp(2.7rem, 4.5vw, 4rem); font-weight: 800;
+    line-height: 1.12; color: var(--text-main); letter-spacing: -1.8px;
+    margin-bottom: 1.4rem; transition: color 0.6s ease;
+  }
+  .hero-left p {
+    font-size: 1.08rem; font-weight: 400; color: var(--text-sub);
+    line-height: 1.75; margin-bottom: 2.4rem; max-width: 510px;
+    transition: color 0.6s ease;
+  }
+  
+  .hero-btns { display: flex; gap: 1.1rem; margin-bottom: 3.8rem; }
+  .magnetic-wrap { display: inline-block; padding: 10px; margin: -10px; cursor: pointer; }
+  .btn {
+    border-radius: 50px; padding: 0.9rem 2.3rem; font-size: 0.95rem; font-weight: 700; 
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s, color 0.3s, box-shadow 0.3s;
+    display: inline-block; cursor: pointer; text-decoration: none;
+  }
+  .btn.active-drag { transition: none; }
+  .btn-1 { 
+    background-color: var(--btn-fill-bg); 
+    color: var(--btn-fill-txt); 
+    border: none;
+    box-shadow: 0 8px 24px rgba(67, 48, 104, 0.25);
+  }
+  .btn-1:hover { box-shadow: 0 12px 30px rgba(67, 48, 104, 0.35); }
+  .btn-2 { 
+    background-color: rgba(255, 255, 255, 0.6); 
+    color: var(--btn-ghost-txt); 
+    border: 1.5px solid var(--btn-ghost-border); 
+    backdrop-filter: blur(8px);
+  }
+
+  .hero-stats { display: flex; align-items: center; }
+  .stat-item { position: relative; padding-right: 2.6rem; margin-right: 2.6rem; }
+  .stat-item:not(:last-child)::after {
+    content: ''; position: absolute; right: 0; top: 15%; height: 70%; width: 1.5px; background-color: var(--text-sub); opacity: 0.25;
+  }
+  .stat-item:last-child { padding-right: 0; margin-right: 0; }
+  .stat-num { display: block; font-size: 2.6rem; font-weight: 800; color: var(--text-main); line-height: 1.1; letter-spacing: -1px; }
+  .stat-label { display: block; font-size: 0.92rem; font-weight: 600; color: var(--text-sub); margin-top: 0.2rem; }
+
+  /* ── FLOTACIÓN ORGÁNICA DEL ISOTIPO CON RESPLANDOR ── */
+  .hero-right { 
+    flex: 0 0 44%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    position: relative; 
+    z-index: 2; 
+  }
+
+  .hero-logo-halo {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 440px;
+    animation: heroFloat 6.5s ease-in-out infinite;
+  }
+
+  @keyframes heroFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(1.2deg); }
+  }
+
+  .hero-logo-halo::before {
+    content: '';
+    position: absolute;
+    width: 85%;
+    height: 85%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.98) 0%, rgba(237, 218, 246, 0.6) 55%, transparent 75%);
+    border-radius: 50%;
+    filter: blur(32px);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .hero-right img { 
+    width: 100%; 
+    max-width: 390px; 
+    height: auto; 
+    display: block; 
+    filter: drop-shadow(0 20px 40px rgba(50, 30, 84, 0.16));
+    transition: transform 0.4s ease;
+  }
+
+  .hero-right img:hover {
+    transform: scale(1.03);
+  }
+
+  body.lactancia-mode .hero-logo-halo::before {
+    background: radial-gradient(circle, rgba(186, 155, 240, 0.25) 0%, transparent 70%);
+  }
+
+  /* ── MARQUEE ── */
+  .mq-wrap {
+    overflow: hidden; padding: 1.6rem 0; 
+    background: rgba(255, 255, 255, 0.55); 
+    border-top: 1px solid rgba(74, 45, 100, 0.08); 
+    border-bottom: 1px solid rgba(74, 45, 100, 0.08);
+    backdrop-filter: blur(10px); 
+    transition: background 0.6s ease;
+  }
+  body.lactancia-mode .mq-wrap { background: rgba(18, 11, 32, 0.6); }
+  .mq-track { display: flex; gap: 3.5rem; width: max-content; animation: marquee 30s linear infinite; }
+  .mq-item { display: flex; align-items: center; gap: 1rem; font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-sub); font-weight: 700; opacity: 0.9; }
+
+  /* ── SECCIÓN CENTRAL CON SPOTLIGHT ── */
+  .main-content { padding: 6.5rem 4.5rem 3.5rem; background: transparent; }
+  .content-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2.3fr; gap: 4.8rem; align-items: start; }
+  
+  .about-sidebar { position: sticky; top: 120px; }
+  .sec-tag { font-size: .78rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-blue); font-weight: 800; margin-bottom: .8rem; }
+  .sec-title { font-size: clamp(2.1rem, 3.2vw, 2.7rem); font-weight: 800; color: var(--text-main); margin-bottom: 1.3rem; line-height: 1.18; letter-spacing: -0.8px; }
+  .sec-desc { color: var(--text-sub); font-size: 1.05rem; line-height: 1.82; }
+  .sec-desc p { margin-bottom: 1.1rem; }
+
+  /* Rejilla de Servicios Bento */
+  .srv-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.6rem; }
+  
+  .bento-card {
+    background: var(--card-bg); 
+    border: 1px solid var(--card-border);
+    border-radius: 26px; 
+    padding: 2.4rem; 
+    text-align: left;
+    backdrop-filter: blur(12px);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+    cursor: default;
+    box-shadow: var(--card-shadow);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .bento-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: inherit;
+    background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--spotlight-color), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .bento-card:hover::before { opacity: 1; }
+  
+  .card-wide { grid-column: span 2; display: flex; align-items: center; gap: 2.2rem; }
+  
+  .bento-card:hover { 
+    transform: translateY(-4px); 
+    box-shadow: 0 18px 45px var(--neon-hover); 
+    border-color: rgba(162, 118, 220, 0.4);
+  }
+  
+  .srv-icon {
+    width: 62px; height: 62px; border-radius: 18px; flex-shrink: 0;
+    background: var(--icon-bg);
+    color: var(--icon-color);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.45rem; margin-bottom: 1.25rem; 
+    transition: transform 0.3s ease, background 0.6s ease;
+    position: relative; z-index: 2;
+  }
+  .bento-card:hover .srv-icon { transform: scale(1.06) rotate(2deg); }
+  .card-wide .srv-icon { margin-bottom: 0; }
+  
+  .bento-card h3 { font-size: 1.18rem; font-weight: 700; color: var(--text-main); margin-bottom: .6rem; letter-spacing: -0.3px; position: relative; z-index: 2; }
+  .bento-card p { font-size: .96rem; color: var(--text-sub); line-height: 1.68; position: relative; z-index: 2; }
+
+  /* ── SECCIÓN TRANSPARENCIA CON CONTRASTE ELEVADO ── */
+  .legal-section { padding: 3.5rem 4.5rem 4.5rem; max-width: 1330px; margin: 0 auto; }
+  .legal-layout { display: grid; grid-template-columns: 1.35fr 1fr; gap: 2.2rem; }
+  
+  .legal-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 30px;
+    padding: 3rem;
+    backdrop-filter: blur(14px);
+    box-shadow: var(--card-shadow);
+  }
+
+  .legal-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.6rem; }
+  .legal-header i { font-size: 1.9rem; color: var(--accent-blue); }
+  .legal-header h2 { font-size: 1.55rem; font-weight: 800; color: var(--text-main); letter-spacing: -0.4px; }
+
+  .legal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  
+  .legal-tile { 
+    background: var(--icon-bg); 
+    border-radius: 18px; 
+    padding: 1.35rem; 
+    border-left: 3.5px solid var(--accent-blue);
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+  .legal-tile:hover {
+    transform: translateX(4px);
+    border-left-color: var(--btn-fill-bg);
+  }
+  .legal-tile-lbl { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-sub); margin-bottom: 5px; }
+  .legal-tile-val { font-size: 1.02rem; font-weight: 800; color: var(--text-main); line-height: 1.3; }
+
+  .contact-items { display: flex; flex-direction: column; gap: 1.3rem; margin-top: 1.6rem; }
+  .contact-row { display: flex; align-items: flex-start; gap: 14px; }
+  .contact-icon { width: 44px; height: 44px; border-radius: 14px; background: var(--icon-bg); color: var(--icon-color); display: flex; align-items: center; justify-content: center; font-size: 1.05rem; flex-shrink: 0; }
+  .contact-info strong { display: block; font-size: 0.96rem; font-weight: 700; color: var(--text-main); }
+  .contact-info span, .contact-info a { font-size: 0.92rem; color: var(--text-sub); text-decoration: none; }
+  .contact-info a:hover { color: var(--accent-blue); text-decoration: underline; }
+
+  /* ── CARRUSEL DE HISTORIAS ── */
+  .stories-section { padding: 4rem 4.5rem; max-width: 1330px; margin: 0 auto; overflow: hidden; }
+  .stories-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.2rem; }
+  
+  .carousel-wrapper {
+    display: flex; gap: 1.6rem; overflow-x: auto; padding-bottom: 2rem;
+    scroll-snap-type: x mandatory; scroll-behavior: smooth;
+    -ms-overflow-style: none; scrollbar-width: none; cursor: grab;
+  }
+  .carousel-wrapper::-webkit-scrollbar { display: none; }
+  .carousel-wrapper.active { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; }
+  
+  .story-card {
+    flex: 0 0 330px; scroll-snap-align: start;
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: 26px; padding: 1.8rem; display: flex; flex-direction: column; gap: 1.3rem;
+    box-shadow: var(--card-shadow); user-select: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .story-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px var(--neon-hover); }
+  .story-img {
+    width: 100%; height: 190px; border-radius: 18px; object-fit: cover;
+    filter: grayscale(100%) sepia(15%); transition: filter 0.4s ease;
+    pointer-events: none;
+  }
+  .story-card:hover .story-img { filter: grayscale(0%) sepia(0%); }
+  .story-quote { font-size: 0.96rem; font-style: italic; color: var(--text-sub); line-height: 1.65; flex-grow: 1; }
+  .story-author { font-size: 0.88rem; font-weight: 700; color: var(--text-main); text-align: right; }
+
+  /* ── MÓDULO MICRO-DONACIONES ── */
+  .donation-section { padding: 2rem 4.5rem 6.5rem; max-width: 1330px; margin: 0 auto; }
+  .donation-box {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border); border-radius: 36px;
+    padding: 5rem 3.5rem; text-align: center;
+    box-shadow: 0 15px 45px rgba(50, 30, 84, 0.08);
+    backdrop-filter: blur(14px);
+  }
+  .donation-box h2 { font-size: 2.4rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem; letter-spacing: -0.6px; }
+  .donation-box p { color: var(--text-sub); font-size: 1.1rem; margin-bottom: 2.6rem; max-width: 660px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+  
+  .amount-selector { display: flex; justify-content: center; gap: 1.1rem; flex-wrap: wrap; margin-bottom: 2.6rem; }
+  .amt-btn {
+    background: rgba(255, 255, 255, 0.6); border: 2px solid rgba(74, 45, 100, 0.12); border-radius: 50px;
+    padding: 0.85rem 2.2rem; font-size: 1.02rem; font-weight: 700; color: var(--text-sub);
+    cursor: pointer; transition: all 0.25s ease;
+  }
+  .amt-btn:hover { border-color: var(--accent-blue); color: var(--accent-blue); transform: translateY(-2px); }
+  .amt-btn.selected { background: var(--accent-blue); border-color: var(--accent-blue); color: #fff; box-shadow: 0 6px 20px rgba(50, 115, 181, 0.35); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--footer-bg); color: var(--text-sub); padding: 3.8rem 2rem; text-align: center; border-top: 1px solid rgba(74, 45, 100, 0.08); transition: background 0.6s ease; }
+
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── RESPONSIVO ── */
+  @media(max-width: 992px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 4rem 1.5rem; } 
+    .hero-container { flex-direction: column; text-align: center; }
+    .hero-left { max-width: 100%; display: flex; flex-direction: column; align-items: center; }
+    .hero-btns { justify-content: center; }
+    .hero-stats { justify-content: center; width: 100%; }
+    .stat-item { padding-right: 1.5rem; margin-right: 1.5rem; }
+    .hero-right { width: 100%; flex: none; margin-top: 3rem; }
+    .hero-svg-bg { display: none; } 
+    .content-inner { grid-template-columns: 1fr; gap: 4rem; }
+    .about-sidebar { position: static; text-align: center; }
+    .srv-grid { grid-template-columns: 1fr; }
+    .card-wide { grid-column: span 1; flex-direction: column; text-align: center; }
+    .card-wide .srv-icon { margin: 0 auto 1.5rem; }
+    .legal-layout { grid-template-columns: 1fr; }
+    .legal-grid { grid-template-columns: 1fr; }
+    .stories-section, .donation-section, .legal-section { padding: 3rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PRELOADER CON LOGO TRANSPARENTE -->
+<div class="preloader" id="preloader">
+  <img src="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Gota_de_Leche-.png" alt="Corporación Gota de Leche de Miramar" class="preloader-logo">
+  <div style="font-size: 0.78rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--text-main); margin-top: -5px; opacity: 0.85;">Cargando Ecosistema</div>
+</div>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Gota_de_Leche-.png" alt="Logo Corporación Gota de Leche de Miramar">
+    <div class="nav-brand">CORPORACIÓN GOTA DE LECHE <span>de Miramar · 1918</span></div>
+  </a>
+  <div class="nav-actions">
+    <div class="nav-links">
+      <a href="#proposito">Nosotros</a>
+      <a href="#programas">Programas</a>
+      <a href="#transparencia">Transparencia Legal</a>
+      <a href="#sede">Sede</a>
+    </div>
+    <button class="theme-toggle" id="themeBtn">
+      <i class="fa-solid fa-moon"></i> Modo Lactancia
+    </button>
+  </div>
+</nav>
+
+<!-- CONTENEDOR HERO CON DEGRADADO ROSADO -->
+<div class="hero-wrapper">
+  <section class="hero">
+    <div class="hero-svg-bg" id="parallax-bg">
+      <svg viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice">
+        <path class="wave-fill" d="M1440 0H850C1100 280 930 550 1050 800H1440V0Z"/>
+      </svg>
+    </div>
+
+    <div class="hero-container">
+      <div class="hero-left">
+        <div class="hero-legal-badge">
+          <i class="fa-solid fa-certificate"></i> Personalidad Jurídica Inscripción N° 12.763 · Registro Civil
+        </div>
+        <h1>Cada gota de leche<br>es un acto de amor.</h1>
+        <p>
+          Fundada en 1918 en Viña del Mar, apoyamos a lactantes, niños y niñas en situación de alta vulnerabilidad socioeconómica mediante la entrega gratuita de insumos esenciales y el fomento de buenas prácticas de crianza.
+        </p>
+        
+        <div class="hero-btns">
+          <div class="magnetic-wrap"><a href="#programas" class="btn btn-1 magnetic">Nuestra labor →</a></div>
+          <div class="magnetic-wrap"><a href="#sede" class="btn btn-2 magnetic">Horarios de atención</a></div>
+        </div>
+        
+        <div class="hero-stats">
+          <div class="stat-item"><span class="stat-num" data-target="108">0</span><span class="stat-label">años</span></div>
+          <div class="stat-item"><span class="stat-num" data-target="500">0</span><span class="stat-label">familias</span></div>
+          <div class="stat-item"><span class="stat-num" data-target="100">0</span><span class="stat-label">gratuito</span></div>
+        </div>
+      </div>
+
+      <!-- ISOTIPO FLOTANTE CON RESPLANDOR SUAVE -->
+      <div class="hero-right">
+        <div class="hero-logo-halo">
+          <img src="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Gota_de_Leche-.png" alt="Corporación Gota de Leche de Miramar">
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="mq-wrap">
+  <div class="mq-track">
+    <div class="mq-item"><i class="fa-solid fa-star-of-life"></i> Nutrición infantil</div>
+    <div class="mq-item"><i class="fa-solid fa-star-of-life"></i> Fórmulas lácteas y pañales</div>
+    <div class="mq-item"><i class="fa-solid fa-star-of-life"></i> Parentalidad positiva</div>
+    <div class="mq-item"><i class="fa-solid fa-star-of-life"></i> Viña del Mar · Desde 1918</div>
+    <div class="mq-item"><i class="fa-solid fa-star-of-life"></i> Nutrición infantil</div>
+    <div class="mq-item"><i class="fa-solid fa-star-of-life"></i> Fórmulas lácteas y pañales</div>
+    <div class="mq-item"><i class="fa-solid fa-star-of-life"></i> Parentalidad positiva</div>
+    <div class="mq-item"><i class="fa-solid fa-star-of-life"></i> Viña del Mar · Desde 1918</div>
+  </div>
+</div>
+
+<!-- SECCIÓN CENTRAL DE PROGRAMAS -->
+<section class="main-content" id="proposito">
+  <div class="content-inner">
+    <div class="about-sidebar">
+      <div class="sec-tag">Nuestro Propósito</div>
+      <h2 class="sec-title">Una historia comunitaria de más de un siglo</h2>
+      <div class="sec-desc">
+        <p><strong>Corporación Gota de Leche de Miramar</strong> es una organización sin fines de lucro ubicada en la comuna de Viña del Mar. Fue fundada en 1918 como una iniciativa privada orientada desde sus inicios al fomento de la lactancia materna y al apoyo nutricional de niños y niñas.</p>
+        <p>Involucramos a madres, padres y tutores en actividades participativas para mitigar carencias básicas y construir entornos familiares sanos y protectores.</p>
+      </div>
+    </div>
+
+    <div class="srv-grid" id="programas">
+      <div class="bento-card card-wide">
+        <div class="srv-icon"><i class="fa-solid fa-bottle-droplet"></i></div>
+        <div>
+          <h3>Entrega de Insumos de Primera Necesidad</h3>
+          <p>Apoyo directo con leche, pañales y suplementos alimenticios para mitigar las carencias que afectan las necesidades más básicas en la primera infancia.</p>
+        </div>
+      </div>
+      
+      <div class="bento-card">
+        <div class="srv-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+        <h3>Parentalidad Positiva</h3>
+        <p>Instancias participativas orientadas al fortalecimiento de buenas prácticas de crianza, vínculo afectivo y salud mental.</p>
+      </div>
+      
+      <div class="bento-card">
+        <div class="srv-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3>Prevención Comunitaria</h3>
+        <p>Sensibilización y herramientas de prevención del maltrato infantil y del consumo problemático de alcohol y drogas.</p>
+      </div>
+      
+      <div class="bento-card">
+        <div class="srv-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+        <h3>Orientación Familiar</h3>
+        <p>Acompañamiento a madres y cuidadores en situaciones de alta vulnerabilidad socioeconómica.</p>
+      </div>
+      
+      <div class="bento-card">
+        <div class="srv-icon"><i class="fa-solid fa-users"></i></div>
+        <h3>Comunidad de Apoyo</h3>
+        <p>Espacios solidarios donde compartir vivencias en torno a los desafíos de la maternidad y primera infancia.</p>
+      </div>
+      
+      <div class="bento-card card-wide">
+        <div class="srv-icon"><i class="fa-solid fa-baby"></i></div>
+        <div>
+          <h3>Fomento del Desarrollo Infantil</h3>
+          <p>Compromiso histórico con el bienestar físico, emocional y nutricional integral de los niños de Viña del Mar.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN DE TRANSPARENCIA Y CONTACTO INSTITUCIONAL -->
+<section class="legal-section" id="transparencia">
+  <div class="legal-layout">
+    
+    <!-- Bloque Legal -->
+    <div class="legal-card">
+      <div class="legal-header">
+        <i class="fa-solid fa-scale-balanced"></i>
+        <h2>Transparencia y Personería Jurídica</h2>
+      </div>
+      <p style="color: var(--text-sub); font-size: 0.95rem; margin-bottom: 1.5rem;">
+        Datos institucionales oficiales registrados ante el Estado de Chile para auditoría, convenios y validación:
+      </p>
+
+      <div class="legal-grid">
+        <div class="legal-tile">
+          <div class="legal-tile-lbl">Razón Social</div>
+          <div class="legal-tile-val">Corporación Gota de Leche de Miramar</div>
+        </div>
+        <div class="legal-tile">
+          <div class="legal-tile-lbl">RUT Institucional</div>
+          <div class="legal-tile-val">71.315.200-5</div>
+        </div>
+        <div class="legal-tile">
+          <div class="legal-tile-lbl">Registro Legal</div>
+          <div class="legal-tile-val">Inscripción N° 12.763 (Registro Civil)</div>
+        </div>
+        <div class="legal-tile">
+          <div class="legal-tile-lbl">Representante Legal</div>
+          <div class="legal-tile-val">Roser Palomer (Presidenta)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bloque Sede y Horarios -->
+    <div class="legal-card" id="sede">
+      <div class="legal-header">
+        <i class="fa-solid fa-location-dot"></i>
+        <h2>Sede y Atención</h2>
+      </div>
+
+      <div class="contact-items">
+        <div class="contact-row">
+          <div class="contact-icon"><i class="fa-solid fa-map-pin"></i></div>
+          <div class="contact-info">
+            <strong>Dirección Física</strong>
+            <span>Calle Cinco 2045, Santa Inés, Viña del Mar</span>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
+          <div class="contact-info">
+            <strong>Horarios de Atención</strong>
+            <span>Lunes, Martes y Miércoles: 15:00 a 17:00 hrs.</span>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+          <div class="contact-info">
+            <strong>Teléfonos de Contacto</strong>
+            <span>Sede: <a href="tel:+56223176971">+56 2 2317 6971</a></span><br>
+            <span>Móvil: <a href="tel:+56996798157">+56 9 9679 8157</a></span>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div class="contact-info">
+            <strong>Correo Institucional</strong>
+            <a href="mailto:gotadeleche1918@hotmail.com">gotadeleche1918@hotmail.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CARRUSEL DE HISTORIAS -->
+<section class="stories-section">
+  <div class="stories-header">
+    <div>
+      <div class="sec-tag" style="color: var(--accent-blue);">Comunidad</div>
+      <h2 class="sec-title" style="margin-bottom:0;">Historias Reales</h2>
+    </div>
+    <div style="color: var(--text-sub); font-size:0.85rem; font-weight:600;">
+      <i class="fa-solid fa-arrows-left-right"></i> Arrastra para ver más
+    </div>
+  </div>
+  
+  <div class="carousel-wrapper" id="storiesCarousel">
+    <div class="story-card">
+      <img src="https://images.pexels.com/photos/3270223/pexels-photo-3270223.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Mamá y bebé" class="story-img" draggable="false">
+      <p class="story-quote">"El apoyo nutricional con leche y pañales durante los primeros meses fue un salvavidas cuando más lo necesitábamos."</p>
+      <span class="story-author">— Camila R.</span>
+    </div>
+    <div class="story-card">
+      <img src="https://images.pexels.com/photos/1648377/pexels-photo-1648377.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Bebé" class="story-img" draggable="false">
+      <p class="story-quote">"El acompañamiento y los consejos sobre parentalidad positiva nos dieron seguridad y tranquilidad."</p>
+      <span class="story-author">— Sofía T.</span>
+    </div>
+    <div class="story-card">
+      <img src="https://images.pexels.com/photos/112811/pexels-photo-112811.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Familia" class="story-img" draggable="false">
+      <p class="story-quote">"Es una institución centenaria que de verdad acompaña a las familias vulnerables de la comuna."</p>
+      <span class="story-author">— Andrea L.</span>
+    </div>
+    <div class="story-card">
+      <img src="https://images.pexels.com/photos/7282818/pexels-photo-7282818.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Madre" class="story-img" draggable="false">
+      <p class="story-quote">"Encontrar un espacio de contención y ayuda real en Viña del Mar marcó una diferencia inmensa en nuestro hogar."</p>
+      <span class="story-author">— Valeria M.</span>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULO MICRO-DONACIONES -->
+<section class="donation-section">
+  <div class="donation-box">
+    <h2>Súmate a nuestro propósito</h2>
+    <p>Con tu aporte mensual o entrega de insumos, aseguramos que ningún niño o niña enfrente la primera infancia sin alimentación adecuada y protección.</p>
+    
+    <div class="amount-selector">
+      <button class="amt-btn">$5.000</button>
+      <button class="amt-btn selected">$10.000</button>
+      <button class="amt-btn">$20.000</button>
+      <button class="amt-btn">Insumos en Sede</button>
+    </div>
+    
+    <a href="mailto:gotadeleche1918@hotmail.com?subject=Colaboraci%C3%B3n%20Corporaci%C3%B3n%20Gota%20de%20Leche" class="btn btn-1" style="padding: 1.05rem 3.2rem; font-size: 1.02rem; font-weight:700;">Coordinar Aporte <i class="fa-solid fa-heart" style="margin-left: 8px;"></i></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong style="color: var(--text-main); font-size: 1.18rem; letter-spacing: -0.3px;">CORPORACIÓN GOTA DE LECHE DE MIRAMAR</strong><br>
+  <span style="font-size: 0.95rem; display: block; margin-top: 6px;">RUT: 71.315.200-5 · Personalidad Jurídica Inscripción N° 12.763 (Registro Civil de Chile)</span>
+  <span style="font-size: 0.88rem; display: block; margin-top: 4px;">Calle Cinco 2045, Santa Inés, Viña del Mar, Región de Valparaíso</span>
+  <div style="margin-top: 1.5rem; font-size: 0.82rem; opacity: 0.7;">
+    © 1918 - 2026 Corporación Gota de Leche de Miramar · Dominio oficial: gotadelechevinadelmar.cl
+  </div>
+</footer>
+
+<!-- Lenis para Smooth Scroll -->
+<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+
+<script>
+// 1. ELIMINAR PRELOADER
+window.addEventListener('load', () => {
+  setTimeout(() => { document.body.classList.add('loaded'); }, 1200); 
+});
+
+// 2. INICIALIZAR LENIS
+const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+requestAnimationFrame(raf);
+
+// 3. PARALLAX DE LA GOTA
+const parallaxBg = document.getElementById('parallax-bg');
+lenis.on('scroll', (e) => {
+  if (parallaxBg) parallaxBg.style.transform = `translateY(${e.scroll * 0.15}px)`; 
+});
+
+// 4. SPOTLIGHT EFECTO CURSOR EN TARJETAS
+document.querySelectorAll('.bento-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+    card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+  });
+});
+
+// 5. BOTONES MAGNÉTICOS
+const magnets = document.querySelectorAll('.magnetic');
+magnets.forEach(btn => {
+  btn.addEventListener('mousemove', function(e) {
+    const position = btn.parentElement.getBoundingClientRect();
+    const x = e.clientX - position.left - position.width / 2;
+    const y = e.clientY - position.top - position.height / 2;
+    btn.classList.add('active-drag');
+    btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+  });
+  btn.addEventListener('mouseleave', function() {
+    btn.classList.remove('active-drag');
+    btn.style.transform = 'translate(0px, 0px)';
+  });
+});
+
+// 6. MODO LACTANCIA
+const themeBtn = document.getElementById('themeBtn');
+themeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('lactancia-mode');
+  const icon = themeBtn.querySelector('i');
+  if (document.body.classList.contains('lactancia-mode')) {
+    themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i> Modo Día';
+  } else {
+    themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i> Modo Lactancia';
+  }
+});
+
+// 7. MONTO SELECCIONADO
+const amtBtns = document.querySelectorAll('.amt-btn');
+amtBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    amtBtns.forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+  });
+});
+
+// 8. ARRASTRE DEL CARRUSEL
+const slider = document.getElementById('storiesCarousel');
+let isDown = false; let startX; let scrollLeft;
+slider.addEventListener('mousedown', (e) => {
+  isDown = true; slider.classList.add('active');
+  startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft;
+});
+slider.addEventListener('mouseleave', () => { isDown = false; slider.classList.remove('active'); });
+slider.addEventListener('mouseup', () => { isDown = false; slider.classList.remove('active'); });
+slider.addEventListener('mousemove', (e) => {
+  if(!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - slider.offsetLeft;
+  const walk = (x - startX) * 2;
+  slider.scrollLeft = scrollLeft - walk;
+});
+
+// 9. CONTADORES ANIMADOS
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ 
+      const numEl = e.target.querySelector('.stat-num');
+      if (numEl && numEl.textContent === '0') {
+        const target = parseInt(numEl.dataset.target, 10);
+        const isPercent = e.target.parentElement.querySelector('.stat-label').textContent.includes('gratuito');
+        let current = 0;
+        const timer = setInterval(() => {
+          current += target / 60;
+          if (current >= target) { current = target; clearInterval(timer); }
+          numEl.textContent = Math.floor(current) + (isPercent ? '%' : '');
+        }, 20);
+      }
+      obs.unobserve(e.target); 
+    }
+  });
+}, {threshold:.12});
+document.querySelectorAll('.stat-item').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
