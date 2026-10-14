@@ -4,18 +4,66 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Corporación Gota de Leche de Miramar · Viña del Mar</title>
-<meta name="description" content="Organización sin fines de lucro fundada en 1918 en Viña del Mar. Fomento de la lactancia materna, apoyo nutricional infantil y fortalecimiento de buenas prácticas de crianza.">
+<meta name="description" content="Organización sin fines de lucro fundada en 1918 en Viña del Mar (RUT: 71.315.200-5). Fomento de la nutrición infantil, apoyo con fórmulas lácteas, pañales y crianza positiva.">
+<meta name="keywords" content="Gota de Leche de Miramar, Gota de Leche Viña del Mar, corporacion gota de leche, donaciones viña del mar, santa ines viña del mar, ayuda infantil">
+<link rel="canonical" href="https://gotadelechevinadelmar.cl/">
+
+<!-- Metadatos Open Graph (Facebook / WhatsApp / LinkedIn) -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CL">
+<meta property="og:site_name" content="Corporación Gota de Leche de Miramar">
+<meta property="og:title" content="Corporación Gota de Leche de Miramar · Viña del Mar">
+<meta property="og:description" content="Organización benéfica fundada en 1918 en Viña del Mar. Entrega gratuita de insumos esenciales, nutrición y fomento de la crianza positiva.">
+<meta property="og:url" content="https://gotadelechevinadelmar.cl/">
+<meta property="og:image" content="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Gota_de_Leche-.png">
+
+<!-- Datos estructurados Schema.org para Google Search -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NGO",
+  "name": "Corporación Gota de Leche de Miramar",
+  "alternateName": "Gota de Leche de Miramar",
+  "url": "https://gotadelechevinadelmar.cl",
+  "logo": "https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Gota_de_Leche-.png",
+  "foundingDate": "1918",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle Cinco 2045, Santa Inés",
+    "addressLocality": "Viña del Mar",
+    "addressRegion": "Valparaíso",
+    "postalCode": "2562138",
+    "addressCountry": "CL"
+  },
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+56-2-2317-6971",
+      "contactType": "customer service",
+      "availableLanguage": "Spanish"
+    },
+    {
+      "@type": "ContactPoint",
+      "telephone": "+56-9-9679-8157",
+      "contactType": "mobile",
+      "availableLanguage": "Spanish"
+    }
+  ],
+  "taxID": "71.315.200-5"
+}
+</script>
+
 <!-- Iconos FontAwesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
   
-  /* ── VARIABLES CSS (PALETA ROSADA / LAVANDA ORIGINAL) ── */
+  /* ── VARIABLES CSS ── */
   :root {
-    --bg-body: #ebdff5; /* Tono rosado/lavanda cálido de base */
-    --bg-dots: rgba(74, 45, 100, 0.09);
-    --bg-hero-grad: linear-gradient(135deg, #e7daf6 0%, #ecd4f3 100%);
-    --bg-nav: rgba(235, 223, 245, 0.82);
+    --bg-body: #ebdff5;
+    --bg-dots: rgba(74, 45, 100, 0.08);
+    --bg-hero-grad: linear-gradient(135deg, #e8dbf7 0%, #ecd4f3 100%);
+    --bg-nav: rgba(235, 223, 245, 0.88);
     --text-main: #321e54;
     --text-sub: #5c437a;
     --hero-wave: #ffffff;
@@ -24,9 +72,13 @@
     --btn-ghost-border: #433068;
     --btn-ghost-txt: #433068;
     
-    /* Tarjetas con contraste blanco puro sobre el fondo rosáceo */
-    --card-bg: rgba(255, 255, 255, 0.94);
-    --card-border: rgba(255, 255, 255, 0.9);
+    /* Contraste Secciones */
+    --section-dark-bg: #170f2b;
+    --section-dark-text: #f0eafc;
+    --section-dark-sub: #ad9ec9;
+    
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --card-border: rgba(255, 255, 255, 0.85);
     --card-shadow: 0 14px 35px -5px rgba(50, 30, 84, 0.07), 0 4px 12px rgba(50, 30, 84, 0.03);
     --icon-bg: #f4ecfb;
     --icon-color: #553488;
@@ -37,12 +89,11 @@
     --footer-bg: #ffffff;
   }
 
-  /* ── TEMA OSCURO (MODO LACTANCIA) ── */
   body.lactancia-mode {
     --bg-body: #0d0817;
     --bg-dots: rgba(255, 255, 255, 0.04);
     --bg-hero-grad: linear-gradient(135deg, #180f2b 0%, #1c0d29 100%);
-    --bg-nav: rgba(13, 8, 23, 0.85);
+    --bg-nav: rgba(13, 8, 23, 0.88);
     --text-main: #eee6fa;
     --text-sub: #aa9bc7;
     --hero-wave: #160e26;
@@ -50,6 +101,10 @@
     --btn-fill-txt: #0d0817;
     --btn-ghost-border: #cebdf5;
     --btn-ghost-txt: #cebdf5;
+    
+    --section-dark-bg: #090510;
+    --section-dark-text: #eee6fa;
+    --section-dark-sub: #9a8bb6;
     
     --card-bg: rgba(28, 18, 43, 0.88);
     --card-border: rgba(230, 224, 248, 0.08);
@@ -143,7 +198,7 @@
   }
   .theme-toggle:hover { background: var(--text-main); color: var(--bg-body); transform: translateY(-1px); }
 
-  /* ── HERO SECCIÓN CON DEGRADADO ROSADO ── */
+  /* ── HERO ── */
   .hero-wrapper {
     background: var(--bg-hero-grad);
     position: relative;
@@ -229,7 +284,7 @@
   .stat-num { display: block; font-size: 2.6rem; font-weight: 800; color: var(--text-main); line-height: 1.1; letter-spacing: -1px; }
   .stat-label { display: block; font-size: 0.92rem; font-weight: 600; color: var(--text-sub); margin-top: 0.2rem; }
 
-  /* ── FLOTACIÓN ORGÁNICA DEL ISOTIPO CON RESPLANDOR ── */
+  /* Isotipo con Halo */
   .hero-right { 
     flex: 0 0 44%; 
     display: flex; 
@@ -275,28 +330,58 @@
     transition: transform 0.4s ease;
   }
 
-  .hero-right img:hover {
-    transform: scale(1.03);
+  /* ── SECCIÓN HISTÓRICA OSCURA ── */
+  .history-banner {
+    background-color: var(--section-dark-bg);
+    color: var(--section-dark-text);
+    padding: 6rem 5.5%;
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
-
-  body.lactancia-mode .hero-logo-halo::before {
-    background: radial-gradient(circle, rgba(186, 155, 240, 0.25) 0%, transparent 70%);
+  .history-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1.8fr; gap: 4.5rem; align-items: center;
   }
+  .history-lead h2 {
+    font-size: clamp(2.2rem, 3.5vw, 3rem); font-weight: 800; line-height: 1.15;
+    letter-spacing: -1px; margin-bottom: 1.2rem; color: #ffffff;
+  }
+  .history-lead p {
+    font-size: 1.05rem; line-height: 1.8; color: var(--section-dark-sub);
+  }
+  
+  .timeline-grid { display: flex; flex-direction: column; gap: 1.6rem; }
+  .timeline-node {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 1.6rem 2rem;
+    display: flex; gap: 1.8rem; align-items: flex-start;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  .timeline-node:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(6px);
+  }
+  .time-badge {
+    font-size: 1.4rem; font-weight: 800; color: #cbbdf2; letter-spacing: -0.5px;
+    background: rgba(203, 189, 242, 0.12); padding: 0.5rem 1rem; border-radius: 12px;
+  }
+  .timeline-node h4 { font-size: 1.15rem; font-weight: 700; color: #ffffff; margin-bottom: 0.35rem; }
+  .timeline-node p { font-size: 0.95rem; line-height: 1.6; color: var(--section-dark-sub); margin: 0; }
 
   /* ── MARQUEE ── */
   .mq-wrap {
     overflow: hidden; padding: 1.6rem 0; 
-    background: rgba(255, 255, 255, 0.55); 
-    border-top: 1px solid rgba(74, 45, 100, 0.08); 
+    background: rgba(255, 255, 255, 0.6); 
     border-bottom: 1px solid rgba(74, 45, 100, 0.08);
     backdrop-filter: blur(10px); 
-    transition: background 0.6s ease;
   }
-  body.lactancia-mode .mq-wrap { background: rgba(18, 11, 32, 0.6); }
   .mq-track { display: flex; gap: 3.5rem; width: max-content; animation: marquee 30s linear infinite; }
   .mq-item { display: flex; align-items: center; gap: 1rem; font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-sub); font-weight: 700; opacity: 0.9; }
 
-  /* ── SECCIÓN CENTRAL CON SPOTLIGHT ── */
+  /* ── SECCIÓN CENTRAL PROGRAMAS ── */
   .main-content { padding: 6.5rem 4.5rem 3.5rem; background: transparent; }
   .content-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2.3fr; gap: 4.8rem; align-items: start; }
   
@@ -306,9 +391,8 @@
   .sec-desc { color: var(--text-sub); font-size: 1.05rem; line-height: 1.82; }
   .sec-desc p { margin-bottom: 1.1rem; }
 
-  /* Rejilla de Servicios Bento */
+  /* Bento Grid */
   .srv-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.6rem; }
-  
   .bento-card {
     background: var(--card-bg); 
     border: 1px solid var(--card-border);
@@ -322,46 +406,30 @@
     position: relative;
     overflow: hidden;
   }
-  
   .bento-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    border-radius: inherit;
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: inherit;
     background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--spotlight-color), transparent 60%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    z-index: 1;
+    opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 1;
   }
   .bento-card:hover::before { opacity: 1; }
-  
   .card-wide { grid-column: span 2; display: flex; align-items: center; gap: 2.2rem; }
-  
-  .bento-card:hover { 
-    transform: translateY(-4px); 
-    box-shadow: 0 18px 45px var(--neon-hover); 
-    border-color: rgba(162, 118, 220, 0.4);
-  }
+  .bento-card:hover { transform: translateY(-4px); box-shadow: 0 18px 45px var(--neon-hover); border-color: rgba(162, 118, 220, 0.4); }
   
   .srv-icon {
     width: 62px; height: 62px; border-radius: 18px; flex-shrink: 0;
-    background: var(--icon-bg);
-    color: var(--icon-color);
+    background: var(--icon-bg); color: var(--icon-color);
     display: flex; align-items: center; justify-content: center;
     font-size: 1.45rem; margin-bottom: 1.25rem; 
-    transition: transform 0.3s ease, background 0.6s ease;
-    position: relative; z-index: 2;
+    transition: transform 0.3s ease; position: relative; z-index: 2;
   }
   .bento-card:hover .srv-icon { transform: scale(1.06) rotate(2deg); }
   .card-wide .srv-icon { margin-bottom: 0; }
-  
   .bento-card h3 { font-size: 1.18rem; font-weight: 700; color: var(--text-main); margin-bottom: .6rem; letter-spacing: -0.3px; position: relative; z-index: 2; }
   .bento-card p { font-size: .96rem; color: var(--text-sub); line-height: 1.68; position: relative; z-index: 2; }
 
-  /* ── SECCIÓN TRANSPARENCIA CON CONTRASTE ELEVADO ── */
+  /* ── TRANSPARENCIA & SEDE CON MAPA ── */
   .legal-section { padding: 3.5rem 4.5rem 4.5rem; max-width: 1330px; margin: 0 auto; }
-  .legal-layout { display: grid; grid-template-columns: 1.35fr 1fr; gap: 2.2rem; }
+  .legal-layout { display: grid; grid-template-columns: 1.2fr 1.1fr; gap: 2.2rem; }
   
   .legal-card {
     background: var(--card-bg);
@@ -370,6 +438,7 @@
     padding: 3rem;
     backdrop-filter: blur(14px);
     box-shadow: var(--card-shadow);
+    display: flex; flex-direction: column; justify-content: space-between;
   }
 
   .legal-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.6rem; }
@@ -377,32 +446,55 @@
   .legal-header h2 { font-size: 1.55rem; font-weight: 800; color: var(--text-main); letter-spacing: -0.4px; }
 
   .legal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
-  
   .legal-tile { 
-    background: var(--icon-bg); 
-    border-radius: 18px; 
-    padding: 1.35rem; 
+    background: var(--icon-bg); border-radius: 18px; padding: 1.35rem; 
     border-left: 3.5px solid var(--accent-blue);
-    transition: transform 0.25s ease, border-color 0.25s ease;
+    transition: transform 0.25s ease;
   }
-  .legal-tile:hover {
-    transform: translateX(4px);
-    border-left-color: var(--btn-fill-bg);
-  }
+  .legal-tile:hover { transform: translateX(4px); }
   .legal-tile-lbl { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-sub); margin-bottom: 5px; }
   .legal-tile-val { font-size: 1.02rem; font-weight: 800; color: var(--text-main); line-height: 1.3; }
 
-  .contact-items { display: flex; flex-direction: column; gap: 1.3rem; margin-top: 1.6rem; }
+  /* Mapa Embebido */
+  .map-container {
+    width: 100%; height: 180px; border-radius: 20px; overflow: hidden;
+    margin-top: 1.5rem; border: 1px solid var(--card-border);
+  }
+  .map-container iframe { width: 100%; height: 100%; border: 0; }
+
+  .contact-items { display: flex; flex-direction: column; gap: 1.1rem; margin-top: 1.4rem; }
   .contact-row { display: flex; align-items: flex-start; gap: 14px; }
-  .contact-icon { width: 44px; height: 44px; border-radius: 14px; background: var(--icon-bg); color: var(--icon-color); display: flex; align-items: center; justify-content: center; font-size: 1.05rem; flex-shrink: 0; }
-  .contact-info strong { display: block; font-size: 0.96rem; font-weight: 700; color: var(--text-main); }
-  .contact-info span, .contact-info a { font-size: 0.92rem; color: var(--text-sub); text-decoration: none; }
+  .contact-icon { width: 42px; height: 42px; border-radius: 12px; background: var(--icon-bg); color: var(--icon-color); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .contact-info strong { display: block; font-size: 0.95rem; font-weight: 700; color: var(--text-main); }
+  .contact-info span, .contact-info a { font-size: 0.9rem; color: var(--text-sub); text-decoration: none; }
   .contact-info a:hover { color: var(--accent-blue); text-decoration: underline; }
 
-  /* ── CARRUSEL DE HISTORIAS ── */
-  .stories-section { padding: 4rem 4.5rem; max-width: 1330px; margin: 0 auto; overflow: hidden; }
+  /* ── PREGUNTAS FRECUENTES (FAQ ACORDEÓN) ── */
+  .faq-section { padding: 2rem 4.5rem 5rem; max-width: 1000px; margin: 0 auto; }
+  .faq-header { text-align: center; margin-bottom: 3rem; }
+  .faq-accordion { display: flex; flex-direction: column; gap: 1.2rem; }
+  .faq-item {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 1.4rem 1.8rem;
+    box-shadow: var(--card-shadow);
+  }
+  .faq-item summary {
+    font-size: 1.08rem; font-weight: 700; color: var(--text-main); cursor: pointer;
+    list-style: none; display: flex; justify-content: space-between; align-items: center;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+    font-size: 0.85rem; color: var(--text-sub); transition: transform 0.3s ease;
+  }
+  .faq-item[open] summary::after { transform: rotate(180deg); color: var(--accent-blue); }
+  .faq-item p { margin-top: 1rem; font-size: 0.96rem; color: var(--text-sub); line-height: 1.7; }
+
+  /* ── CARRUSEL ── */
+  .stories-section { padding: 3rem 4.5rem; max-width: 1330px; margin: 0 auto; overflow: hidden; }
   .stories-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.2rem; }
-  
   .carousel-wrapper {
     display: flex; gap: 1.6rem; overflow-x: auto; padding-bottom: 2rem;
     scroll-snap-type: x mandatory; scroll-behavior: smooth;
@@ -410,7 +502,6 @@
   }
   .carousel-wrapper::-webkit-scrollbar { display: none; }
   .carousel-wrapper.active { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; }
-  
   .story-card {
     flex: 0 0 330px; scroll-snap-align: start;
     background: var(--card-bg); border: 1px solid var(--card-border);
@@ -421,8 +512,7 @@
   .story-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px var(--neon-hover); }
   .story-img {
     width: 100%; height: 190px; border-radius: 18px; object-fit: cover;
-    filter: grayscale(100%) sepia(15%); transition: filter 0.4s ease;
-    pointer-events: none;
+    filter: grayscale(100%) sepia(15%); transition: filter 0.4s ease; pointer-events: none;
   }
   .story-card:hover .story-img { filter: grayscale(0%) sepia(0%); }
   .story-quote { font-size: 0.96rem; font-style: italic; color: var(--text-sub); line-height: 1.65; flex-grow: 1; }
@@ -431,15 +521,11 @@
   /* ── MÓDULO MICRO-DONACIONES ── */
   .donation-section { padding: 2rem 4.5rem 6.5rem; max-width: 1330px; margin: 0 auto; }
   .donation-box {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border); border-radius: 36px;
-    padding: 5rem 3.5rem; text-align: center;
-    box-shadow: 0 15px 45px rgba(50, 30, 84, 0.08);
-    backdrop-filter: blur(14px);
+    background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 36px;
+    padding: 5rem 3.5rem; text-align: center; box-shadow: 0 15px 45px rgba(50, 30, 84, 0.08); backdrop-filter: blur(14px);
   }
   .donation-box h2 { font-size: 2.4rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem; letter-spacing: -0.6px; }
   .donation-box p { color: var(--text-sub); font-size: 1.1rem; margin-bottom: 2.6rem; max-width: 660px; margin-left: auto; margin-right: auto; line-height: 1.7; }
-  
   .amount-selector { display: flex; justify-content: center; gap: 1.1rem; flex-wrap: wrap; margin-bottom: 2.6rem; }
   .amt-btn {
     background: rgba(255, 255, 255, 0.6); border: 2px solid rgba(74, 45, 100, 0.12); border-radius: 50px;
@@ -466,6 +552,7 @@
     .stat-item { padding-right: 1.5rem; margin-right: 1.5rem; }
     .hero-right { width: 100%; flex: none; margin-top: 3rem; }
     .hero-svg-bg { display: none; } 
+    .history-inner { grid-template-columns: 1fr; gap: 3rem; }
     .content-inner { grid-template-columns: 1fr; gap: 4rem; }
     .about-sidebar { position: static; text-align: center; }
     .srv-grid { grid-template-columns: 1fr; }
@@ -473,7 +560,7 @@
     .card-wide .srv-icon { margin: 0 auto 1.5rem; }
     .legal-layout { grid-template-columns: 1fr; }
     .legal-grid { grid-template-columns: 1fr; }
-    .stories-section, .donation-section, .legal-section { padding: 3rem 1.5rem; }
+    .stories-section, .donation-section, .legal-section, .faq-section { padding: 3rem 1.5rem; }
   }
 </style>
 </head>
@@ -492,9 +579,11 @@
   </a>
   <div class="nav-actions">
     <div class="nav-links">
+      <a href="#historia">Historia</a>
       <a href="#proposito">Nosotros</a>
       <a href="#programas">Programas</a>
-      <a href="#transparencia">Transparencia Legal</a>
+      <a href="#transparencia">Transparencia</a>
+      <a href="#faq">Preguntas</a>
       <a href="#sede">Sede</a>
     </div>
     <button class="theme-toggle" id="themeBtn">
@@ -503,7 +592,7 @@
   </div>
 </nav>
 
-<!-- CONTENEDOR HERO CON DEGRADADO ROSADO -->
+<!-- CONTENEDOR HERO -->
 <div class="hero-wrapper">
   <section class="hero">
     <div class="hero-svg-bg" id="parallax-bg">
@@ -534,7 +623,6 @@
         </div>
       </div>
 
-      <!-- ISOTIPO FLOTANTE CON RESPLANDOR SUAVE -->
       <div class="hero-right">
         <div class="hero-logo-halo">
           <img src="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Gota_de_Leche-.png" alt="Corporación Gota de Leche de Miramar">
@@ -543,6 +631,45 @@
     </div>
   </section>
 </div>
+
+<!-- SECCIÓN HISTÓRICA OSCURA -->
+<section class="history-banner" id="historia">
+  <div class="history-inner">
+    <div class="history-lead">
+      <div class="sec-tag" style="color: #cbbdf2;">Legado Centenario</div>
+      <h2>Más de un siglo de compromiso viñamarino</h2>
+      <p>
+        Nacida como respuesta a la alta mortalidad infantil de inicios del siglo XX, la Gota de Leche de Miramar ha acompañado a generaciones de familias viñamarinas con amor y dignidad.
+      </p>
+    </div>
+
+    <div class="timeline-grid">
+      <div class="timeline-node">
+        <div class="time-badge">1918</div>
+        <div>
+          <h4>Fundación y Pioneros</h4>
+          <p>Impulsada por damas viñamarinas lideradas por Doña Adela Swett de Hörmann para combatir la desnutrición infantil temprana.</p>
+        </div>
+      </div>
+
+      <div class="timeline-node">
+        <div class="time-badge">1960</div>
+        <div>
+          <h4>Arraigo en Santa Inés</h4>
+          <p>Consolidación de la sede comunitaria en Calle Cinco 2045, expandiendo la entrega de leche maternizada a nuevos sectores.</p>
+        </div>
+      </div>
+
+      <div class="timeline-node">
+        <div class="time-badge">2026</div>
+        <div>
+          <h4>Modernización y Crianza Positiva</h4>
+          <p>Atención integral que combina nutrición, entrega de pañales, talleres de crianza positiva y digitalización comunitaria.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <div class="mq-wrap">
   <div class="mq-track">
@@ -613,83 +740,113 @@
   </div>
 </section>
 
-<!-- SECCIÓN DE TRANSPARENCIA Y CONTACTO INSTITUCIONAL -->
+<!-- SECCIÓN TRANSPARENCIA Y SEDE CON MAPA DE GOOGLE MAPS -->
 <section class="legal-section" id="transparencia">
   <div class="legal-layout">
     
     <!-- Bloque Legal -->
     <div class="legal-card">
-      <div class="legal-header">
-        <i class="fa-solid fa-scale-balanced"></i>
-        <h2>Transparencia y Personería Jurídica</h2>
-      </div>
-      <p style="color: var(--text-sub); font-size: 0.95rem; margin-bottom: 1.5rem;">
-        Datos institucionales oficiales registrados ante el Estado de Chile para auditoría, convenios y validación:
-      </p>
+      <div>
+        <div class="legal-header">
+          <i class="fa-solid fa-scale-balanced"></i>
+          <h2>Transparencia y Registro</h2>
+        </div>
+        <p style="color: var(--text-sub); font-size: 0.95rem; margin-bottom: 1.5rem;">
+          Antecedentes institucionales oficiales registrados ante el Estado de Chile para auditoría y convenios públicos:
+        </p>
 
-      <div class="legal-grid">
-        <div class="legal-tile">
-          <div class="legal-tile-lbl">Razón Social</div>
-          <div class="legal-tile-val">Corporación Gota de Leche de Miramar</div>
-        </div>
-        <div class="legal-tile">
-          <div class="legal-tile-lbl">RUT Institucional</div>
-          <div class="legal-tile-val">71.315.200-5</div>
-        </div>
-        <div class="legal-tile">
-          <div class="legal-tile-lbl">Registro Legal</div>
-          <div class="legal-tile-val">Inscripción N° 12.763 (Registro Civil)</div>
-        </div>
-        <div class="legal-tile">
-          <div class="legal-tile-lbl">Representante Legal</div>
-          <div class="legal-tile-val">Roser Palomer (Presidenta)</div>
+        <div class="legal-grid">
+          <div class="legal-tile">
+            <div class="legal-tile-lbl">Razón Social</div>
+            <div class="legal-tile-val">Corporación Gota de Leche de Miramar</div>
+          </div>
+          <div class="legal-tile">
+            <div class="legal-tile-lbl">RUT Institucional</div>
+            <div class="legal-tile-val">71.315.200-5</div>
+          </div>
+          <div class="legal-tile">
+            <div class="legal-tile-lbl">Registro Legal</div>
+            <div class="legal-tile-val">Inscripción N° 12.763 (Registro Civil)</div>
+          </div>
+          <div class="legal-tile">
+            <div class="legal-tile-lbl">Representante Legal</div>
+            <div class="legal-tile-val">Roser Palomer (Presidenta)</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Bloque Sede y Horarios -->
+    <!-- Bloque Sede con Mapa -->
     <div class="legal-card" id="sede">
-      <div class="legal-header">
-        <i class="fa-solid fa-location-dot"></i>
-        <h2>Sede y Atención</h2>
+      <div>
+        <div class="legal-header">
+          <i class="fa-solid fa-location-dot"></i>
+          <h2>Sede Santa Inés</h2>
+        </div>
+
+        <div class="contact-items">
+          <div class="contact-row">
+            <div class="contact-icon"><i class="fa-solid fa-map-pin"></i></div>
+            <div class="contact-info">
+              <strong>Dirección Física</strong>
+              <span>Calle Cinco 2045, Santa Inés, Viña del Mar</span>
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
+            <div class="contact-info">
+              <strong>Horarios de Atención</strong>
+              <span>Lunes, Martes y Miércoles: 15:00 a 17:00 hrs.</span>
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+            <div class="contact-info">
+              <strong>Teléfonos de Contacto</strong>
+              <span>Sede: <a href="tel:+56223176971">+56 2 2317 6971</a></span> · 
+              <span>Móvil: <a href="tel:+56996798157">+56 9 9679 8157</a></span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="contact-items">
-        <div class="contact-row">
-          <div class="contact-icon"><i class="fa-solid fa-map-pin"></i></div>
-          <div class="contact-info">
-            <strong>Dirección Física</strong>
-            <span>Calle Cinco 2045, Santa Inés, Viña del Mar</span>
-          </div>
-        </div>
-
-        <div class="contact-row">
-          <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
-          <div class="contact-info">
-            <strong>Horarios de Atención</strong>
-            <span>Lunes, Martes y Miércoles: 15:00 a 17:00 hrs.</span>
-          </div>
-        </div>
-
-        <div class="contact-row">
-          <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
-          <div class="contact-info">
-            <strong>Teléfonos de Contacto</strong>
-            <span>Sede: <a href="tel:+56223176971">+56 2 2317 6971</a></span><br>
-            <span>Móvil: <a href="tel:+56996798157">+56 9 9679 8157</a></span>
-          </div>
-        </div>
-
-        <div class="contact-row">
-          <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
-          <div class="contact-info">
-            <strong>Correo Institucional</strong>
-            <a href="mailto:gotadeleche1918@hotmail.com">gotadeleche1918@hotmail.com</a>
-          </div>
-        </div>
+      <!-- Mapa interactivo de la sede -->
+      <div class="map-container">
+        <iframe 
+          title="Ubicación Sede Gota de Leche"
+          src="https://maps.google.com/maps?q=Calle%20Cinco%202045,%20Santa%20In%C3%A9s,%20Vi%C3%B1a%20del%20Mar&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+          loading="lazy">
+        </iframe>
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- SECCIÓN DE PREGUNTAS FRECUENTES (FAQ) -->
+<section class="faq-section" id="faq">
+  <div class="faq-header">
+    <div class="sec-tag">Orientación a la Comunidad</div>
+    <h2 class="sec-title">Preguntas Frecuentes</h2>
+  </div>
+
+  <div class="faq-accordion">
+    <details class="faq-item" open>
+      <summary>¿Quiénes pueden solicitar el beneficio de apoyo?</summary>
+      <p>Cualquier familia o cuidador a cargo de un lactante o niño/a pequeño en situación de vulnerabilidad de la comuna de Viña del Mar. La atención y los insumos son 100% gratuitos y solidarios.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Qué días se realiza la entrega presencial de insumos?</summary>
+      <p>Atendemos de forma regular los días lunes, martes y miércoles entre las 15:00 y las 17:00 hrs. en nuestra sede de Calle Cinco 2045, Santa Inés.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Cómo puedo colaborar con donaciones de pañales o leche?</summary>
+      <p>Puedes acercarte directamente a nuestra sede en los horarios de atención o escribirnos a nuestro correo oficial para coordinar la recepción de insumos sellados.</p>
+    </details>
   </div>
 </section>
 
@@ -742,7 +899,7 @@
       <button class="amt-btn">Insumos en Sede</button>
     </div>
     
-    <a href="mailto:gotadeleche1918@hotmail.com?subject=Colaboraci%C3%B3n%20Corporaci%C3%B3n%20Gota%20de%20Leche" class="btn btn-1" style="padding: 1.05rem 3.2rem; font-size: 1.02rem; font-weight:700;">Coordinar Aporte <i class="fa-solid fa-heart" style="margin-left: 8px;"></i></a>
+    <a href="mailto:administracion@gotadelechevinadelmar.cl?subject=Colaboraci%C3%B3n%20Corporaci%C3%B3n%20Gota%20de%20Leche" class="btn btn-1" style="padding: 1.05rem 3.2rem; font-size: 1.02rem; font-weight:700;">Coordinar Aporte <i class="fa-solid fa-heart" style="margin-left: 8px;"></i></a>
   </div>
 </section>
 
@@ -752,7 +909,7 @@
   <span style="font-size: 0.95rem; display: block; margin-top: 6px;">RUT: 71.315.200-5 · Personalidad Jurídica Inscripción N° 12.763 (Registro Civil de Chile)</span>
   <span style="font-size: 0.88rem; display: block; margin-top: 4px;">Calle Cinco 2045, Santa Inés, Viña del Mar, Región de Valparaíso</span>
   <div style="margin-top: 1.5rem; font-size: 0.82rem; opacity: 0.7;">
-    © 1918 - 2026 Corporación Gota de Leche de Miramar · Dominio oficial: gotadelechevinadelmar.cl
+    © 1918 - 2026 Corporación Gota de Leche de Miramar · Dominio oficial: <a href="https://gotadelechevinadelmar.cl" style="color: inherit; text-decoration: none;">gotadelechevinadelmar.cl</a>
   </div>
 </footer>
 
@@ -770,13 +927,13 @@ const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math
 function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
 requestAnimationFrame(raf);
 
-// 3. PARALLAX DE LA GOTA
+// 3. PARALLAX
 const parallaxBg = document.getElementById('parallax-bg');
 lenis.on('scroll', (e) => {
   if (parallaxBg) parallaxBg.style.transform = `translateY(${e.scroll * 0.15}px)`; 
 });
 
-// 4. SPOTLIGHT EFECTO CURSOR EN TARJETAS
+// 4. SPOTLIGHT EFECTO CURSOR
 document.querySelectorAll('.bento-card').forEach(card => {
   card.addEventListener('mousemove', e => {
     const rect = card.getBoundingClientRect();
