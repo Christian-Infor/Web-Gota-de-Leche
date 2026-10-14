@@ -8,7 +8,7 @@
 <meta name="keywords" content="Gota de Leche de Miramar, Gota de Leche Viña del Mar, corporacion gota de leche, donaciones viña del mar, santa ines viña del mar, ayuda infantil">
 <link rel="canonical" href="https://gotadelechevinadelmar.cl/">
 
-<!-- Metadatos Open Graph (Facebook / WhatsApp / LinkedIn) -->
+<!-- Metadatos Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_CL">
 <meta property="og:site_name" content="Corporación Gota de Leche de Miramar">
@@ -17,7 +17,7 @@
 <meta property="og:url" content="https://gotadelechevinadelmar.cl/">
 <meta property="og:image" content="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Gota_de_Leche-.png">
 
-<!-- Datos estructurados Schema.org para Google Search -->
+<!-- Datos estructurados Schema.org -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -53,16 +53,14 @@
 }
 </script>
 
-<!-- Iconos FontAwesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
   
-  /* ── VARIABLES CSS ── */
   :root {
     --bg-body: #ebdff5;
     --bg-dots: rgba(74, 45, 100, 0.08);
-    --bg-hero-grad: linear-gradient(135deg, #e8dbf7 0%, #ecd4f3 100%);
+    --bg-hero-grad: linear-gradient(180deg, #ecdcf7 0%, #f4ecfb 50%, #e2d1f3 100%);
     --bg-nav: rgba(235, 223, 245, 0.88);
     --text-main: #321e54;
     --text-sub: #5c437a;
@@ -72,7 +70,6 @@
     --btn-ghost-border: #433068;
     --btn-ghost-txt: #433068;
     
-    /* Contraste Secciones */
     --section-dark-bg: #170f2b;
     --section-dark-text: #f0eafc;
     --section-dark-sub: #ad9ec9;
@@ -92,7 +89,7 @@
   body.lactancia-mode {
     --bg-body: #0d0817;
     --bg-dots: rgba(255, 255, 255, 0.04);
-    --bg-hero-grad: linear-gradient(135deg, #180f2b 0%, #1c0d29 100%);
+    --bg-hero-grad: linear-gradient(180deg, #180f2b 0%, #150a24 100%);
     --bg-nav: rgba(13, 8, 23, 0.88);
     --text-main: #eee6fa;
     --text-sub: #aa9bc7;
@@ -133,7 +130,6 @@
   
   body:not(.loaded) { overflow: hidden; }
 
-  /* ── PRELOADER CON LOGO TRANSPARENTE ── */
   .preloader {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: var(--bg-body); z-index: 99999;
@@ -159,7 +155,6 @@
     100% { transform: scale(0.95); opacity: 0.8; }
   }
 
-  /* ── NAVEGACIÓN ── */
   nav {
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 4.5rem; height: 76px; 
@@ -198,32 +193,36 @@
   }
   .theme-toggle:hover { background: var(--text-main); color: var(--bg-body); transform: translateY(-1px); }
 
-  /* ── HERO ── */
-  .hero-wrapper {
+  /* ── ESTILOS DEL HERO PANORÁMICO ── */
+  .hero-wrapper-scenic {
     background: var(--bg-hero-grad);
     position: relative;
     overflow: hidden;
     border-bottom: 1px solid rgba(74, 45, 100, 0.06);
   }
 
+  .scenic-illustration-bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .scenic-illustration-bg svg { width: 100%; height: 100%; object-fit: cover; }
+
   .hero {
     min-height: calc(100vh - 76px);
     display: flex; align-items: center;
     position: relative; padding: 0 5.5%;
+    z-index: 2;
   }
-
-  .hero-svg-bg {
-    position: absolute; top: 0; right: 0;
-    width: 50%; height: 100%; z-index: 1; pointer-events: none;
-    transition: transform 0.1s ease-out;
-  }
-  .hero-svg-bg svg { width: 100%; height: 100%; object-fit: cover; }
-  .hero-svg-bg path.wave-fill { fill: var(--hero-wave); transition: fill 0.6s ease; }
 
   .hero-container {
-    width: 100%; max-width: 1280px; margin: 0 auto;
+    width: 100%; max-width: 1320px; margin: 0 auto;
     display: flex; align-items: center; justify-content: space-between;
-    position: relative; z-index: 2;
+    position: relative;
   }
   
   .hero-left { flex: 0 0 54%; max-width: 640px; padding-bottom: 2rem; }
@@ -269,7 +268,7 @@
   }
   .btn-1:hover { box-shadow: 0 12px 30px rgba(67, 48, 104, 0.35); }
   .btn-2 { 
-    background-color: rgba(255, 255, 255, 0.6); 
+    background-color: rgba(255, 255, 255, 0.7); 
     color: var(--btn-ghost-txt); 
     border: 1.5px solid var(--btn-ghost-border); 
     backdrop-filter: blur(8px);
@@ -284,14 +283,12 @@
   .stat-num { display: block; font-size: 2.6rem; font-weight: 800; color: var(--text-main); line-height: 1.1; letter-spacing: -1px; }
   .stat-label { display: block; font-size: 0.92rem; font-weight: 600; color: var(--text-sub); margin-top: 0.2rem; }
 
-  /* Isotipo con Halo */
   .hero-right { 
     flex: 0 0 44%; 
     display: flex; 
     justify-content: center; 
     align-items: center; 
     position: relative; 
-    z-index: 2; 
   }
 
   .hero-logo-halo {
@@ -327,7 +324,6 @@
     height: auto; 
     display: block; 
     filter: drop-shadow(0 20px 40px rgba(50, 30, 84, 0.16));
-    transition: transform 0.4s ease;
   }
 
   /* ── SECCIÓN HISTÓRICA OSCURA ── */
@@ -455,7 +451,6 @@
   .legal-tile-lbl { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-sub); margin-bottom: 5px; }
   .legal-tile-val { font-size: 1.02rem; font-weight: 800; color: var(--text-main); line-height: 1.3; }
 
-  /* Mapa Embebido */
   .map-container {
     width: 100%; height: 180px; border-radius: 20px; overflow: hidden;
     margin-top: 1.5rem; border: 1px solid var(--card-border);
@@ -469,7 +464,7 @@
   .contact-info span, .contact-info a { font-size: 0.9rem; color: var(--text-sub); text-decoration: none; }
   .contact-info a:hover { color: var(--accent-blue); text-decoration: underline; }
 
-  /* ── PREGUNTAS FRECUENTES (FAQ ACORDEÓN) ── */
+  /* ── FAQ ── */
   .faq-section { padding: 2rem 4.5rem 5rem; max-width: 1000px; margin: 0 auto; }
   .faq-header { text-align: center; margin-bottom: 3rem; }
   .faq-accordion { display: flex; flex-direction: column; gap: 1.2rem; }
@@ -518,7 +513,7 @@
   .story-quote { font-size: 0.96rem; font-style: italic; color: var(--text-sub); line-height: 1.65; flex-grow: 1; }
   .story-author { font-size: 0.88rem; font-weight: 700; color: var(--text-main); text-align: right; }
 
-  /* ── MÓDULO MICRO-DONACIONES ── */
+  /* ── DONACIONES ── */
   .donation-section { padding: 2rem 4.5rem 6.5rem; max-width: 1330px; margin: 0 auto; }
   .donation-box {
     background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 36px;
@@ -540,7 +535,6 @@
 
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  /* ── RESPONSIVO ── */
   @media(max-width: 992px) {
     nav { padding: 0 1.5rem; }
     .nav-links { display: none; }
@@ -551,7 +545,6 @@
     .hero-stats { justify-content: center; width: 100%; }
     .stat-item { padding-right: 1.5rem; margin-right: 1.5rem; }
     .hero-right { width: 100%; flex: none; margin-top: 3rem; }
-    .hero-svg-bg { display: none; } 
     .history-inner { grid-template-columns: 1fr; gap: 3rem; }
     .content-inner { grid-template-columns: 1fr; gap: 4rem; }
     .about-sidebar { position: static; text-align: center; }
@@ -566,7 +559,6 @@
 </head>
 <body>
 
-<!-- PRELOADER CON LOGO TRANSPARENTE -->
 <div class="preloader" id="preloader">
   <img src="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Gota_de_Leche-.png" alt="Corporación Gota de Leche de Miramar" class="preloader-logo">
   <div style="font-size: 0.78rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--text-main); margin-top: -5px; opacity: 0.85;">Cargando Ecosistema</div>
@@ -592,15 +584,38 @@
   </div>
 </nav>
 
-<!-- CONTENEDOR HERO -->
-<div class="hero-wrapper">
-  <section class="hero">
-    <div class="hero-svg-bg" id="parallax-bg">
-      <svg viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice">
-        <path class="wave-fill" d="M1440 0H850C1100 280 930 550 1050 800H1440V0Z"/>
-      </svg>
-    </div>
+<!-- HERO CON ILUSTRACIÓN PANORÁMICA DE FONDO -->
+<div class="hero-wrapper-scenic">
+  <div class="scenic-illustration-bg">
+    <svg viewBox="0 0 1440 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Colina lejana izquierda -->
+      <path d="M-100 800C120 620 400 680 650 800H-100Z" fill="#dfc9f2" fill-opacity="0.45"/>
+      <!-- Colina derecha suave -->
+      <path d="M700 800C950 640 1200 610 1550 800H700Z" fill="#d5bced" fill-opacity="0.4"/>
+      <!-- Pradera principal de base -->
+      <path d="M-50 800C250 710 600 730 900 690C1200 650 1350 720 1500 800H-50Z" fill="#caaee7" fill-opacity="0.35"/>
+      
+      <!-- Silueta de Árbol Ilustrado Izquierda -->
+      <path d="M-40 420C-40 330 20 280 90 310C160 270 230 330 220 420C270 470 240 550 180 570C150 660 50 670 -20 600C-60 550 -60 470 -40 420Z" fill="#ba9fdc" fill-opacity="0.25"/>
+      <!-- Copa de árbol derecha envolvente -->
+      <path d="M1250 350C1230 260 1310 200 1380 230C1440 190 1500 240 1510 330C1560 380 1540 460 1480 490C1470 580 1380 610 1300 550C1250 510 1240 420 1250 350Z" fill="#ba9fdc" fill-opacity="0.22"/>
+      
+      <!-- Pequeños pájaros en vuelo -->
+      <path d="M420 180C428 172 438 175 444 182C450 175 460 172 468 180" stroke="#7e5da8" stroke-width="2.5" stroke-linecap="round" opacity="0.3"/>
+      <path d="M470 210C476 204 484 206 489 211C494 206 502 204 508 210" stroke="#7e5da8" stroke-width="2.5" stroke-linecap="round" opacity="0.25"/>
 
+      <!-- Flores de campo en la base -->
+      <circle cx="280" cy="740" r="6" fill="#ffffff" fill-opacity="0.7"/>
+      <circle cx="340" cy="760" r="5" fill="#f3a6b8" fill-opacity="0.6"/>
+      <circle cx="410" cy="735" r="7" fill="#ffffff" fill-opacity="0.65"/>
+      <circle cx="890" cy="725" r="6" fill="#f7d070" fill-opacity="0.6"/>
+      <circle cx="960" cy="750" r="7" fill="#ffffff" fill-opacity="0.7"/>
+      <circle cx="1080" cy="735" r="5" fill="#f3a6b8" fill-opacity="0.6"/>
+      <circle cx="1180" cy="755" r="6" fill="#ffffff" fill-opacity="0.65"/>
+    </svg>
+  </div>
+
+  <section class="hero">
     <div class="hero-container">
       <div class="hero-left">
         <div class="hero-legal-badge">
@@ -684,7 +699,7 @@
   </div>
 </div>
 
-<!-- SECCIÓN CENTRAL DE PROGRAMAS -->
+<!-- PROGRAMAS -->
 <section class="main-content" id="proposito">
   <div class="content-inner">
     <div class="about-sidebar">
@@ -740,11 +755,9 @@
   </div>
 </section>
 
-<!-- SECCIÓN TRANSPARENCIA Y SEDE CON MAPA DE GOOGLE MAPS -->
+<!-- TRANSPARENCIA Y SEDE -->
 <section class="legal-section" id="transparencia">
   <div class="legal-layout">
-    
-    <!-- Bloque Legal -->
     <div class="legal-card">
       <div>
         <div class="legal-header">
@@ -776,7 +789,6 @@
       </div>
     </div>
 
-    <!-- Bloque Sede con Mapa -->
     <div class="legal-card" id="sede">
       <div>
         <div class="legal-header">
@@ -812,7 +824,6 @@
         </div>
       </div>
 
-      <!-- Mapa interactivo de la sede -->
       <div class="map-container">
         <iframe 
           title="Ubicación Sede Gota de Leche"
@@ -821,11 +832,10 @@
         </iframe>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- SECCIÓN DE PREGUNTAS FRECUENTES (FAQ) -->
+<!-- FAQ -->
 <section class="faq-section" id="faq">
   <div class="faq-header">
     <div class="sec-tag">Orientación a la Comunidad</div>
@@ -850,7 +860,7 @@
   </div>
 </section>
 
-<!-- CARRUSEL DE HISTORIAS -->
+<!-- CARRUSEL -->
 <section class="stories-section">
   <div class="stories-header">
     <div>
@@ -886,7 +896,7 @@
   </div>
 </section>
 
-<!-- MÓDULO MICRO-DONACIONES -->
+<!-- DONACIONES -->
 <section class="donation-section">
   <div class="donation-box">
     <h2>Súmate a nuestro propósito</h2>
@@ -903,7 +913,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <strong style="color: var(--text-main); font-size: 1.18rem; letter-spacing: -0.3px;">CORPORACIÓN GOTA DE LECHE DE MIRAMAR</strong><br>
   <span style="font-size: 0.95rem; display: block; margin-top: 6px;">RUT: 71.315.200-5 · Personalidad Jurídica Inscripción N° 12.763 (Registro Civil de Chile)</span>
@@ -913,27 +922,17 @@
   </div>
 </footer>
 
-<!-- Lenis para Smooth Scroll -->
 <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
 
 <script>
-// 1. ELIMINAR PRELOADER
 window.addEventListener('load', () => {
   setTimeout(() => { document.body.classList.add('loaded'); }, 1200); 
 });
 
-// 2. INICIALIZAR LENIS
 const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
 function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
 requestAnimationFrame(raf);
 
-// 3. PARALLAX
-const parallaxBg = document.getElementById('parallax-bg');
-lenis.on('scroll', (e) => {
-  if (parallaxBg) parallaxBg.style.transform = `translateY(${e.scroll * 0.15}px)`; 
-});
-
-// 4. SPOTLIGHT EFECTO CURSOR
 document.querySelectorAll('.bento-card').forEach(card => {
   card.addEventListener('mousemove', e => {
     const rect = card.getBoundingClientRect();
@@ -942,7 +941,6 @@ document.querySelectorAll('.bento-card').forEach(card => {
   });
 });
 
-// 5. BOTONES MAGNÉTICOS
 const magnets = document.querySelectorAll('.magnetic');
 magnets.forEach(btn => {
   btn.addEventListener('mousemove', function(e) {
@@ -958,11 +956,9 @@ magnets.forEach(btn => {
   });
 });
 
-// 6. MODO LACTANCIA
 const themeBtn = document.getElementById('themeBtn');
 themeBtn.addEventListener('click', () => {
   document.body.classList.toggle('lactancia-mode');
-  const icon = themeBtn.querySelector('i');
   if (document.body.classList.contains('lactancia-mode')) {
     themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i> Modo Día';
   } else {
@@ -970,7 +966,6 @@ themeBtn.addEventListener('click', () => {
   }
 });
 
-// 7. MONTO SELECCIONADO
 const amtBtns = document.querySelectorAll('.amt-btn');
 amtBtns.forEach(btn => {
   btn.addEventListener('click', () => {
@@ -979,7 +974,6 @@ amtBtns.forEach(btn => {
   });
 });
 
-// 8. ARRASTRE DEL CARRUSEL
 const slider = document.getElementById('storiesCarousel');
 let isDown = false; let startX; let scrollLeft;
 slider.addEventListener('mousedown', (e) => {
@@ -996,7 +990,6 @@ slider.addEventListener('mousemove', (e) => {
   slider.scrollLeft = scrollLeft - walk;
 });
 
-// 9. CONTADORES ANIMADOS
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if(e.isIntersecting){ 
