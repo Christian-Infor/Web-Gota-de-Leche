@@ -83,7 +83,7 @@
     --accent-blue: #3273b5;
     --spotlight-color: rgba(142, 95, 206, 0.09);
     
-    --footer-bg: #ffffff;
+    --footer-bg: rgba(255, 255, 255, 0.9);
   }
 
   body.lactancia-mode {
@@ -112,7 +112,7 @@
     --accent-blue: #60a5fa;
     --spotlight-color: rgba(206, 189, 245, 0.07);
     
-    --footer-bg: #08040f;
+    --footer-bg: rgba(13, 8, 23, 0.95);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -377,7 +377,7 @@
   .mq-track { display: flex; gap: 3.5rem; width: max-content; animation: marquee 30s linear infinite; }
   .mq-item { display: flex; align-items: center; gap: 1rem; font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-sub); font-weight: 700; opacity: 0.9; }
 
-  /* ── SECCIÓN CENTRAL PROGRAMAS ── */
+  /* ── PROGRAMAS ── */
   .main-content { padding: 6.5rem 4.5rem 3.5rem; background: transparent; }
   .content-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2.3fr; gap: 4.8rem; align-items: start; }
   
@@ -387,7 +387,6 @@
   .sec-desc { color: var(--text-sub); font-size: 1.05rem; line-height: 1.82; }
   .sec-desc p { margin-bottom: 1.1rem; }
 
-  /* Bento Grid */
   .srv-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.6rem; }
   .bento-card {
     background: var(--card-bg); 
@@ -487,6 +486,33 @@
   .faq-item[open] summary::after { transform: rotate(180deg); color: var(--accent-blue); }
   .faq-item p { margin-top: 1rem; font-size: 0.96rem; color: var(--text-sub); line-height: 1.7; }
 
+  /* ── CONTENEDOR INFERIOR ILUSTRADO (HISTORIAS, DONACIONES Y FOOTER) ── */
+  .bottom-landscape-wrapper {
+    position: relative;
+    background: linear-gradient(180deg, rgba(235, 223, 245, 0) 0%, #ebdff5 25%, #dfc9f2 70%, #d2b7ec 100%);
+    overflow: hidden;
+  }
+
+  body.lactancia-mode .bottom-landscape-wrapper {
+    background: linear-gradient(180deg, rgba(13, 8, 23, 0) 0%, #120b20 25%, #180d29 70%, #1e1133 100%);
+  }
+
+  .bottom-scenic-art {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .bottom-scenic-art svg { width: 100%; height: 100%; object-fit: cover; }
+
+  .bottom-content-layer {
+    position: relative;
+    z-index: 2;
+  }
+
   /* ── CARRUSEL ── */
   .stories-section { padding: 3rem 4.5rem; max-width: 1330px; margin: 0 auto; overflow: hidden; }
   .stories-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.2rem; }
@@ -530,8 +556,16 @@
   .amt-btn:hover { border-color: var(--accent-blue); color: var(--accent-blue); transform: translateY(-2px); }
   .amt-btn.selected { background: var(--accent-blue); border-color: var(--accent-blue); color: #fff; box-shadow: 0 6px 20px rgba(50, 115, 181, 0.35); }
 
-  /* ── FOOTER ── */
-  footer { background: var(--footer-bg); color: var(--text-sub); padding: 3.8rem 2rem; text-align: center; border-top: 1px solid rgba(74, 45, 100, 0.08); transition: background 0.6s ease; }
+  /* ── FOOTER TRANSPARENTE INTEGRADO AL PAISAJE ── */
+  footer { 
+    background: var(--footer-bg); 
+    color: var(--text-sub); 
+    padding: 3.8rem 2rem; 
+    text-align: center; 
+    border-top: 1px solid rgba(74, 45, 100, 0.08); 
+    backdrop-filter: blur(8px);
+    transition: background 0.6s ease; 
+  }
 
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
@@ -584,15 +618,12 @@
   </div>
 </nav>
 
-<!-- HERO CON ILUSTRACIÓN PANORÁMICA DE FONDO -->
+<!-- 1. HERO CON ESCENA DE FONDO -->
 <div class="hero-wrapper-scenic">
   <div class="scenic-illustration-bg">
     <svg viewBox="0 0 1440 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Colina lejana izquierda -->
       <path d="M-100 800C120 620 400 680 650 800H-100Z" fill="#dfc9f2" fill-opacity="0.45"/>
-      <!-- Colina derecha suave -->
       <path d="M700 800C950 640 1200 610 1550 800H700Z" fill="#d5bced" fill-opacity="0.4"/>
-      <!-- Pradera principal de base -->
       <path d="M-50 800C250 710 600 730 900 690C1200 650 1350 720 1500 800H-50Z" fill="#caaee7" fill-opacity="0.35"/>
       
       <!-- Silueta de Árbol Ilustrado Izquierda -->
@@ -647,7 +678,7 @@
   </section>
 </div>
 
-<!-- SECCIÓN HISTÓRICA OSCURA -->
+<!-- 2. SECCIÓN HISTÓRICA OSCURA -->
 <section class="history-banner" id="historia">
   <div class="history-inner">
     <div class="history-lead">
@@ -699,7 +730,7 @@
   </div>
 </div>
 
-<!-- PROGRAMAS -->
+<!-- 3. PROGRAMAS -->
 <section class="main-content" id="proposito">
   <div class="content-inner">
     <div class="about-sidebar">
@@ -755,7 +786,7 @@
   </div>
 </section>
 
-<!-- TRANSPARENCIA Y SEDE -->
+<!-- 4. TRANSPARENCIA Y SEDE -->
 <section class="legal-section" id="transparencia">
   <div class="legal-layout">
     <div class="legal-card">
@@ -835,7 +866,7 @@
   </div>
 </section>
 
-<!-- FAQ -->
+<!-- 5. FAQ -->
 <section class="faq-section" id="faq">
   <div class="faq-header">
     <div class="sec-tag">Orientación a la Comunidad</div>
@@ -860,67 +891,129 @@
   </div>
 </section>
 
-<!-- CARRUSEL -->
-<section class="stories-section">
-  <div class="stories-header">
-    <div>
-      <div class="sec-tag" style="color: var(--accent-blue);">Comunidad</div>
-      <h2 class="sec-title" style="margin-bottom:0;">Historias Reales</h2>
-    </div>
-    <div style="color: var(--text-sub); font-size:0.85rem; font-weight:600;">
-      <i class="fa-solid fa-arrows-left-right"></i> Arrastra para ver más
-    </div>
-  </div>
+<!-- 6. CONTENEDOR INFERIOR ILUSTRADO (HISTORIAS, DONACIONES Y FOOTER) -->
+<div class="bottom-landscape-wrapper">
   
-  <div class="carousel-wrapper" id="storiesCarousel">
-    <div class="story-card">
-      <img src="https://images.pexels.com/photos/3270223/pexels-photo-3270223.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Mamá y bebé" class="story-img" draggable="false">
-      <p class="story-quote">"El apoyo nutricional con leche y pañales durante los primeros meses fue un salvavidas cuando más lo necesitábamos."</p>
-      <span class="story-author">— Camila R.</span>
-    </div>
-    <div class="story-card">
-      <img src="https://images.pexels.com/photos/1648377/pexels-photo-1648377.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Bebé" class="story-img" draggable="false">
-      <p class="story-quote">"El acompañamiento y los consejos sobre parentalidad positiva nos dieron seguridad y tranquilidad."</p>
-      <span class="story-author">— Sofía T.</span>
-    </div>
-    <div class="story-card">
-      <img src="https://images.pexels.com/photos/112811/pexels-photo-112811.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Familia" class="story-img" draggable="false">
-      <p class="story-quote">"Es una institución centenaria que de verdad acompaña a las familias vulnerables de la comuna."</p>
-      <span class="story-author">— Andrea L.</span>
-    </div>
-    <div class="story-card">
-      <img src="https://images.pexels.com/photos/7282818/pexels-photo-7282818.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Madre" class="story-img" draggable="false">
-      <p class="story-quote">"Encontrar un espacio de contención y ayuda real en Viña del Mar marcó una diferencia inmensa en nuestro hogar."</p>
-      <span class="story-author">— Valeria M.</span>
-    </div>
-  </div>
-</section>
+  <!-- Ilustración Vectorial Panorámica del Fondo Inferior -->
+  <div class="bottom-scenic-art">
+    <svg viewBox="0 0 1440 1200" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Nubes esponjosas en la parte media -->
+      <path d="M180 140C160 140 145 155 145 175C130 175 120 188 120 200C120 215 132 225 148 225H235C250 225 260 212 260 200C260 185 248 175 235 175C232 155 210 140 180 140Z" fill="#ffffff" fill-opacity="0.35"/>
+      <path d="M1200 80C1185 80 1170 92 1170 108C1158 108 1150 118 1150 128C1150 140 1160 148 1172 148H1245C1258 148 1265 138 1265 128C1265 116 1255 108 1245 108C1242 92 1225 80 1200 80Z" fill="#ffffff" fill-opacity="0.3"/>
 
-<!-- DONACIONES -->
-<section class="donation-section">
-  <div class="donation-box">
-    <h2>Súmate a nuestro propósito</h2>
-    <p>Con tu aporte mensual o entrega de insumos, aseguramos que ningún niño o niña enfrente la primera infancia sin alimentación adecuada y protección.</p>
-    
-    <div class="amount-selector">
-      <button class="amt-btn">$5.000</button>
-      <button class="amt-btn selected">$10.000</button>
-      <button class="amt-btn">$20.000</button>
-      <button class="amt-btn">Insumos en Sede</button>
-    </div>
-    
-    <a href="mailto:administracion@gotadelechevinadelmar.cl?subject=Colaboraci%C3%B3n%20Corporaci%C3%B3n%20Gota%20de%20Leche" class="btn btn-1" style="padding: 1.05rem 3.2rem; font-size: 1.02rem; font-weight:700;">Coordinar Aporte <i class="fa-solid fa-heart" style="margin-left: 8px;"></i></a>
-  </div>
-</section>
+      <!-- Colina alta izquierda -->
+      <path d="M-100 800C150 560 480 620 750 780L650 1200H-100V800Z" fill="#caaee7" fill-opacity="0.22"/>
+      
+      <!-- Colina suave derecha -->
+      <path d="M600 850C880 680 1150 640 1550 820V1200H600V850Z" fill="#caaee7" fill-opacity="0.25"/>
 
-<footer>
-  <strong style="color: var(--text-main); font-size: 1.18rem; letter-spacing: -0.3px;">CORPORACIÓN GOTA DE LECHE DE MIRAMAR</strong><br>
-  <span style="font-size: 0.95rem; display: block; margin-top: 6px;">RUT: 71.315.200-5 · Personalidad Jurídica Inscripción N° 12.763 (Registro Civil de Chile)</span>
-  <span style="font-size: 0.88rem; display: block; margin-top: 4px;">Calle Cinco 2045, Santa Inés, Viña del Mar, Región de Valparaíso</span>
-  <div style="margin-top: 1.5rem; font-size: 0.82rem; opacity: 0.7;">
-    © 1918 - 2026 Corporación Gota de Leche de Miramar · Dominio oficial: <a href="https://gotadelechevinadelmar.cl" style="color: inherit; text-decoration: none;">gotadelechevinadelmar.cl</a>
+      <!-- Gran colina inferior continua -->
+      <path d="M-50 1020C280 920 650 960 980 900C1220 860 1380 930 1500 1000V1200H-50V1020Z" fill="#baa2d8" fill-opacity="0.3"/>
+
+      <!-- Árbol ilustrado inferior izquierdo -->
+      <path d="M-30 850C-30 780 20 740 70 760C120 730 180 780 170 850C210 890 190 950 140 970C120 1030 40 1040 -10 990C-50 950 -50 890 -30 850Z" fill="#af95d1" fill-opacity="0.35"/>
+
+      <!-- Árbol ilustrado inferior derecho -->
+      <path d="M1300 780C1280 710 1340 660 1400 680C1450 650 1500 690 1510 760C1550 800 1530 860 1480 880C1470 950 1400 970 1340 920C1300 890 1290 830 1300 780Z" fill="#af95d1" fill-opacity="0.32"/>
+
+      <!-- Familia de conejitos descansando en la colina derecha -->
+      <!-- Conejito mayor -->
+      <ellipse cx="1120" cy="890" rx="18" ry="14" fill="#ffffff" fill-opacity="0.55"/>
+      <circle cx="1134" cy="876" r="10" fill="#ffffff" fill-opacity="0.55"/>
+      <ellipse cx="1132" cy="862" rx="3.5" ry="10" fill="#ffffff" fill-opacity="0.55" transform="rotate(-8 1132 862)"/>
+      <ellipse cx="1139" cy="864" rx="3" ry="9" fill="#f8d7df" fill-opacity="0.55" transform="rotate(8 1139 864)"/>
+      <circle cx="1102" cy="892" r="4.5" fill="#ffffff" fill-opacity="0.55"/>
+      <!-- Conejito cría -->
+      <ellipse cx="1155" cy="898" rx="10" ry="8" fill="#ffffff" fill-opacity="0.55"/>
+      <circle cx="1162" cy="890" r="6.5" fill="#ffffff" fill-opacity="0.55"/>
+      <ellipse cx="1161" cy="880" rx="2" ry="6" fill="#ffffff" fill-opacity="0.55"/>
+      <ellipse cx="1165" cy="882" rx="1.8" ry="5.5" fill="#f8d7df" fill-opacity="0.55"/>
+
+      <!-- Pájaros sobrevolando el área de donaciones -->
+      <path d="M380 480C386 474 394 476 399 481C404 476 412 474 418 480" stroke="#715298" stroke-width="2" stroke-linecap="round" opacity="0.35"/>
+      <path d="M420 505C425 500 431 501 435 505C439 501 445 500 450 505" stroke="#715298" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+      <path d="M1020 320C1026 314 1034 316 1039 321C1044 316 1052 314 1058 320" stroke="#715298" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+
+      <!-- Campo de pequeñas flores silvestres distribuidas -->
+      <circle cx="220" cy="940" r="5" fill="#ffffff" fill-opacity="0.6"/>
+      <circle cx="270" cy="960" r="4" fill="#f3a6b8" fill-opacity="0.55"/>
+      <circle cx="340" cy="935" r="5" fill="#fff9c4" fill-opacity="0.6"/>
+      <circle cx="480" cy="970" r="5" fill="#ffffff" fill-opacity="0.65"/>
+      <circle cx="560" cy="990" r="4" fill="#f3a6b8" fill-opacity="0.55"/>
+      <circle cx="780" cy="980" r="6" fill="#ffffff" fill-opacity="0.6"/>
+      <circle cx="850" cy="950" r="4.5" fill="#fff9c4" fill-opacity="0.55"/>
+      <circle cx="980" cy="995" r="5" fill="#ffffff" fill-opacity="0.6"/>
+      <circle cx="1220" cy="960" r="5.5" fill="#f3a6b8" fill-opacity="0.55"/>
+      <circle cx="1290" cy="940" r="4" fill="#ffffff" fill-opacity="0.65"/>
+    </svg>
   </div>
-</footer>
+
+  <div class="bottom-content-layer">
+    <!-- CARRUSEL DE HISTORIAS -->
+    <section class="stories-section">
+      <div class="stories-header">
+        <div>
+          <div class="sec-tag" style="color: var(--accent-blue);">Comunidad</div>
+          <h2 class="sec-title" style="margin-bottom:0;">Historias Reales</h2>
+        </div>
+        <div style="color: var(--text-sub); font-size:0.85rem; font-weight:600;">
+          <i class="fa-solid fa-arrows-left-right"></i> Arrastra para ver más
+        </div>
+      </div>
+      
+      <div class="carousel-wrapper" id="storiesCarousel">
+        <div class="story-card">
+          <img src="https://images.pexels.com/photos/3270223/pexels-photo-3270223.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Mamá y bebé" class="story-img" draggable="false">
+          <p class="story-quote">"El apoyo nutricional con leche y pañales durante los primeros meses fue un salvavidas cuando más lo necesitábamos."</p>
+          <span class="story-author">— Camila R.</span>
+        </div>
+        <div class="story-card">
+          <img src="https://images.pexels.com/photos/1648377/pexels-photo-1648377.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Bebé" class="story-img" draggable="false">
+          <p class="story-quote">"El acompañamiento y los consejos sobre parentalidad positiva nos dieron seguridad y tranquilidad."</p>
+          <span class="story-author">— Sofía T.</span>
+        </div>
+        <div class="story-card">
+          <img src="https://images.pexels.com/photos/112811/pexels-photo-112811.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Familia" class="story-img" draggable="false">
+          <p class="story-quote">"Es una institución centenaria que de verdad acompaña a las familias vulnerables de la comuna."</p>
+          <span class="story-author">— Andrea L.</span>
+        </div>
+        <div class="story-card">
+          <img src="https://images.pexels.com/photos/7282818/pexels-photo-7282818.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Madre" class="story-img" draggable="false">
+          <p class="story-quote">"Encontrar un espacio de contención y ayuda real en Viña del Mar marcó una diferencia inmensa en nuestro hogar."</p>
+          <span class="story-author">— Valeria M.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- DONACIONES -->
+    <section class="donation-section">
+      <div class="donation-box">
+        <h2>Súmate a nuestro propósito</h2>
+        <p>Con tu aporte mensual o entrega de insumos, aseguramos que ningún niño o niña enfrente la primera infancia sin alimentación adecuada y protección.</p>
+        
+        <div class="amount-selector">
+          <button class="amt-btn">$5.000</button>
+          <button class="amt-btn selected">$10.000</button>
+          <button class="amt-btn">$20.000</button>
+          <button class="amt-btn">Insumos en Sede</button>
+        </div>
+        
+        <a href="mailto:administracion@gotadelechevinadelmar.cl?subject=Colaboraci%C3%B3n%20Corporaci%C3%B3n%20Gota%20de%20Leche" class="btn btn-1" style="padding: 1.05rem 3.2rem; font-size: 1.02rem; font-weight:700;">Coordinar Aporte <i class="fa-solid fa-heart" style="margin-left: 8px;"></i></a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <strong style="color: var(--text-main); font-size: 1.18rem; letter-spacing: -0.3px;">CORPORACIÓN GOTA DE LECHE DE MIRAMAR</strong><br>
+      <span style="font-size: 0.95rem; display: block; margin-top: 6px;">RUT: 71.315.200-5 · Personalidad Jurídica Inscripción N° 12.763 (Registro Civil de Chile)</span>
+      <span style="font-size: 0.88rem; display: block; margin-top: 4px;">Calle Cinco 2045, Santa Inés, Viña del Mar, Región de Valparaíso</span>
+      <div style="margin-top: 1.5rem; font-size: 0.82rem; opacity: 0.7;">
+        © 1918 - 2026 Corporación Gota de Leche de Miramar · Dominio oficial: <a href="https://gotadelechevinadelmar.cl" style="color: inherit; text-decoration: none;">gotadelechevinadelmar.cl</a>
+      </div>
+    </footer>
+  </div>
+
+</div>
 
 <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
 
