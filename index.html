@@ -84,6 +84,16 @@
     --spotlight-color: rgba(142, 95, 206, 0.09);
     
     --footer-bg: rgba(255, 255, 255, 0.9);
+
+    /* Variables de botones donaciones */
+    --amt-bg: rgba(255, 255, 255, 0.7);
+    --amt-border: rgba(74, 45, 100, 0.18);
+    --amt-txt: #5c437a;
+    --amt-hover-border: #3273b5;
+    --amt-hover-txt: #3273b5;
+    --amt-sel-bg: #3273b5;
+    --amt-sel-border: #3273b5;
+    --amt-sel-txt: #ffffff;
   }
 
   body.lactancia-mode {
@@ -113,6 +123,16 @@
     --spotlight-color: rgba(206, 189, 245, 0.07);
     
     --footer-bg: rgba(13, 8, 23, 0.95);
+
+    /* Botones donaciones visibles y nítidos en Modo Lactancia */
+    --amt-bg: rgba(45, 28, 68, 0.75);
+    --amt-border: rgba(206, 189, 245, 0.25);
+    --amt-txt: #eee6fa;
+    --amt-hover-border: #60a5fa;
+    --amt-hover-txt: #60a5fa;
+    --amt-sel-bg: #60a5fa;
+    --amt-sel-border: #60a5fa;
+    --amt-sel-txt: #0d0817;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -226,20 +246,6 @@
   }
   
   .hero-left { flex: 0 0 54%; max-width: 640px; padding-bottom: 2rem; }
-  
-  .hero-legal-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(255, 255, 255, 0.88); 
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.95); 
-    border-radius: 50px;
-    padding: 6px 16px; font-size: 0.78rem; font-weight: 700;
-    color: var(--text-main); margin-bottom: 1.5rem; letter-spacing: 0.4px;
-    box-shadow: 0 4px 12px rgba(50, 30, 84, 0.05);
-  }
-  body.lactancia-mode .hero-legal-badge {
-    background: rgba(30, 18, 45, 0.8); border-color: rgba(230, 224, 248, 0.12);
-  }
 
   .hero-left h1 {
     font-size: clamp(2.7rem, 4.5vw, 4rem); font-weight: 800;
@@ -422,8 +428,31 @@
   .bento-card h3 { font-size: 1.18rem; font-weight: 700; color: var(--text-main); margin-bottom: .6rem; letter-spacing: -0.3px; position: relative; z-index: 2; }
   .bento-card p { font-size: .96rem; color: var(--text-sub); line-height: 1.68; position: relative; z-index: 2; }
 
+  /* ── FAQ (AHORA SOBRE TRANSPARENCIA Y SEDE) ── */
+  .faq-section { padding: 4.5rem 4.5rem 3.5rem; max-width: 1000px; margin: 0 auto; }
+  .faq-header { text-align: center; margin-bottom: 2.6rem; }
+  .faq-accordion { display: flex; flex-direction: column; gap: 1.2rem; }
+  .faq-item {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 1.4rem 1.8rem;
+    box-shadow: var(--card-shadow);
+  }
+  .faq-item summary {
+    font-size: 1.08rem; font-weight: 700; color: var(--text-main); cursor: pointer;
+    list-style: none; display: flex; justify-content: space-between; align-items: center;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+    font-size: 0.85rem; color: var(--text-sub); transition: transform 0.3s ease;
+  }
+  .faq-item[open] summary::after { transform: rotate(180deg); color: var(--accent-blue); }
+  .faq-item p { margin-top: 1rem; font-size: 0.96rem; color: var(--text-sub); line-height: 1.7; }
+
   /* ── TRANSPARENCIA & SEDE CON MAPA ── */
-  .legal-section { padding: 3.5rem 4.5rem 4.5rem; max-width: 1330px; margin: 0 auto; }
+  .legal-section { padding: 3.5rem 4.5rem 5.5rem; max-width: 1330px; margin: 0 auto; }
   .legal-layout { display: grid; grid-template-columns: 1.2fr 1.1fr; gap: 2.2rem; }
   
   .legal-card {
@@ -463,30 +492,7 @@
   .contact-info span, .contact-info a { font-size: 0.9rem; color: var(--text-sub); text-decoration: none; }
   .contact-info a:hover { color: var(--accent-blue); text-decoration: underline; }
 
-  /* ── FAQ ── */
-  .faq-section { padding: 2rem 4.5rem 5rem; max-width: 1000px; margin: 0 auto; }
-  .faq-header { text-align: center; margin-bottom: 3rem; }
-  .faq-accordion { display: flex; flex-direction: column; gap: 1.2rem; }
-  .faq-item {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 20px;
-    padding: 1.4rem 1.8rem;
-    box-shadow: var(--card-shadow);
-  }
-  .faq-item summary {
-    font-size: 1.08rem; font-weight: 700; color: var(--text-main); cursor: pointer;
-    list-style: none; display: flex; justify-content: space-between; align-items: center;
-  }
-  .faq-item summary::-webkit-details-marker { display: none; }
-  .faq-item summary::after {
-    content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
-    font-size: 0.85rem; color: var(--text-sub); transition: transform 0.3s ease;
-  }
-  .faq-item[open] summary::after { transform: rotate(180deg); color: var(--accent-blue); }
-  .faq-item p { margin-top: 1rem; font-size: 0.96rem; color: var(--text-sub); line-height: 1.7; }
-
-  /* ── CONTENEDOR INFERIOR ILUSTRADO (HISTORIAS, DONACIONES Y FOOTER) ── */
+  /* ── CONTENEDOR INFERIOR ILUSTRADO ── */
   .bottom-landscape-wrapper {
     position: relative;
     background: linear-gradient(180deg, rgba(235, 223, 245, 0) 0%, #ebdff5 25%, #dfc9f2 70%, #d2b7ec 100%);
@@ -539,7 +545,7 @@
   .story-quote { font-size: 0.96rem; font-style: italic; color: var(--text-sub); line-height: 1.65; flex-grow: 1; }
   .story-author { font-size: 0.88rem; font-weight: 700; color: var(--text-main); text-align: right; }
 
-  /* ── DONACIONES ── */
+  /* ── DONACIONES (SÚMATE A NUESTRO PROPÓSITO) ── */
   .donation-section { padding: 2rem 4.5rem 6.5rem; max-width: 1330px; margin: 0 auto; }
   .donation-box {
     background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 36px;
@@ -547,16 +553,34 @@
   }
   .donation-box h2 { font-size: 2.4rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem; letter-spacing: -0.6px; }
   .donation-box p { color: var(--text-sub); font-size: 1.1rem; margin-bottom: 2.6rem; max-width: 660px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+  
   .amount-selector { display: flex; justify-content: center; gap: 1.1rem; flex-wrap: wrap; margin-bottom: 2.6rem; }
+  
   .amt-btn {
-    background: rgba(255, 255, 255, 0.6); border: 2px solid rgba(74, 45, 100, 0.12); border-radius: 50px;
-    padding: 0.85rem 2.2rem; font-size: 1.02rem; font-weight: 700; color: var(--text-sub);
-    cursor: pointer; transition: all 0.25s ease;
+    background: var(--amt-bg); 
+    border: 2px solid var(--amt-border); 
+    border-radius: 50px;
+    padding: 0.85rem 2.2rem; 
+    font-size: 1.05rem; 
+    font-weight: 800; 
+    color: var(--amt-txt);
+    cursor: pointer; 
+    transition: all 0.25s ease;
+    backdrop-filter: blur(6px);
   }
-  .amt-btn:hover { border-color: var(--accent-blue); color: var(--accent-blue); transform: translateY(-2px); }
-  .amt-btn.selected { background: var(--accent-blue); border-color: var(--accent-blue); color: #fff; box-shadow: 0 6px 20px rgba(50, 115, 181, 0.35); }
+  .amt-btn:hover { 
+    border-color: var(--amt-hover-border); 
+    color: var(--amt-hover-txt); 
+    transform: translateY(-2px); 
+  }
+  .amt-btn.selected { 
+    background: var(--amt-sel-bg); 
+    border-color: var(--amt-sel-border); 
+    color: var(--amt-sel-txt); 
+    box-shadow: 0 8px 24px rgba(50, 115, 181, 0.38); 
+  }
 
-  /* ── FOOTER TRANSPARENTE INTEGRADO AL PAISAJE ── */
+  /* ── FOOTER ── */
   footer { 
     background: var(--footer-bg); 
     color: var(--text-sub); 
@@ -608,8 +632,8 @@
       <a href="#historia">Historia</a>
       <a href="#proposito">Nosotros</a>
       <a href="#programas">Programas</a>
-      <a href="#transparencia">Transparencia</a>
       <a href="#faq">Preguntas</a>
+      <a href="#transparencia">Transparencia</a>
       <a href="#sede">Sede</a>
     </div>
     <button class="theme-toggle" id="themeBtn">
@@ -618,7 +642,7 @@
   </div>
 </nav>
 
-<!-- 1. HERO CON ESCENA DE FONDO -->
+<!-- 1. HERO CON ESCENA DE FONDO (LIMPIO, SIN PÍLDORA Y CON 100%) -->
 <div class="hero-wrapper-scenic">
   <div class="scenic-illustration-bg">
     <svg viewBox="0 0 1440 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -649,9 +673,6 @@
   <section class="hero">
     <div class="hero-container">
       <div class="hero-left">
-        <div class="hero-legal-badge">
-          <i class="fa-solid fa-certificate"></i> Personalidad Jurídica Inscripción N° 12.763 · Registro Civil
-        </div>
         <h1>Cada gota de leche<br>es un acto de amor.</h1>
         <p>
           Fundada en 1918 en Viña del Mar, apoyamos a lactantes, niños y niñas en situación de alta vulnerabilidad socioeconómica mediante la entrega gratuita de insumos esenciales y el fomento de buenas prácticas de crianza.
@@ -665,7 +686,7 @@
         <div class="hero-stats">
           <div class="stat-item"><span class="stat-num" data-target="108">0</span><span class="stat-label">años</span></div>
           <div class="stat-item"><span class="stat-num" data-target="500">0</span><span class="stat-label">familias</span></div>
-          <div class="stat-item"><span class="stat-num" data-target="100">0</span><span class="stat-label">gratuito</span></div>
+          <div class="stat-item"><span class="stat-num" data-target="100">0%</span><span class="stat-label">gratuito</span></div>
         </div>
       </div>
 
@@ -786,7 +807,32 @@
   </div>
 </section>
 
-<!-- 4. TRANSPARENCIA Y SEDE -->
+<!-- 4. PREGUNTAS FRECUENTES (REUBICADA ARRIBA DE TRANSPARENCIA Y SEDE) -->
+<section class="faq-section" id="faq">
+  <div class="faq-header">
+    <div class="sec-tag">Orientación a la Comunidad</div>
+    <h2 class="sec-title">Preguntas Frecuentes</h2>
+  </div>
+
+  <div class="faq-accordion">
+    <details class="faq-item" open>
+      <summary>¿Quiénes pueden solicitar el beneficio de apoyo?</summary>
+      <p>Cualquier familia o cuidador a cargo de un lactante o niño/a pequeño en situación de vulnerabilidad de la comuna de Viña del Mar. La atención y los insumos son 100% gratuitos y solidarios.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Qué días se realiza la entrega presencial de insumos?</summary>
+      <p>Atendemos de forma regular los días lunes, martes y miércoles entre las 15:00 y las 17:00 hrs. en nuestra sede de Calle Cinco 2045, Santa Inés.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Cómo puedo colaborar con donaciones de pañales o leche?</summary>
+      <p>Puedes acercarte directamente a nuestra sede en los horarios de atención o escribirnos a nuestro correo oficial para coordinar la recepción de insumos sellados.</p>
+    </details>
+  </div>
+</section>
+
+<!-- 5. TRANSPARENCIA Y SEDE -->
 <section class="legal-section" id="transparencia">
   <div class="legal-layout">
     <div class="legal-card">
@@ -866,48 +912,16 @@
   </div>
 </section>
 
-<!-- 5. FAQ -->
-<section class="faq-section" id="faq">
-  <div class="faq-header">
-    <div class="sec-tag">Orientación a la Comunidad</div>
-    <h2 class="sec-title">Preguntas Frecuentes</h2>
-  </div>
-
-  <div class="faq-accordion">
-    <details class="faq-item" open>
-      <summary>¿Quiénes pueden solicitar el beneficio de apoyo?</summary>
-      <p>Cualquier familia o cuidador a cargo de un lactante o niño/a pequeño en situación de vulnerabilidad de la comuna de Viña del Mar. La atención y los insumos son 100% gratuitos y solidarios.</p>
-    </details>
-
-    <details class="faq-item">
-      <summary>¿Qué días se realiza la entrega presencial de insumos?</summary>
-      <p>Atendemos de forma regular los días lunes, martes y miércoles entre las 15:00 y las 17:00 hrs. en nuestra sede de Calle Cinco 2045, Santa Inés.</p>
-    </details>
-
-    <details class="faq-item">
-      <summary>¿Cómo puedo colaborar con donaciones de pañales o leche?</summary>
-      <p>Puedes acercarte directamente a nuestra sede en los horarios de atención o escribirnos a nuestro correo oficial para coordinar la recepción de insumos sellados.</p>
-    </details>
-  </div>
-</section>
-
 <!-- 6. CONTENEDOR INFERIOR ILUSTRADO (HISTORIAS, DONACIONES Y FOOTER) -->
 <div class="bottom-landscape-wrapper">
   
-  <!-- Ilustración Vectorial Panorámica del Fondo Inferior -->
   <div class="bottom-scenic-art">
     <svg viewBox="0 0 1440 1200" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Nubes esponjosas en la parte media -->
       <path d="M180 140C160 140 145 155 145 175C130 175 120 188 120 200C120 215 132 225 148 225H235C250 225 260 212 260 200C260 185 248 175 235 175C232 155 210 140 180 140Z" fill="#ffffff" fill-opacity="0.35"/>
       <path d="M1200 80C1185 80 1170 92 1170 108C1158 108 1150 118 1150 128C1150 140 1160 148 1172 148H1245C1258 148 1265 138 1265 128C1265 116 1255 108 1245 108C1242 92 1225 80 1200 80Z" fill="#ffffff" fill-opacity="0.3"/>
 
-      <!-- Colina alta izquierda -->
       <path d="M-100 800C150 560 480 620 750 780L650 1200H-100V800Z" fill="#caaee7" fill-opacity="0.22"/>
-      
-      <!-- Colina suave derecha -->
       <path d="M600 850C880 680 1150 640 1550 820V1200H600V850Z" fill="#caaee7" fill-opacity="0.25"/>
-
-      <!-- Gran colina inferior continua -->
       <path d="M-50 1020C280 920 650 960 980 900C1220 860 1380 930 1500 1000V1200H-50V1020Z" fill="#baa2d8" fill-opacity="0.3"/>
 
       <!-- Árbol ilustrado inferior izquierdo -->
@@ -916,25 +930,23 @@
       <!-- Árbol ilustrado inferior derecho -->
       <path d="M1300 780C1280 710 1340 660 1400 680C1450 650 1500 690 1510 760C1550 800 1530 860 1480 880C1470 950 1400 970 1340 920C1300 890 1290 830 1300 780Z" fill="#af95d1" fill-opacity="0.32"/>
 
-      <!-- Familia de conejitos descansando en la colina derecha -->
-      <!-- Conejito mayor -->
+      <!-- Familia de conejitos -->
       <ellipse cx="1120" cy="890" rx="18" ry="14" fill="#ffffff" fill-opacity="0.55"/>
       <circle cx="1134" cy="876" r="10" fill="#ffffff" fill-opacity="0.55"/>
       <ellipse cx="1132" cy="862" rx="3.5" ry="10" fill="#ffffff" fill-opacity="0.55" transform="rotate(-8 1132 862)"/>
       <ellipse cx="1139" cy="864" rx="3" ry="9" fill="#f8d7df" fill-opacity="0.55" transform="rotate(8 1139 864)"/>
       <circle cx="1102" cy="892" r="4.5" fill="#ffffff" fill-opacity="0.55"/>
-      <!-- Conejito cría -->
       <ellipse cx="1155" cy="898" rx="10" ry="8" fill="#ffffff" fill-opacity="0.55"/>
       <circle cx="1162" cy="890" r="6.5" fill="#ffffff" fill-opacity="0.55"/>
       <ellipse cx="1161" cy="880" rx="2" ry="6" fill="#ffffff" fill-opacity="0.55"/>
       <ellipse cx="1165" cy="882" rx="1.8" ry="5.5" fill="#f8d7df" fill-opacity="0.55"/>
 
-      <!-- Pájaros sobrevolando el área de donaciones -->
+      <!-- Pájaros -->
       <path d="M380 480C386 474 394 476 399 481C404 476 412 474 418 480" stroke="#715298" stroke-width="2" stroke-linecap="round" opacity="0.35"/>
       <path d="M420 505C425 500 431 501 435 505C439 501 445 500 450 505" stroke="#715298" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
       <path d="M1020 320C1026 314 1034 316 1039 321C1044 316 1052 314 1058 320" stroke="#715298" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
 
-      <!-- Campo de pequeñas flores silvestres distribuidas -->
+      <!-- Flores silvestres -->
       <circle cx="220" cy="940" r="5" fill="#ffffff" fill-opacity="0.6"/>
       <circle cx="270" cy="960" r="4" fill="#f3a6b8" fill-opacity="0.55"/>
       <circle cx="340" cy="935" r="5" fill="#fff9c4" fill-opacity="0.6"/>
@@ -949,7 +961,6 @@
   </div>
 
   <div class="bottom-content-layer">
-    <!-- CARRUSEL DE HISTORIAS -->
     <section class="stories-section">
       <div class="stories-header">
         <div>
@@ -985,7 +996,7 @@
       </div>
     </section>
 
-    <!-- DONACIONES -->
+    <!-- DONACIONES CON CONTRASTE COMPLETO EN MODO LACTANCIA -->
     <section class="donation-section">
       <div class="donation-box">
         <h2>Súmate a nuestro propósito</h2>
@@ -1002,7 +1013,6 @@
       </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
       <strong style="color: var(--text-main); font-size: 1.18rem; letter-spacing: -0.3px;">CORPORACIÓN GOTA DE LECHE DE MIRAMAR</strong><br>
       <span style="font-size: 0.95rem; display: block; margin-top: 6px;">RUT: 71.315.200-5 · Personalidad Jurídica Inscripción N° 12.763 (Registro Civil de Chile)</span>
@@ -1087,14 +1097,19 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if(e.isIntersecting){ 
       const numEl = e.target.querySelector('.stat-num');
-      if (numEl && numEl.textContent === '0') {
+      if (numEl) {
         const target = parseInt(numEl.dataset.target, 10);
         const isPercent = e.target.parentElement.querySelector('.stat-label').textContent.includes('gratuito');
         let current = 0;
         const timer = setInterval(() => {
           current += target / 60;
-          if (current >= target) { current = target; clearInterval(timer); }
-          numEl.textContent = Math.floor(current) + (isPercent ? '%' : '');
+          if (current >= target) { 
+            current = target; 
+            clearInterval(timer); 
+            numEl.textContent = current + (isPercent ? '%' : '');
+          } else {
+            numEl.textContent = Math.floor(current) + (isPercent ? '%' : '');
+          }
         }, 20);
       }
       obs.unobserve(e.target); 
