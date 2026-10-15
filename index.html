@@ -283,7 +283,6 @@
   
   .nav-actions { display: flex; align-items: center; gap: 1.2rem; }
   
-  /* Óvalo contenedor de navegación */
   .nav-links { 
     display: flex; 
     align-items: center;
@@ -321,7 +320,6 @@
     box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
   }
   
-  /* Botón Modo Lactancia */
   .theme-toggle {
     background: rgba(255, 255, 255, 0.7); 
     border: 1.5px solid var(--card-border); 
@@ -343,7 +341,7 @@
     box-shadow: 0 4px 14px rgba(28, 75, 120, 0.18);
   }
 
-  /* ── HERO PANORÁMICO Y PARTICULAS FLOTANTES ── */
+  /* ── HERO ── */
   .hero-wrapper-scenic {
     background: var(--bg-hero-grad);
     position: relative;
@@ -823,7 +821,7 @@
     line-height: 1.68; 
   }
 
-  /* ── SECCIÓN GALERÍA PATRIMONIAL Y COMUNITARIA CON LIGHTBOX ── */
+  /* ── SECCIÓN GALERÍA PATRIMONIAL CON EFECTO HOVER B/N A COLOR ── */
   .gallery-section {
     padding: 3rem 4.5rem 5.5rem;
     max-width: 1330px;
@@ -834,6 +832,18 @@
     text-align: center;
     max-width: 680px;
     margin: 0 auto 3rem;
+  }
+  .gallery-instruction {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    background: rgba(56, 189, 248, 0.12);
+    padding: 0.4rem 1.1rem;
+    border-radius: 50px;
+    margin-top: 0.8rem;
   }
   .gallery-grid {
     display: grid;
@@ -862,18 +872,35 @@
     height: 230px;
     overflow: hidden;
     position: relative;
+    background: #000;
   }
-  .gallery-thumb-wrap img {
+  /* Estilos para el doble fondo (B/N y Color al hacer hover) */
+  .img-bw, .img-color {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(85%) contrast(105%);
-    transition: filter 0.5s ease, transform 0.5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .gallery-item:hover .gallery-thumb-wrap img {
-    filter: grayscale(0%) contrast(100%);
-    transform: scale(1.05);
+  .img-bw {
+    filter: grayscale(100%) contrast(110%);
+    z-index: 1;
+    opacity: 1;
   }
+  .img-color {
+    z-index: 2;
+    opacity: 0;
+  }
+  .gallery-item:hover .img-color {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+  .gallery-item:hover .img-bw {
+    transform: scale(1.06);
+  }
+
   .gallery-zoom-badge {
     position: absolute;
     top: 14px;
@@ -881,7 +908,7 @@
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background: rgba(20, 50, 84, 0.65);
+    background: rgba(20, 50, 84, 0.75);
     backdrop-filter: blur(8px);
     color: #ffffff;
     display: flex;
@@ -891,6 +918,7 @@
     opacity: 0;
     transform: scale(0.8);
     transition: all 0.3s ease;
+    z-index: 3;
   }
   .gallery-item:hover .gallery-zoom-badge {
     opacity: 1;
@@ -1495,7 +1523,7 @@
       </g>
 
       <path d="M120 90Q120 105 105 105Q120 105 120 120Q120 105 135 105Q120 105 120 90Z" fill="#ffffff" opacity="0.45"/>
-      <path d="M680 70Q680 82 670 82Q680 82 690 82Q680 82 680 70Z" fill="#ffffff" opacity="0.4"/>
+      <path d="M680 70Q680 82 670 82Q680 82 680 94Q680 82 690 82Q680 82 680 70Z" fill="#ffffff" opacity="0.4"/>
       <path d="M1360 130Q1360 142 1350 142Q1360 142 1360 154Q1360 142 1370 142Q1360 142 1360 130Z" fill="#ffffff" opacity="0.35"/>
       <path d="M720 520Q720 532 710 532Q720 532 720 544Q720 532 730 532Q720 532 720 520Z" fill="#ffffff" opacity="0.3"/>
       <path d="M1390 480Q1390 492 1380 492Q1390 492 1390 504Q1390 492 1400 492Q1390 492 1390 480Z" fill="#ffffff" opacity="0.4"/>
@@ -1645,90 +1673,100 @@
   </div>
 </section>
 
-<!-- 4. GALERÍA PATRIMONIAL Y COMUNITARIA CON LIGHTBOX -->
+<!-- 4. GALERÍA PATRIMONIAL CON EFECTO HOVER DE B/N A COLOR -->
 <section class="gallery-section" id="galeria">
   <div class="gallery-header">
     <div class="sec-tag">Registro Histórico y Social</div>
     <h2 class="sec-title">Nuestra Memoria en Imágenes</h2>
-    <p class="sec-desc">Primeras jornadas benéficas de inicios del siglo XX en apoyo comunitario Viña Del Mar.</p>
+    <p class="sec-desc">Pasa el cursor sobre cada fotografía histórica para descubrir su color y detalle original de época.</p>
+    <div>
+      <span class="gallery-instruction"><i class="fa-solid fa-hand-pointer"></i> Pasa el cursor para ver a color</span>
+    </div>
   </div>
 
   <div class="gallery-grid">
-    <!-- Foto 1: Histórica -->
-    <div class="gallery-item" data-full="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Primera%20Casa.jpg" data-title="Fachada de Gota de Leche, Viña del Mar, año 1920" data-desc="Registro histórico de la fachada de Gota de Leche en el año 1920, Viña Del Mar.">
+    <!-- Foto 1 -->
+    <div class="gallery-item" data-full="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Primera%20Casa.jpg" data-title="Casa Fundacional Gota de Leche, Viña del Mar, 1920" data-desc="Registro histórico del primer centro asistencial y de acogida para lactantes en los albores de la institución en la comuna.">
       <div class="gallery-thumb-wrap">
-        <img src="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Primera%20Casa.jpg" alt="Consultas Infantiles Históricas">
+        <img src="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Primera%20Casa.jpg" alt="Casa Gota de Leche B/N" class="img-bw">
+        <!-- Reemplaza con tu enlace a color si lo tienes, por ejemplo: .../Primera%20Casa-color.jpg -->
+        <img src="https://raw.github.com/Christian-Infor/Web-Gota-de-Leche/main/1.png" alt="Casa Gota de Leche Color" class="img-color">
         <div class="gallery-zoom-badge"><i class="fa-solid fa-expand"></i></div>
       </div>
       <div class="gallery-caption">
-        <span class="gallery-year">Casa 1920</span>
-        <div class="gallery-title">Casa Gota de Leche</div>
-        <div class="gallery-desc">Centro para lactantes en los inicios de la corporación.</div>
+        <span class="gallery-year">Fundación · 1920</span>
+        <div class="gallery-title">Nuestros Inicios</div>
+        <div class="gallery-desc">La primera casa de acogida y soporte alimentario para lactantes viñamarinos.</div>
       </div>
     </div>
 
-    <!-- Foto 2: Histórica Sede -->
-    <div class="gallery-item" data-full="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Sala%20de%20Dr.%20y%20Peso.jpg" data-title="Sala del doctor y peso de niños" data-desc="Registro histórico de la sala del doctor en donde pesaban y controlaban a los niños.">
+    <!-- Foto 2 -->
+    <div class="gallery-item" data-full="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Sala%20de%20Dr.%20y%20Peso.jpg" data-title="Sala del Doctor y Control Pediátrico" data-desc="Instancia de evaluación médica, seguimiento de salud y control de peso periódico para asegurar el desarrollo infantil temprano.">
       <div class="gallery-thumb-wrap">
-        <img src="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Sala%20de%20Dr.%20y%20Peso.jpg" alt="Comité Benéfico">
+        <img src="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Sala%20de%20Dr.%20y%20Peso.jpg" alt="Sala de Peso B/N" class="img-bw">
+        <img src="https://raw.github.com/Christian-Infor/Web-Gota-de-Leche/main/2.png" alt="Sala de Peso Color" class="img-color">
         <div class="gallery-zoom-badge"><i class="fa-solid fa-expand"></i></div>
       </div>
       <div class="gallery-caption">
-        <span class="gallery-year">Sala 1920</span>
-        <div class="gallery-title">Sala de Peso</div>
-        <div class="gallery-desc">Sala del Dr. y peso de niños.</div>
+        <span class="gallery-year">Salud · 1920</span>
+        <div class="gallery-title">Sala del Doctor y Pesaje</div>
+        <div class="gallery-desc">Control médico riguroso y seguimiento preventivo del crecimiento infantil.</div>
       </div>
     </div>
 
-    <!-- Foto 3: Tradición de Entrega -->
-    <div class="gallery-item" data-full="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Ventanilla%20de%20reparto.jpg" data-title="Ventanilla de reparto" data-desc="Ventanilla de reparto de leche para los niños.">
+    <!-- Foto 3 -->
+    <div class="gallery-item" data-full="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Ventanilla%20de%20reparto.jpg" data-title="Ventanilla de Reparto de Insumos Lácteos" data-desc="Punto emblemático de atención directa a las familias, donde madres y tutores retiraban raciones de leche y provisiones esenciales.">
       <div class="gallery-thumb-wrap">
-        <img src="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Ventanilla%20de%20reparto.jpg" alt="Cuidado Materno">
+        <img src="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Ventanilla%20de%20reparto.jpg" alt="Entrega de leche B/N" class="img-bw">
+        <img src="https://raw.github.com/Christian-Infor/Web-Gota-de-Leche/main/3.png" alt="Entrega de leche Color" class="img-color">
         <div class="gallery-zoom-badge"><i class="fa-solid fa-expand"></i></div>
       </div>
       <div class="gallery-caption">
-        <span class="gallery-year">Ventanilla 1920</span>
-        <div class="gallery-title">Entrega de leche</div>
-        <div class="gallery-desc">Ventanilla de reparto de leche.</div>
+        <span class="gallery-year">Asistencia · 1920</span>
+        <div class="gallery-title">Ventanilla de Reparto</div>
+        <div class="gallery-desc">El corazón de la ayuda solidaria y distribución diaria de leche a la comunidad.</div>
       </div>
     </div>
 
-    <!-- Foto 4: Contemporánea Sede -->
-    <div class="gallery-item" data-full="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Navidad%20Gota%20de%20Leche%2001.jpg" data-title="Navidad en Gota de Leche" data-desc="Jornada Navideña para los niños de Gota de Leche.">
+    <!-- Foto 4 -->
+    <div class="gallery-item" data-full="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Navidad%20Gota%20de%20Leche%2001.jpg" data-title="Celebración Navideña Comunitaria" data-desc="Jornada de alegría y encuentro fraterno junto a la niñez de Viña del Mar, compartiendo un momento inolvidable de celebración.">
       <div class="gallery-thumb-wrap">
-        <img src="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Navidad%20Gota%20de%20Leche%2001.jpg" alt="Entrega en Sede">
+        <img src="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Navidad%20Gota%20de%20Leche%2001.jpg" alt="Momento Navideño B/N" class="img-bw">
+        <img src="https://raw.github.com/Christian-Infor/Web-Gota-de-Leche/main/4.png" alt="Momento Navideño Color" class="img-color">
         <div class="gallery-zoom-badge"><i class="fa-solid fa-expand"></i></div>
       </div>
       <div class="gallery-caption">
-        <span class="gallery-year">Navidad 1930</span>
-        <div class="gallery-title">Momento Navideño</div>
-        <div class="gallery-desc">Niños y Niñas posando con el viejito pascuero.</div>
+        <span class="gallery-year">Comunidad · 1930</span>
+        <div class="gallery-title">Tradición Navideña</div>
+        <div class="gallery-desc">Fiestas de fin de año y entrega de obsequios a las familias beneficiarias.</div>
       </div>
     </div>
 
-    <!-- Foto 5: Talleres de Crianza -->
-    <div class="gallery-item" data-full="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Sala%20Botica.jpg" data-title="Sala Botica" data-desc="Botica Gota de Leche de Viña del Mar.">
+    <!-- Foto 5 -->
+    <div class="gallery-item" data-full="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Sala%20Botica.jpg" data-title="Botica e Insumos Médicos" data-desc="Espacio farmacéutico de la institución destinado al resguardo y entrega de medicamentos y suplementos de primera necesidad.">
       <div class="gallery-thumb-wrap">
-        <img src="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Sala%20Botica.jpg" alt="Talleres de Crianza">
+        <img src="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Sala%20Botica.jpg" alt="Botica Gota de Leche B/N" class="img-bw">
+        <img src="https://raw.github.com/Christian-Infor/Web-Gota-de-Leche/main/5.png" alt="Botica Gota de Leche Color" class="img-color">
         <div class="gallery-zoom-badge"><i class="fa-solid fa-expand"></i></div>
       </div>
       <div class="gallery-caption">
-        <span class="gallery-year">Botica 1920</span>
-        <div class="gallery-title">Botica Gota de Leche</div>
-        <div class="gallery-desc">Botica en donde se entregaban insumos y medicamentos.</div>
+        <span class="gallery-year">Farmacia · 1920</span>
+        <div class="gallery-title">Botica Institucional</div>
+        <div class="gallery-desc">Preparación y entrega de fármacos y suplementos esenciales para la infancia.</div>
       </div>
     </div>
 
-    <!-- Foto 6: Sonrisas e Infancia -->
-    <div class="gallery-item" data-full="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Sala%20Observaci%C3%B3n.jpg" data-title="Sala de observación" data-desc="Sala de observación y asistencia médica para los niños.">
+    <!-- Foto 6 -->
+    <div class="gallery-item" data-full="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Sala%20Observaci%C3%B3n.jpg" data-title="Sala de Observación y Asistencia" data-desc="Sala de observación y seguimiento clínico dedicada al cuidado preventivo y la salud integral de los niños y niñas.">
       <div class="gallery-thumb-wrap">
-        <img src="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Sala%20Observaci%C3%B3n.jpg" alt="Bienestar Infantil">
+        <img src="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Sala%20Observaci%C3%B3n.jpg" alt="Bienestar y salud B/N" class="img-bw">
+        <img src="https://raw.github.com/Christian-Infor/Web-Gota-de-Leche/main/6.png" alt="Bienestar y salud Color" class="img-color">
         <div class="gallery-zoom-badge"><i class="fa-solid fa-expand"></i></div>
       </div>
       <div class="gallery-caption">
-        <span class="gallery-year">Sala Observación 1920</span>
-        <div class="gallery-title">Bienestar y salud</div>
-        <div class="gallery-desc">Cuidado y salud para los niños y niñas de nuestra ciudad.</div>
+        <span class="gallery-year">Clínica · 1920</span>
+        <div class="gallery-title">Sala de Observación</div>
+        <div class="gallery-desc">Cuidado especializado y seguimiento clínico para garantizar el bienestar infantil.</div>
       </div>
     </div>
   </div>
@@ -1789,7 +1827,7 @@
       </g>
 
       <path d="M120 90Q120 105 105 105Q120 105 120 120Q120 105 135 105Q120 105 120 90Z" fill="#ffffff" opacity="0.45"/>
-      <path d="M680 70Q680 82 670 82Q680 82 690 82Q680 82 680 70Z" fill="#ffffff" opacity="0.4"/>
+      <path d="M680 70Q680 82 670 82Q680 82 680 94Q680 82 690 82Q680 82 680 70Z" fill="#ffffff" opacity="0.4"/>
       <path d="M1360 130Q1360 142 1350 142Q1360 142 1360 154Q1360 142 1370 142Q1360 142 1360 130Z" fill="#ffffff" opacity="0.35"/>
       <path d="M720 520Q720 532 710 532Q720 532 720 544Q720 532 730 532Q720 532 720 520Z" fill="#ffffff" opacity="0.3"/>
       <path d="M1390 480Q1390 492 1380 492Q1390 492 1390 504Q1390 492 1400 492Q1390 492 1390 480Z" fill="#ffffff" opacity="0.4"/>
