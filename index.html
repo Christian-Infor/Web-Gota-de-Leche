@@ -101,13 +101,16 @@
     --amt-sel-border: #0284c7;
     --amt-sel-txt: #ffffff;
 
-    --cursor-dot-color: #1c4b78;
-    --cursor-ring-color: rgba(2, 132, 199, 0.28);
-
     /* Sello Centenario */
     --badge-bg: rgba(255, 255, 255, 0.85);
     --badge-border: rgba(28, 75, 120, 0.18);
     --badge-text: #143254;
+
+    /* Óvalo contenedor de navegación */
+    --nav-dock-bg: rgba(186, 230, 253, 0.42);
+    --nav-dock-border: rgba(28, 75, 120, 0.12);
+    --nav-pill-bg: rgba(255, 255, 255, 0.75);
+    --nav-pill-border: rgba(255, 255, 255, 0.85);
   }
 
   body.lactancia-mode {
@@ -152,12 +155,14 @@
     --amt-sel-border: #38bdf8;
     --amt-sel-txt: #060e17;
 
-    --cursor-dot-color: #bae6fd;
-    --cursor-ring-color: rgba(186, 230, 253, 0.35);
-
     --badge-bg: rgba(13, 23, 38, 0.86);
     --badge-border: rgba(186, 230, 253, 0.25);
     --badge-text: #bae6fd;
+
+    --nav-dock-bg: rgba(15, 32, 53, 0.65);
+    --nav-dock-border: rgba(186, 230, 253, 0.18);
+    --nav-pill-bg: rgba(22, 45, 74, 0.65);
+    --nav-pill-border: rgba(186, 230, 253, 0.12);
   }
 
   * { 
@@ -223,50 +228,6 @@
     50% { transform: rotate(-45deg) scale(1.2); }
   }
 
-  /* Cursor para Desktop */
-  .custom-cursor-dot,
-  .custom-cursor-ring {
-    display: none;
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .custom-cursor-dot {
-      display: block;
-      position: fixed;
-      top: 0; left: 0;
-      width: 7px; height: 7px;
-      background-color: var(--cursor-dot-color);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 999999;
-      transform: translate(-50%, -50%);
-      transition: opacity 0.3s ease;
-    }
-    .custom-cursor-ring {
-      display: block;
-      position: fixed;
-      top: 0; left: 0;
-      width: 36px; height: 36px;
-      border: 1.5px solid var(--cursor-ring-color);
-      background: rgba(56, 189, 248, 0.05);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 999998;
-      transform: translate(-50%, -50%);
-      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                  height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                  border-color 0.3s ease,
-                  background 0.3s ease;
-      backdrop-filter: blur(1px);
-    }
-    .custom-cursor-ring.cursor-hover {
-      width: 58px;
-      height: 58px;
-      background: rgba(56, 189, 248, 0.14);
-      border-color: rgba(56, 189, 248, 0.65);
-    }
-  }
-
   /* Preloader */
   .preloader {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -318,45 +279,65 @@
   
   .nav-actions { display: flex; align-items: center; gap: 1.2rem; }
   
-  /* Píldoras de navegación */
-  .nav-links { display: flex; gap: 0.6rem; }
+  /* Óvalo contenedor de navegación */
+  .nav-links { 
+    display: flex; 
+    align-items: center;
+    gap: 0.4rem; 
+    background: var(--nav-dock-bg);
+    border: 1px solid var(--nav-dock-border);
+    padding: 0.35rem 0.45rem;
+    border-radius: 50px;
+    box-shadow: inset 0 1px 3px rgba(28, 75, 120, 0.06);
+    backdrop-filter: blur(10px);
+    transition: all 0.35s ease;
+  }
+
   .nav-pill {
-    background: rgba(255, 255, 255, 0.6); 
-    border: 1px solid var(--card-border); 
+    background: var(--nav-pill-bg); 
+    border: 1px solid var(--nav-pill-border); 
     border-radius: 50px;
     color: var(--text-main); 
     text-decoration: none; 
-    padding: 0.45rem 1.05rem;
+    padding: 0.42rem 0.95rem;
     font-size: 0.85rem; 
     font-weight: 700;
     display: inline-flex; 
     align-items: center;
-    backdrop-filter: blur(8px);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
   body.lactancia-mode .nav-pill {
-    background: rgba(15, 28, 46, 0.7);
     color: var(--text-main);
   }
   .nav-pill:hover { 
-    background: var(--text-main); 
-    color: var(--bg-body); 
+    background: var(--btn-fill-bg); 
+    border-color: var(--btn-fill-bg);
+    color: #ffffff; 
     transform: translateY(-1px); 
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
   }
   
+  /* Botón Modo Lactancia */
   .theme-toggle {
-    background: rgba(255, 255, 255, 0.6); 
-    border: 1px solid var(--card-border); 
+    background: rgba(255, 255, 255, 0.7); 
+    border: 1.5px solid var(--card-border); 
     border-radius: 50px;
-    color: var(--text-main); cursor: pointer; padding: 0.45rem 1.15rem;
+    color: var(--text-main); cursor: pointer; padding: 0.48rem 1.15rem;
     font-size: 0.85rem; display: flex; align-items: center; gap: 0.55rem;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); font-weight: 700;
     backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(28, 75, 120, 0.06);
   }
   body.lactancia-mode .theme-toggle {
-    background: rgba(15, 28, 46, 0.7);
+    background: rgba(15, 28, 46, 0.85);
+    border-color: rgba(186, 230, 253, 0.22);
   }
-  .theme-toggle:hover { background: var(--text-main); color: var(--bg-body); transform: translateY(-1px); }
+  .theme-toggle:hover { 
+    background: var(--text-main); 
+    color: var(--bg-body); 
+    transform: translateY(-1px); 
+    box-shadow: 0 4px 14px rgba(28, 75, 120, 0.18);
+  }
 
   /* ── HERO PANORÁMICO Y PARTICULAS FLOTANTES ── */
   .hero-wrapper-scenic {
@@ -863,37 +844,63 @@
   .faq-item[open] summary::after { transform: rotate(180deg); color: var(--accent-blue); }
   .faq-item p { margin-top: 1rem; font-size: 0.96rem; color: var(--text-sub); line-height: 1.7; }
 
-  /* ── TRANSPARENCIA & SEDE ── */
-  .legal-section { padding: 3.5rem 4.5rem 5.5rem; max-width: 1330px; margin: 0 auto; position: relative; }
-  .legal-layout { display: grid; grid-template-columns: 1.2fr 1.1fr; gap: 2.2rem; }
+  /* ── TRANSPARENCIA & SEDE CON FONDO OSCURO DE LEGADO CENTENARIO ── */
+  .legal-section { 
+    background-color: var(--section-dark-bg);
+    background-image: 
+      radial-gradient(ellipse 60% 70% at 75% 50%, rgba(28, 75, 120, 0.4) 0%, transparent 70%),
+      radial-gradient(circle at 15% 30%, rgba(2, 132, 199, 0.2) 0%, transparent 60%);
+    color: var(--section-dark-text);
+    padding: 6.5rem 5.5%;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .legal-layout { 
+    max-width: 1320px; 
+    margin: 0 auto; 
+    display: grid; 
+    grid-template-columns: 1.2fr 1.1fr; 
+    gap: 3rem; 
+    position: relative; 
+    z-index: 2; 
+  }
   
   .legal-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 30px;
     padding: 0;
-    backdrop-filter: blur(14px);
-    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
     display: flex; 
     flex-direction: column; 
     overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .legal-card:hover {
+    border-color: rgba(186, 230, 253, 0.3);
+    box-shadow: 0 20px 50px rgba(2, 132, 199, 0.25);
   }
 
   .legal-card-header {
-    background: var(--card-header-bg);
+    background: rgba(255, 255, 255, 0.06);
     padding: 1.5rem 2.4rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid var(--card-header-border);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
   .legal-card-header-left {
     display: flex;
     align-items: center;
     gap: 1rem;
   }
-  .legal-card-header-left i { font-size: 1.8rem; color: var(--accent-blue); }
-  .legal-card-header-left h2 { font-size: 1.45rem; font-weight: 800; color: var(--text-main); letter-spacing: -0.4px; }
+  .legal-card-header-left i { font-size: 1.8rem; color: #38bdf8; }
+  .legal-card-header-left h2 { font-size: 1.45rem; font-weight: 800; color: #ffffff; letter-spacing: -0.4px; }
 
   .legal-card-body {
     padding: 2.4rem;
@@ -903,29 +910,70 @@
     justify-content: space-between;
   }
 
-  .legal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
-  .legal-tile { 
-    background: var(--icon-bg); border-radius: 18px; padding: 1.35rem; 
-    border-left: 3.5px solid var(--accent-blue);
-    box-shadow: 0 4px 10px rgba(28, 75, 120, 0.04);
-    transition: transform 0.25s ease;
+  /* ── CENTRADO DE LOS BLOQUES DE DATOS LEGALES ── */
+  .legal-grid { 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 1.25rem; 
   }
-  .legal-tile:hover { transform: translateX(4px); }
-  .legal-tile-lbl { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-sub); margin-bottom: 5px; }
-  .legal-tile-val { font-size: 1.02rem; font-weight: 800; color: var(--text-main); line-height: 1.3; }
+  .legal-tile { 
+    background: rgba(255, 255, 255, 0.05); 
+    border-radius: 18px; 
+    padding: 1.35rem 1rem; 
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 3.5px solid #38bdf8;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s ease, background 0.25s ease;
+  }
+  .legal-tile:hover { 
+    transform: translateY(-3px); 
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .legal-tile-lbl { 
+    font-size: 0.74rem; 
+    font-weight: 800; 
+    text-transform: uppercase; 
+    letter-spacing: 1.5px; 
+    color: #bae6fd; 
+    margin-bottom: 6px; 
+    text-align: center;
+  }
+  .legal-tile-val { 
+    font-size: 1.05rem; 
+    font-weight: 800; 
+    color: #ffffff; 
+    line-height: 1.35; 
+    text-align: center;
+  }
 
   .map-container {
     width: 100%; height: 180px; border-radius: 20px; overflow: hidden;
-    margin-top: 1.5rem; border: 1px solid var(--card-border);
+    margin-top: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.12);
   }
   .map-container iframe { width: 100%; height: 100%; border: 0; }
 
   .contact-items { display: flex; flex-direction: column; gap: 1.1rem; }
   .contact-row { display: flex; align-items: flex-start; gap: 14px; }
-  .contact-icon { width: 42px; height: 42px; border-radius: 12px; background: var(--icon-bg); color: var(--icon-color); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; box-shadow: 0 4px 10px rgba(28, 75, 120, 0.05); }
-  .contact-info strong { display: block; font-size: 0.95rem; font-weight: 700; color: var(--text-main); }
-  .contact-info span, .contact-info a { font-size: 0.9rem; color: var(--text-sub); text-decoration: none; }
-  .contact-info a:hover { color: var(--accent-blue); text-decoration: underline; }
+  .contact-icon { 
+    width: 42px; 
+    height: 42px; 
+    border-radius: 12px; 
+    background: rgba(56, 189, 248, 0.14); 
+    color: #38bdf8; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 1.1rem; 
+    flex-shrink: 0; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+  }
+  .contact-info strong { display: block; font-size: 0.95rem; font-weight: 700; color: #ffffff; }
+  .contact-info span, .contact-info a { font-size: 0.9rem; color: #b0d3f2; text-decoration: none; }
+  .contact-info a:hover { color: #38bdf8; text-decoration: underline; }
 
   /* ── CONTENEDOR INFERIOR ILUSTRADO COSTERO ── */
   .bottom-landscape-wrapper {
@@ -1076,17 +1124,16 @@
     .hero-stats { justify-content: center; width: 100%; }
     .stat-item { padding-right: 1.5rem; margin-right: 1.5rem; }
     .hero-right { width: 100%; flex: none; margin-top: 2.5rem; }
-    .history-banner { padding: 4rem 1.5rem; }
-    .history-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .history-banner, .legal-section { padding: 4rem 1.5rem; }
+    .history-inner, .legal-layout { grid-template-columns: 1fr; gap: 2.5rem; }
     .content-inner { grid-template-columns: 1fr; gap: 3.5rem; }
     .about-sidebar { position: static; text-align: center; }
     
     .srv-grid { grid-template-columns: 1fr; }
     .card-wide { grid-column: span 1; }
 
-    .legal-layout { grid-template-columns: 1fr; }
     .legal-grid { grid-template-columns: 1fr; }
-    .stories-section, .donation-section, .legal-section, .faq-section { padding: 2.5rem 1.25rem; }
+    .stories-section, .donation-section, .faq-section { padding: 2.5rem 1.25rem; }
     
     .scenic-illustration-bg {
       height: 60%;
@@ -1148,10 +1195,6 @@
   <div class="scroll-progress-drop"></div>
 </div>
 
-<!-- CURSOR ORGÁNICO MAGNÉTICO (DESKTOP) -->
-<div class="custom-cursor-dot" id="cursorDot"></div>
-<div class="custom-cursor-ring" id="cursorRing"></div>
-
 <!-- SELLO CENTENARIO FLOTANTE CON ROTACIÓN AL SCROLL -->
 <div class="vintage-centennial-seal" id="vintageSeal">
   <svg class="seal-svg-ring" id="sealSvgRing" viewBox="0 0 100 100">
@@ -1169,20 +1212,22 @@
 </div>
 
 <nav>
-  <a href="#" class="nav-logo magnetic-target">
+  <a href="#" class="nav-logo">
     <img src="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Gota_de_Leche-.png" alt="Logo Corporación Gota de Leche de Miramar">
     <div class="nav-brand">CORPORACIÓN GOTA DE LECHE <span>de Miramar · 1918</span></div>
   </a>
   <div class="nav-actions">
+    <!-- Óvalo contenedor de los enlaces -->
     <div class="nav-links">
-      <a href="#historia" class="nav-pill magnetic-target">Historia</a>
-      <a href="#proposito" class="nav-pill magnetic-target">Nosotros</a>
-      <a href="#programas" class="nav-pill magnetic-target">Programas</a>
-      <a href="#faq" class="nav-pill magnetic-target">Preguntas</a>
-      <a href="#transparencia" class="nav-pill magnetic-target">Transparencia</a>
-      <a href="#sede" class="nav-pill magnetic-target">Sede</a>
+      <a href="#historia" class="nav-pill">Historia</a>
+      <a href="#proposito" class="nav-pill">Nosotros</a>
+      <a href="#programas" class="nav-pill">Programas</a>
+      <a href="#faq" class="nav-pill">Preguntas</a>
+      <a href="#transparencia" class="nav-pill">Transparencia</a>
+      <a href="#sede" class="nav-pill">Sede</a>
     </div>
-    <button class="theme-toggle magnetic-target" id="themeBtn">
+    <!-- Botón independiente -->
+    <button class="theme-toggle" id="themeBtn">
       <i class="fa-solid fa-moon"></i> Modo Lactancia
     </button>
   </div>
@@ -1226,11 +1271,11 @@
         </p>
         
         <div class="hero-btns">
-          <a href="#programas" class="btn btn-1 magnetic-target">
+          <a href="#programas" class="btn btn-1">
             <span>Nuestra labor</span>
             <span class="btn-arrow">→</span>
           </a>
-          <a href="#sede" class="btn btn-2 magnetic-target">
+          <a href="#sede" class="btn btn-2">
             <span>Horarios de atención</span>
           </a>
         </div>
@@ -1243,7 +1288,7 @@
 
       <div class="hero-right">
         <div class="hero-logo-halo">
-          <img src="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Gota_de_Leche-.png" alt="Corporación Gota de Leche de Miramar" class="magnetic-target">
+          <img src="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Gota_de_Leche-.png" alt="Corporación Gota de Leche de Miramar">
         </div>
       </div>
     </div>
@@ -1296,7 +1341,7 @@
     </div>
 
     <div class="timeline-grid">
-      <div class="timeline-node magnetic-target">
+      <div class="timeline-node">
         <div class="time-badge">1918</div>
         <div>
           <h4>Fundación y Pioneros</h4>
@@ -1304,7 +1349,7 @@
         </div>
       </div>
 
-      <div class="timeline-node magnetic-target">
+      <div class="timeline-node">
         <div class="time-badge">1960</div>
         <div>
           <h4>Arraigo en Santa Inés</h4>
@@ -1312,7 +1357,7 @@
         </div>
       </div>
 
-      <div class="timeline-node magnetic-target">
+      <div class="timeline-node">
         <div class="time-badge">2026</div>
         <div>
           <h4>Modernización y Crianza Positiva</h4>
@@ -1350,7 +1395,7 @@
 
     <div class="srv-grid" id="programas">
       <!-- Card 1 -->
-      <div class="bento-card card-wide magnetic-target">
+      <div class="bento-card card-wide">
         <div class="card-header-bar">
           <div class="srv-icon"><i class="fa-solid fa-bottle-droplet"></i></div>
           <span class="card-topic-tag">Nutrición Infantil</span>
@@ -1362,7 +1407,7 @@
       </div>
       
       <!-- Card 2 -->
-      <div class="bento-card magnetic-target">
+      <div class="bento-card">
         <div class="card-header-bar">
           <div class="srv-icon"><i class="fa-solid fa-heart-pulse"></i></div>
           <span class="card-topic-tag">Vínculo & Salud</span>
@@ -1374,7 +1419,7 @@
       </div>
       
       <!-- Card 3 -->
-      <div class="bento-card magnetic-target">
+      <div class="bento-card">
         <div class="card-header-bar">
           <div class="srv-icon"><i class="fa-solid fa-shield-halved"></i></div>
           <span class="card-topic-tag">Protección</span>
@@ -1386,7 +1431,7 @@
       </div>
       
       <!-- Card 4 -->
-      <div class="bento-card magnetic-target">
+      <div class="bento-card">
         <div class="card-header-bar">
           <div class="srv-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
           <span class="card-topic-tag">Acompañamiento</span>
@@ -1398,7 +1443,7 @@
       </div>
       
       <!-- Card 5 -->
-      <div class="bento-card magnetic-target">
+      <div class="bento-card">
         <div class="card-header-bar">
           <div class="srv-icon"><i class="fa-solid fa-users"></i></div>
           <span class="card-topic-tag">Comunidad</span>
@@ -1410,7 +1455,7 @@
       </div>
       
       <!-- Card 6 -->
-      <div class="bento-card card-wide magnetic-target">
+      <div class="bento-card card-wide">
         <div class="card-header-bar">
           <div class="srv-icon"><i class="fa-solid fa-baby"></i></div>
           <span class="card-topic-tag">Desarrollo Integral</span>
@@ -1432,28 +1477,63 @@
   </div>
 
   <div class="faq-accordion">
-    <details class="faq-item magnetic-target" open>
+    <details class="faq-item" open>
       <summary>¿Quiénes pueden solicitar el beneficio de apoyo?</summary>
       <p>Cualquier familia o cuidador a cargo de un lactante o niño/a pequeño en situación de vulnerabilidad de la comuna de Viña del Mar. La atención y los insumos son 100% gratuitos y solidarios.</p>
     </details>
 
-    <details class="faq-item magnetic-target">
+    <details class="faq-item">
       <summary>¿Qué días se realiza la entrega presencial de insumos?</summary>
       <p>Atendemos de forma regular los días lunes, martes y miércoles entre las 15:00 y las 17:00 hrs. en nuestra sede de Calle Cinco 2045, Santa Inés.</p>
     </details>
 
-    <details class="faq-item magnetic-target">
+    <details class="faq-item">
       <summary>¿Cómo puedo colaborar con donaciones de pañales o leche?</summary>
       <p>Puedes acercarte directamente a nuestra sede en los horarios de atención o escribirnos a nuestro correo oficial para coordinar la recepción de insumos sellados.</p>
     </details>
   </div>
 </section>
 
-<!-- 5. TRANSPARENCIA Y SEDE -->
+<!-- 5. TRANSPARENCIA Y SEDE CON FONDO OSCURO DE LEGADO CENTENARIO -->
 <section class="legal-section" id="transparencia">
+  <!-- Ilustración artística de cielo nocturno idéntica a Historia -->
+  <div class="history-bg-art">
+    <svg viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g opacity="0.16">
+        <circle cx="210" cy="240" r="140" fill="#38bdf8"/>
+        <circle cx="310" cy="190" r="110" fill="#0284c7"/>
+        <circle cx="130" cy="270" r="95" fill="#0369a1"/>
+        <circle cx="260" cy="310" r="120" fill="#38bdf8"/>
+        <path d="M220 300C220 380 200 480 140 590H290C250 490 240 390 245 300Z" fill="#0c4a6e"/>
+        <path d="M160 550C110 570 70 590 30 600M260 550C310 570 370 585 430 600" stroke="#0c4a6e" stroke-width="6" stroke-linecap="round"/>
+      </g>
+
+      <g opacity="0.12">
+        <path d="M1280 0C1200 50 1190 140 1230 200C1170 240 1180 340 1240 370C1320 400 1440 360 1440 300V0H1280Z" fill="#38bdf8"/>
+      </g>
+
+      <path d="M120 90Q120 105 105 105Q120 105 120 120Q120 105 135 105Q120 105 120 90Z" fill="#ffffff" opacity="0.45"/>
+      <path d="M680 70Q680 82 670 82Q680 82 680 94Q680 82 690 82Q680 82 680 70Z" fill="#ffffff" opacity="0.4"/>
+      <path d="M1360 130Q1360 142 1350 142Q1360 142 1360 154Q1360 142 1370 142Q1360 142 1360 130Z" fill="#ffffff" opacity="0.35"/>
+      <path d="M720 520Q720 532 710 532Q720 532 720 544Q720 532 730 532Q720 532 720 520Z" fill="#ffffff" opacity="0.3"/>
+      <path d="M1390 480Q1390 492 1380 492Q1390 492 1390 504Q1390 492 1400 492Q1390 492 1390 480Z" fill="#ffffff" opacity="0.4"/>
+
+      <circle cx="280" cy="70" r="2.5" fill="#ffffff" opacity="0.45"/>
+      <circle cx="480" cy="110" r="3" fill="#ffffff" opacity="0.35"/>
+      <circle cx="610" cy="160" r="2" fill="#ffffff" opacity="0.3"/>
+      <circle cx="790" cy="90" r="2.5" fill="#ffffff" opacity="0.4"/>
+      <circle cx="940" cy="50" r="3" fill="#ffffff" opacity="0.35"/>
+      <circle cx="1120" cy="120" r="2" fill="#ffffff" opacity="0.4"/>
+      <circle cx="1270" cy="70" r="2.5" fill="#ffffff" opacity="0.45"/>
+      <circle cx="640" cy="460" r="2" fill="#ffffff" opacity="0.3"/>
+      <circle cx="830" cy="530" r="2.5" fill="#ffffff" opacity="0.35"/>
+      <circle cx="1040" cy="490" r="2" fill="#ffffff" opacity="0.35"/>
+    </svg>
+  </div>
+
   <div class="legal-layout">
     <!-- Bloque Legal -->
-    <div class="legal-card magnetic-target">
+    <div class="legal-card">
       <div class="legal-card-header">
         <div class="legal-card-header-left">
           <i class="fa-solid fa-scale-balanced"></i>
@@ -1462,10 +1542,11 @@
         <span class="card-topic-tag">Oficial</span>
       </div>
       <div class="legal-card-body">
-        <p style="color: var(--text-sub); font-size: 0.95rem; margin-bottom: 1.5rem;">
+        <p style="color: #b0d3f2; font-size: 0.95rem; margin-bottom: 1.5rem; text-align: center;">
           Antecedentes institucionales oficiales registrados ante el Estado de Chile para auditoría y convenios públicos:
         </p>
 
+        <!-- Bloques centrados de datos legales -->
         <div class="legal-grid">
           <div class="legal-tile">
             <div class="legal-tile-lbl">Razón Social</div>
@@ -1488,7 +1569,7 @@
     </div>
 
     <!-- Bloque Sede -->
-    <div class="legal-card magnetic-target" id="sede">
+    <div class="legal-card" id="sede">
       <div class="legal-card-header">
         <div class="legal-card-header-left">
           <i class="fa-solid fa-location-dot"></i>
@@ -1518,8 +1599,8 @@
             <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
             <div class="contact-info">
               <strong>Teléfonos de Contacto</strong>
-              <span>Sede: <a href="tel:+56223176971" class="magnetic-target">+56 2 2317 6971</a></span> · 
-              <span>Móvil: <a href="tel:+56996798157" class="magnetic-target">+56 9 9679 8157</a></span>
+              <span>Sede: <a href="tel:+56223176971">+56 2 2317 6971</a></span> · 
+              <span>Móvil: <a href="tel:+56996798157">+56 9 9679 8157</a></span>
             </div>
           </div>
         </div>
@@ -1591,22 +1672,22 @@
       </div>
       
       <div class="carousel-wrapper" id="storiesCarousel">
-        <div class="story-card magnetic-target">
+        <div class="story-card">
           <img src="https://images.pexels.com/photos/3270223/pexels-photo-3270223.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Mamá y bebé" class="story-img" draggable="false">
           <p class="story-quote">"El apoyo nutricional con leche y pañales durante los primeros meses fue un salvavidas cuando más lo necesitábamos."</p>
           <span class="story-author">— Camila R.</span>
         </div>
-        <div class="story-card magnetic-target">
+        <div class="story-card">
           <img src="https://images.pexels.com/photos/1648377/pexels-photo-1648377.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Bebé" class="story-img" draggable="false">
           <p class="story-quote">"El acompañamiento y los consejos sobre parentalidad positiva nos dieron seguridad y tranquilidad."</p>
           <span class="story-author">— Sofía T.</span>
         </div>
-        <div class="story-card magnetic-target">
+        <div class="story-card">
           <img src="https://images.pexels.com/photos/112811/pexels-photo-112811.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Familia" class="story-img" draggable="false">
           <p class="story-quote">"Es una institución centenaria que de verdad acompaña a las familias vulnerables de la comuna."</p>
           <span class="story-author">— Andrea L.</span>
         </div>
-        <div class="story-card magnetic-target">
+        <div class="story-card">
           <img src="https://images.pexels.com/photos/7282818/pexels-photo-7282818.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Madre" class="story-img" draggable="false">
           <p class="story-quote">"Encontrar un espacio de contención y ayuda real en Viña del Mar marcó una diferencia inmensa en nuestro hogar."</p>
           <span class="story-author">— Valeria M.</span>
@@ -1616,15 +1697,15 @@
 
     <!-- DONACIONES -->
     <section class="donation-section">
-      <div class="donation-box magnetic-target">
+      <div class="donation-box">
         <h2>Súmate a nuestro propósito</h2>
         <p>Con tu aporte mensual o entrega de insumos, aseguramos que ningún niño o niña enfrente la primera infancia sin alimentación adecuada y protección.</p>
         
         <div class="amount-selector">
-          <button class="amt-btn magnetic-target" data-impact="Asegura 1 semana completa de pañales e insumos de aseo para un lactante.">$5.000</button>
-          <button class="amt-btn selected magnetic-target" data-impact="Garantiza 2 tarros de fórmula láctea materna y complementos nutricionales esenciales.">$10.000</button>
-          <button class="amt-btn magnetic-target" data-impact="Cubre el kit mensual integral de nutrición, pañales y control afectivo de una familia.">$20.000</button>
-          <button class="amt-btn magnetic-target" data-impact="Recepción física de pañales, leche maternizada sellada y ropa de primera infancia en sede.">Insumos en Sede</button>
+          <button class="amt-btn" data-impact="Asegura 1 semana completa de pañales e insumos de aseo para un lactante.">$5.000</button>
+          <button class="amt-btn selected" data-impact="Garantiza 2 tarros de fórmula láctea materna y complementos nutricionales esenciales.">$10.000</button>
+          <button class="amt-btn" data-impact="Cubre el kit mensual integral de nutrición, pañales y control afectivo de una familia.">$20.000</button>
+          <button class="amt-btn" data-impact="Recepción física de pañales, leche maternizada sellada y ropa de primera infancia en sede.">Insumos en Sede</button>
         </div>
 
         <div>
@@ -1634,7 +1715,7 @@
           </div>
         </div>
         
-        <a href="mailto:administracion@gotadelechevinadelmar.cl?subject=Colaboraci%C3%B3n%20Corporaci%C3%B3n%20Gota%20de%20Leche" class="btn btn-1 magnetic-target" style="padding: 1.05rem 3.2rem; font-size: 1.02rem;">
+        <a href="mailto:administracion@gotadelechevinadelmar.cl?subject=Colaboraci%C3%B3n%20Corporaci%C3%B3n%20Gota%20de%20Leche" class="btn btn-1" style="padding: 1.05rem 3.2rem; font-size: 1.02rem;">
           <span>Coordinar Aporte</span>
           <i class="fa-solid fa-heart btn-heart"></i>
         </a>
@@ -1662,7 +1743,7 @@ window.addEventListener('load', () => {
 });
 setTimeout(() => { document.body.classList.add('loaded'); }, 2500);
 
-// ── 2. MOTOR DE PARTÍCULAS / POLEN FLOTANTE EN HERO ──
+// ── MOTOR DE PARTÍCULAS / POLEN FLOTANTE EN HERO ──
 const canvas = document.getElementById('heroPollenCanvas');
 if (canvas) {
   const ctx = canvas.getContext('2d');
@@ -1733,7 +1814,7 @@ if (canvas) {
   animatePollen();
 }
 
-// ── 3. ROTACIÓN DEL SELLO CENTENARIO AL SCROLL + LENIS ──
+// ── ROTACIÓN DEL SELLO CENTENARIO AL SCROLL + LENIS ──
 const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 let lenis = null;
 const sealSvgRing = document.getElementById('sealSvgRing');
@@ -1765,10 +1846,10 @@ function updateScrollEffects() {
   }
 }
 
-// ── 4. TRANSICIÓN DE EXPANSIÓN CIRCULAR EN MODO LACTANCIA ──
+// ── TRANSICIÓN DE EXPANSIÓN CIRCULAR EN MODO LACTANCIA ──
 const themeBtn = document.getElementById('themeBtn');
 
-themeBtn.addEventListener('click', (e) => {
+themeBtn.addEventListener('click', () => {
   const toggleTheme = () => {
     document.body.classList.toggle('lactancia-mode');
     const isDark = document.body.classList.contains('lactancia-mode');
@@ -1810,46 +1891,14 @@ themeBtn.addEventListener('click', (e) => {
   }
 });
 
-// ── CURSOR SÓLO EN PC CON MOUSE ──
-if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-  const cursorDot = document.getElementById('cursorDot');
-  const cursorRing = document.getElementById('cursorRing');
-  let mouseX = -100, mouseY = -100, ringX = -100, ringY = -100;
-
-  window.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    if (cursorDot) {
-      cursorDot.style.left = `${mouseX}px`;
-      cursorDot.style.top = `${mouseY}px`;
-    }
+// Spotlight en tarjetas bento
+document.querySelectorAll('.bento-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+    card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
   });
-
-  function renderCursor() {
-    ringX += (mouseX - ringX) * 0.18;
-    ringY += (mouseY - ringY) * 0.18;
-    if (cursorRing) {
-      cursorRing.style.left = `${ringX}px`;
-      cursorRing.style.top = `${ringY}px`;
-    }
-    requestAnimationFrame(renderCursor);
-  }
-  renderCursor();
-
-  document.querySelectorAll('.magnetic-target, a, button, summary, .bento-card').forEach(el => {
-    el.addEventListener('mouseenter', () => cursorRing && cursorRing.classList.add('cursor-hover'));
-    el.addEventListener('mouseleave', () => cursorRing && cursorRing.classList.remove('cursor-hover'));
-  });
-
-  // Spotlight en tarjetas bento
-  document.querySelectorAll('.bento-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const rect = card.getBoundingClientRect();
-      card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-      card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
-    });
-  });
-}
+});
 
 // ── SELECTOR DE IMPACTO DE DONACIONES ──
 const amtBtns = document.querySelectorAll('.amt-btn');
