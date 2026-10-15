@@ -74,18 +74,23 @@
     --section-dark-text: #f0eafc;
     --section-dark-sub: #ad9ec9;
     
-    --card-bg: rgba(255, 255, 255, 0.95);
-    --card-border: rgba(255, 255, 255, 0.85);
-    --card-shadow: 0 14px 35px -5px rgba(50, 30, 84, 0.07), 0 4px 12px rgba(50, 30, 84, 0.03);
-    --icon-bg: #f4ecfb;
+    /* Configuración Bicolor */
+    --card-bg: rgba(255, 255, 255, 0.94);
+    --card-border: rgba(255, 255, 255, 0.95);
+    --card-header-bg: linear-gradient(180deg, #f0e2fc 0%, #ecd7fa 100%);
+    --card-header-border: rgba(74, 45, 100, 0.08);
+    --card-tag-bg: rgba(255, 255, 255, 0.9);
+    --card-tag-txt: #4e2978;
+    --card-shadow: 0 16px 36px -8px rgba(74, 45, 100, 0.08), 0 4px 12px rgba(74, 45, 100, 0.03);
+    
+    --icon-bg: #ffffff;
     --icon-color: #553488;
     --neon-hover: rgba(162, 118, 220, 0.28);
     --accent-blue: #3273b5;
-    --spotlight-color: rgba(142, 95, 206, 0.09);
+    --spotlight-color: rgba(142, 95, 206, 0.08);
     
-    --footer-bg: rgba(255, 255, 255, 0.9);
+    --footer-bg: rgba(255, 255, 255, 0.88);
 
-    /* Botones de selección de aporte */
     --amt-bg: rgba(255, 255, 255, 0.7);
     --amt-border: rgba(74, 45, 100, 0.18);
     --amt-txt: #5c437a;
@@ -116,16 +121,21 @@
     --section-dark-text: #eee6fa;
     --section-dark-sub: #a89bc3;
     
-    --card-bg: rgba(26, 17, 43, 0.92);
+    --card-bg: rgba(24, 15, 38, 0.92);
     --card-border: rgba(230, 224, 248, 0.14);
-    --card-shadow: 0 15px 40px rgba(0, 0, 0, 0.55);
-    --icon-bg: rgba(206, 189, 245, 0.12);
-    --icon-color: #dfd3fa;
-    --neon-hover: rgba(206, 189, 245, 0.25);
-    --accent-blue: #60a5fa;
-    --spotlight-color: rgba(206, 189, 245, 0.09);
+    --card-header-bg: linear-gradient(180deg, rgba(62, 38, 92, 0.65) 0%, rgba(45, 26, 70, 0.65) 100%);
+    --card-header-border: rgba(230, 224, 248, 0.1);
+    --card-tag-bg: rgba(230, 224, 248, 0.14);
+    --card-tag-txt: #dcd0f7;
+    --card-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
     
-    --footer-bg: rgba(13, 8, 23, 0.95);
+    --icon-bg: rgba(206, 189, 245, 0.16);
+    --icon-color: #dfd3fa;
+    --neon-hover: rgba(206, 189, 245, 0.24);
+    --accent-blue: #60a5fa;
+    --spotlight-color: rgba(206, 189, 245, 0.08);
+    
+    --footer-bg: rgba(13, 8, 23, 0.92);
 
     --amt-bg: rgba(41, 26, 64, 0.85);
     --amt-border: rgba(206, 189, 245, 0.28);
@@ -367,7 +377,7 @@
     transition: color 0.6s ease;
   }
   
-  /* ── BOTONES QUIETOS Y FIRMES CON EFECTO SHIMMER ── */
+  /* Botones firmes */
   .hero-btns { 
     display: flex; 
     gap: 1.1rem; 
@@ -386,12 +396,10 @@
     cursor: pointer; 
     text-decoration: none;
     overflow: hidden;
-    /* Sin desplazamientos físicos: completamente quieto */
     transform: none !important;
     transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
-  /* Haz de luz líquido que cruza el botón (Shimmer) */
   .btn::before {
     content: '';
     position: absolute;
@@ -413,7 +421,6 @@
     left: 140%;
   }
 
-  /* Botón 1 Primario Oscuro */
   .btn-1 { 
     background-color: var(--btn-fill-bg); 
     color: var(--btn-fill-txt); 
@@ -432,7 +439,6 @@
     background-color: #dfd4fa;
   }
 
-  /* Flecha con micro-impulso sin mover el botón */
   .btn-arrow {
     display: inline-block;
     margin-left: 8px;
@@ -442,7 +448,6 @@
     transform: translateX(4px);
   }
 
-  /* Corazón con micro-pulso */
   .btn-heart {
     display: inline-block;
     margin-left: 8px;
@@ -452,7 +457,6 @@
     transform: scale(1.22);
   }
 
-  /* Botón 2 Secundario Claro */
   .btn-2 { 
     background-color: rgba(255, 255, 255, 0.75); 
     color: var(--btn-ghost-txt); 
@@ -527,7 +531,7 @@
     filter: drop-shadow(0 20px 40px rgba(50, 30, 84, 0.16));
   }
 
-  /* ── SECCIÓN HISTÓRICA OSCURA CON ILUSTRACIÓN NOCTURNA ── */
+  /* ── SECCIÓN HISTÓRICA OSCURA ── */
   .history-banner {
     background-color: var(--section-dark-bg);
     background-image: 
@@ -622,9 +626,22 @@
   .mq-track { display: flex; gap: 3.5rem; width: max-content; animation: marquee 30s linear infinite; }
   .mq-item { display: flex; align-items: center; gap: 1rem; font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-sub); font-weight: 700; opacity: 0.9; }
 
-  /* ── PROGRAMAS ── */
-  .main-content { padding: 6.5rem 4.5rem 3.5rem; background: transparent; }
-  .content-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2.3fr; gap: 4.8rem; align-items: start; }
+  /* ── OPCIÓN 3: ENCABEZADO BICOLOR CURVO + ETIQUETAS TEMÁTICAS ── */
+  .main-content { 
+    padding: 6.5rem 4.5rem 4.5rem; 
+    background: transparent; 
+    position: relative;
+  }
+  .content-inner { 
+    max-width: 1280px; 
+    margin: 0 auto; 
+    display: grid; 
+    grid-template-columns: 1fr 2.3fr; 
+    gap: 4.8rem; 
+    align-items: start; 
+    position: relative;
+    z-index: 2;
+  }
   
   .about-sidebar { position: sticky; top: 120px; }
   .sec-tag { font-size: .78rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-blue); font-weight: 800; margin-bottom: .8rem; }
@@ -636,40 +653,102 @@
     display: grid; 
     grid-template-columns: repeat(2, 1fr); 
     gap: 1.6rem;
+    position: relative;
   }
+
   .bento-card {
     background: var(--card-bg); 
     border: 1px solid var(--card-border);
     border-radius: 26px; 
-    padding: 2.4rem; 
+    padding: 0; /* Padding controlado por los bloques internos */
     text-align: left;
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     cursor: default;
     box-shadow: var(--card-shadow);
     position: relative;
     overflow: hidden;
-    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
   }
+
   .bento-card::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: inherit;
     background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--spotlight-color), transparent 60%);
-    opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 1;
+    opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 3;
   }
   .bento-card:hover::before { opacity: 1; }
-  .card-wide { grid-column: span 2; display: flex; align-items: center; gap: 2.2rem; }
-  .bento-card:hover { box-shadow: 0 20px 50px var(--neon-hover); border-color: rgba(162, 118, 220, 0.45); }
-  
+  .card-wide { grid-column: span 2; }
+  .bento-card:hover { 
+    box-shadow: 0 18px 45px var(--neon-hover); 
+    border-color: rgba(162, 118, 220, 0.4); 
+    transform: translateY(-3px);
+  }
+
+  /* 1. Cabecera Bicolor Orgánica */
+  .card-header-bar {
+    background: var(--card-header-bg);
+    padding: 1.4rem 2rem 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--card-header-border);
+    position: relative;
+    z-index: 2;
+  }
+
+  /* 2. Micro-etiqueta temática (Badge) */
+  .card-topic-tag {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 0.35rem 0.9rem;
+    background: var(--card-tag-bg);
+    color: var(--card-tag-txt);
+    border-radius: 50px;
+    box-shadow: 0 2px 6px rgba(74, 45, 100, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+  }
+  body.lactancia-mode .card-topic-tag {
+    border-color: rgba(230, 224, 248, 0.12);
+  }
+
   .srv-icon {
-    width: 62px; height: 62px; border-radius: 18px; flex-shrink: 0;
-    background: var(--icon-bg); color: var(--icon-color);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.45rem; margin-bottom: 1.25rem; 
-    transition: transform 0.3s ease; position: relative; z-index: 2;
+    width: 48px; 
+    height: 48px; 
+    border-radius: 14px; 
+    flex-shrink: 0;
+    background: var(--icon-bg); 
+    color: var(--icon-color);
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    font-size: 1.25rem; 
+    box-shadow: 0 4px 10px rgba(74, 45, 100, 0.08);
+    transition: transform 0.3s ease;
   }
   .bento-card:hover .srv-icon { transform: scale(1.08) rotate(3deg); }
-  .card-wide .srv-icon { margin-bottom: 0; }
-  .bento-card h3 { font-size: 1.18rem; font-weight: 700; color: var(--text-main); margin-bottom: .6rem; letter-spacing: -0.3px; position: relative; z-index: 2; }
-  .bento-card p { font-size: .96rem; color: var(--text-sub); line-height: 1.68; position: relative; z-index: 2; }
+
+  /* 3. Cuerpo de la tarjeta */
+  .card-body-content {
+    padding: 1.8rem 2rem 2rem;
+    position: relative;
+    z-index: 2;
+  }
+  .bento-card h3 { 
+    font-size: 1.2rem; 
+    font-weight: 700; 
+    color: var(--text-main); 
+    margin-bottom: .6rem; 
+    letter-spacing: -0.3px; 
+  }
+  .bento-card p { 
+    font-size: .96rem; 
+    color: var(--text-sub); 
+    line-height: 1.68; 
+  }
 
   /* ── FAQ ── */
   .faq-section { padding: 4.5rem 4.5rem 3.5rem; max-width: 1000px; margin: 0 auto; }
@@ -681,6 +760,7 @@
     border-radius: 20px;
     padding: 1.4rem 1.8rem;
     box-shadow: var(--card-shadow);
+    backdrop-filter: blur(14px);
   }
   .faq-item summary {
     font-size: 1.08rem; font-weight: 700; color: var(--text-main); cursor: pointer;
@@ -694,28 +774,51 @@
   .faq-item[open] summary::after { transform: rotate(180deg); color: var(--accent-blue); }
   .faq-item p { margin-top: 1rem; font-size: 0.96rem; color: var(--text-sub); line-height: 1.7; }
 
-  /* ── TRANSPARENCIA & SEDE CON MAPA ── */
-  .legal-section { padding: 3.5rem 4.5rem 5.5rem; max-width: 1330px; margin: 0 auto; }
+  /* ── TRANSPARENCIA & SEDE CON ENCABEZADO BICOLOR ── */
+  .legal-section { padding: 3.5rem 4.5rem 5.5rem; max-width: 1330px; margin: 0 auto; position: relative; }
   .legal-layout { display: grid; grid-template-columns: 1.2fr 1.1fr; gap: 2.2rem; }
   
   .legal-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 30px;
-    padding: 3rem;
+    padding: 0;
     backdrop-filter: blur(14px);
     box-shadow: var(--card-shadow);
-    display: flex; flex-direction: column; justify-content: space-between;
+    display: flex; 
+    flex-direction: column; 
+    overflow: hidden;
   }
 
-  .legal-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.6rem; }
-  .legal-header i { font-size: 1.9rem; color: var(--accent-blue); }
-  .legal-header h2 { font-size: 1.55rem; font-weight: 800; color: var(--text-main); letter-spacing: -0.4px; }
+  .legal-card-header {
+    background: var(--card-header-bg);
+    padding: 1.5rem 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--card-header-border);
+  }
+  .legal-card-header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .legal-card-header-left i { font-size: 1.8rem; color: var(--accent-blue); }
+  .legal-card-header-left h2 { font-size: 1.45rem; font-weight: 800; color: var(--text-main); letter-spacing: -0.4px; }
+
+  .legal-card-body {
+    padding: 2.4rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
   .legal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
   .legal-tile { 
     background: var(--icon-bg); border-radius: 18px; padding: 1.35rem; 
     border-left: 3.5px solid var(--accent-blue);
+    box-shadow: 0 4px 10px rgba(74, 45, 100, 0.04);
     transition: transform 0.25s ease;
   }
   .legal-tile:hover { transform: translateX(4px); }
@@ -728,9 +831,9 @@
   }
   .map-container iframe { width: 100%; height: 100%; border: 0; }
 
-  .contact-items { display: flex; flex-direction: column; gap: 1.1rem; margin-top: 1.4rem; }
+  .contact-items { display: flex; flex-direction: column; gap: 1.1rem; }
   .contact-row { display: flex; align-items: flex-start; gap: 14px; }
-  .contact-icon { width: 42px; height: 42px; border-radius: 12px; background: var(--icon-bg); color: var(--icon-color); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .contact-icon { width: 42px; height: 42px; border-radius: 12px; background: var(--icon-bg); color: var(--icon-color); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; box-shadow: 0 4px 10px rgba(74, 45, 100, 0.05); }
   .contact-info strong { display: block; font-size: 0.95rem; font-weight: 700; color: var(--text-main); }
   .contact-info span, .contact-info a { font-size: 0.9rem; color: var(--text-sub); text-decoration: none; }
   .contact-info a:hover { color: var(--accent-blue); text-decoration: underline; }
@@ -782,6 +885,7 @@
     background: var(--card-bg); border: 1px solid var(--card-border);
     border-radius: 26px; padding: 1.8rem; display: flex; flex-direction: column; gap: 1.3rem;
     box-shadow: var(--card-shadow); user-select: none;
+    backdrop-filter: blur(14px);
     transition: box-shadow 0.3s ease;
   }
   .story-card:hover { box-shadow: 0 16px 40px var(--neon-hover); }
@@ -793,16 +897,19 @@
   .story-quote { font-size: 0.96rem; font-style: italic; color: var(--text-sub); line-height: 1.65; flex-grow: 1; }
   .story-author { font-size: 0.88rem; font-weight: 700; color: var(--text-main); text-align: right; }
 
-  /* ── DONACIONES CON IMPACTO TANGIBLE DINÁMICO ── */
+  /* ── DONACIONES ── */
   .donation-section { padding: 2rem 4.5rem 6.5rem; max-width: 1330px; margin: 0 auto; }
   .donation-box {
     background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 36px;
     padding: 5rem 3.5rem; text-align: center; box-shadow: 0 15px 45px rgba(50, 30, 84, 0.08); backdrop-filter: blur(14px);
+    position: relative;
+    overflow: hidden;
   }
-  .donation-box h2 { font-size: 2.4rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem; letter-spacing: -0.6px; }
-  .donation-box p { color: var(--text-sub); font-size: 1.1rem; margin-bottom: 2.2rem; max-width: 660px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+
+  .donation-box h2 { font-size: 2.4rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem; letter-spacing: -0.6px; position: relative; z-index: 2; }
+  .donation-box p { color: var(--text-sub); font-size: 1.1rem; margin-bottom: 2.2rem; max-width: 660px; margin-left: auto; margin-right: auto; line-height: 1.7; position: relative; z-index: 2; }
   
-  .amount-selector { display: flex; justify-content: center; gap: 1.1rem; flex-wrap: wrap; margin-bottom: 1.8rem; }
+  .amount-selector { display: flex; justify-content: center; gap: 1.1rem; flex-wrap: wrap; margin-bottom: 1.8rem; position: relative; z-index: 2; }
   
   .amt-btn {
     background: var(--amt-bg); 
@@ -840,6 +947,7 @@
     color: var(--text-main);
     margin-bottom: 2.4rem;
     transition: opacity 0.3s ease, transform 0.3s ease;
+    position: relative; z-index: 2;
   }
   body.lactancia-mode .impact-card-indicator {
     background: rgba(206, 189, 245, 0.14);
@@ -867,7 +975,7 @@
 
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  /* ── ADAPTACIÓN TOTAL PARA PANTALLAS PEQUEÑAS Y CELULARES ── */
+  /* ── RESPONSIVE ── */
   @media(max-width: 992px) {
     nav { padding: 0 1.5rem; }
     .nav-links { display: none; }
@@ -884,9 +992,8 @@
     .about-sidebar { position: static; text-align: center; }
     
     .srv-grid { grid-template-columns: 1fr; }
-    .card-wide { grid-column: span 1; flex-direction: column; text-align: center; }
-    .card-wide .srv-icon { margin: 0 auto 1.5rem; }
-    
+    .card-wide { grid-column: span 1; }
+
     .legal-layout { grid-template-columns: 1fr; }
     .legal-grid { grid-template-columns: 1fr; }
     .stories-section, .donation-section, .legal-section, .faq-section { padding: 2.5rem 1.25rem; }
@@ -929,6 +1036,18 @@
       padding: 0.6rem 1.1rem;
       border-radius: 20px;
     }
+    .card-header-bar {
+      padding: 1.2rem 1.4rem;
+    }
+    .card-body-content {
+      padding: 1.4rem 1.4rem 1.6rem;
+    }
+    .legal-card-header {
+      padding: 1.2rem 1.4rem;
+    }
+    .legal-card-body {
+      padding: 1.4rem;
+    }
   }
 </style>
 </head>
@@ -939,7 +1058,7 @@
   <div class="scroll-progress-drop"></div>
 </div>
 
-<!-- CURSOR ORGÁNICO MAGNÉTICO (SÓLO EN DESKTOP CON MOUSE) -->
+<!-- CURSOR ORGÁNICO MAGNÉTICO (DESKTOP) -->
 <div class="custom-cursor-dot" id="cursorDot"></div>
 <div class="custom-cursor-ring" id="cursorRing"></div>
 
@@ -1003,7 +1122,6 @@
           Fundada en 1918 en Viña del Mar, apoyamos a lactantes, niños y niñas en situación de alta vulnerabilidad socioeconómica mediante la entrega gratuita de insumos esenciales y el fomento de buenas prácticas de crianza.
         </p>
         
-        <!-- BOTONES FIRMES CON SHIMMER -->
         <div class="hero-btns">
           <a href="#programas" class="btn btn-1 magnetic-target">
             <span>Nuestra labor</span>
@@ -1116,7 +1234,7 @@
   </div>
 </div>
 
-<!-- 3. PROGRAMAS -->
+<!-- 3. PROGRAMAS: OPCIÓN 3 CON ENCABEZADOS BICOLOR Y BADGES -->
 <section class="main-content" id="proposito">
   <div class="content-inner">
     <div class="about-sidebar">
@@ -1129,41 +1247,73 @@
     </div>
 
     <div class="srv-grid" id="programas">
+      <!-- Card 1 -->
       <div class="bento-card card-wide magnetic-target">
-        <div class="srv-icon"><i class="fa-solid fa-bottle-droplet"></i></div>
-        <div>
+        <div class="card-header-bar">
+          <div class="srv-icon"><i class="fa-solid fa-bottle-droplet"></i></div>
+          <span class="card-topic-tag">Nutrición Infantil</span>
+        </div>
+        <div class="card-body-content">
           <h3>Entrega de Insumos de Primera Necesidad</h3>
           <p>Apoyo directo con leche, pañales y suplementos alimenticios para mitigar las carencias que afectan las necesidades más básicas en la primera infancia.</p>
         </div>
       </div>
       
+      <!-- Card 2 -->
       <div class="bento-card magnetic-target">
-        <div class="srv-icon"><i class="fa-solid fa-heart-pulse"></i></div>
-        <h3>Parentalidad Positiva</h3>
-        <p>Instancias participativas orientadas al fortalecimiento de buenas prácticas de crianza, vínculo afectivo y salud mental.</p>
+        <div class="card-header-bar">
+          <div class="srv-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+          <span class="card-topic-tag">Vínculo & Salud</span>
+        </div>
+        <div class="card-body-content">
+          <h3>Parentalidad Positiva</h3>
+          <p>Instancias participativas orientadas al fortalecimiento de buenas prácticas de crianza, vínculo afectivo y salud mental.</p>
+        </div>
       </div>
       
+      <!-- Card 3 -->
       <div class="bento-card magnetic-target">
-        <div class="srv-icon"><i class="fa-solid fa-shield-halved"></i></div>
-        <h3>Prevención Comunitaria</h3>
-        <p>Sensibilización y herramientas de prevención del maltrato infantil y del consumo problemático de alcohol y drogas.</p>
+        <div class="card-header-bar">
+          <div class="srv-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <span class="card-topic-tag">Protección</span>
+        </div>
+        <div class="card-body-content">
+          <h3>Prevención Comunitaria</h3>
+          <p>Sensibilización y herramientas de prevención del maltrato infantil y del consumo problemático de alcohol y drogas.</p>
+        </div>
       </div>
       
+      <!-- Card 4 -->
       <div class="bento-card magnetic-target">
-        <div class="srv-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-        <h3>Orientación Familiar</h3>
-        <p>Acompañamiento a madres y cuidadores en situaciones de alta vulnerabilidad socioeconómica.</p>
+        <div class="card-header-bar">
+          <div class="srv-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+          <span class="card-topic-tag">Acompañamiento</span>
+        </div>
+        <div class="card-body-content">
+          <h3>Orientación Familiar</h3>
+          <p>Acompañamiento a madres y cuidadores en situaciones de alta vulnerabilidad socioeconómica.</p>
+        </div>
       </div>
       
+      <!-- Card 5 -->
       <div class="bento-card magnetic-target">
-        <div class="srv-icon"><i class="fa-solid fa-users"></i></div>
-        <h3>Comunidad de Apoyo</h3>
-        <p>Espacios solidarios donde compartir vivencias en torno a los desafíos de la maternidad y primera infancia.</p>
+        <div class="card-header-bar">
+          <div class="srv-icon"><i class="fa-solid fa-users"></i></div>
+          <span class="card-topic-tag">Comunidad</span>
+        </div>
+        <div class="card-body-content">
+          <h3>Comunidad de Apoyo</h3>
+          <p>Espacios solidarios donde compartir vivencias en torno a los desafíos de la maternidad y primera infancia.</p>
+        </div>
       </div>
       
+      <!-- Card 6 -->
       <div class="bento-card card-wide magnetic-target">
-        <div class="srv-icon"><i class="fa-solid fa-baby"></i></div>
-        <div>
+        <div class="card-header-bar">
+          <div class="srv-icon"><i class="fa-solid fa-baby"></i></div>
+          <span class="card-topic-tag">Desarrollo Integral</span>
+        </div>
+        <div class="card-body-content">
           <h3>Fomento del Desarrollo Infantil</h3>
           <p>Compromiso histórico con el bienestar físico, emocional y nutricional integral de los niños de Viña del Mar.</p>
         </div>
@@ -1197,15 +1347,19 @@
   </div>
 </section>
 
-<!-- 5. TRANSPARENCIA Y SEDE -->
+<!-- 5. TRANSPARENCIA Y SEDE CON ENCABEZADO BICOLOR -->
 <section class="legal-section" id="transparencia">
   <div class="legal-layout">
+    <!-- Bloque Legal -->
     <div class="legal-card magnetic-target">
-      <div>
-        <div class="legal-header">
+      <div class="legal-card-header">
+        <div class="legal-card-header-left">
           <i class="fa-solid fa-scale-balanced"></i>
           <h2>Transparencia y Registro</h2>
         </div>
+        <span class="card-topic-tag">Oficial</span>
+      </div>
+      <div class="legal-card-body">
         <p style="color: var(--text-sub); font-size: 0.95rem; margin-bottom: 1.5rem;">
           Antecedentes institucionales oficiales registrados ante el Estado de Chile para auditoría y convenios públicos:
         </p>
@@ -1231,13 +1385,16 @@
       </div>
     </div>
 
+    <!-- Bloque Sede -->
     <div class="legal-card magnetic-target" id="sede">
-      <div>
-        <div class="legal-header">
+      <div class="legal-card-header">
+        <div class="legal-card-header-left">
           <i class="fa-solid fa-location-dot"></i>
           <h2>Sede Santa Inés</h2>
         </div>
-
+        <span class="card-topic-tag">Presencial</span>
+      </div>
+      <div class="legal-card-body">
         <div class="contact-items">
           <div class="contact-row">
             <div class="contact-icon"><i class="fa-solid fa-map-pin"></i></div>
@@ -1264,14 +1421,14 @@
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="map-container">
-        <iframe 
-          title="Ubicación Sede Gota de Leche"
-          src="https://maps.google.com/maps?q=Calle%20Cinco%202045,%20Santa%20In%C3%A9s,%20Vi%C3%B1a%20del%20Mar&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-          loading="lazy">
-        </iframe>
+        <div class="map-container">
+          <iframe 
+            title="Ubicación Sede Gota de Leche"
+            src="https://maps.google.com/maps?q=Calle%20Cinco%202045,%20Santa%20In%C3%A9s,%20Vi%C3%B1a%20del%20Mar&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+            loading="lazy">
+          </iframe>
+        </div>
       </div>
     </div>
   </div>
@@ -1355,7 +1512,7 @@
       </div>
     </section>
 
-    <!-- DONACIONES CON BOTÓN FIRME Y SHIMMER -->
+    <!-- DONACIONES -->
     <section class="donation-section">
       <div class="donation-box magnetic-target">
         <h2>Súmate a nuestro propósito</h2>
@@ -1403,7 +1560,7 @@ window.addEventListener('load', () => {
 });
 setTimeout(() => { document.body.classList.add('loaded'); }, 2500);
 
-// ── LENIS SMOOTH SCROLL CON INDICADOR RESPONSIVE ──
+// ── LENIS SMOOTH SCROLL ──
 const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 let lenis = null;
 
