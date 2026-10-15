@@ -102,6 +102,11 @@
 
     --cursor-dot-color: #553488;
     --cursor-ring-color: rgba(107, 70, 193, 0.25);
+
+    /* Sello Centenario */
+    --badge-bg: rgba(255, 255, 255, 0.82);
+    --badge-border: rgba(74, 45, 100, 0.18);
+    --badge-text: #432a68;
   }
 
   body.lactancia-mode {
@@ -148,6 +153,10 @@
 
     --cursor-dot-color: #cebdf5;
     --cursor-ring-color: rgba(206, 189, 245, 0.35);
+
+    --badge-bg: rgba(26, 17, 43, 0.86);
+    --badge-border: rgba(206, 189, 245, 0.25);
+    --badge-text: #e0d4fa;
   }
 
   * { 
@@ -164,11 +173,24 @@
     background-size: 26px 26px;
     color: var(--text-main); 
     overflow-x: hidden; 
-    transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: background-color 0.5s ease, color 0.5s ease;
     -webkit-font-smoothing: antialiased;
   }
   
   body:not(.loaded) { overflow: hidden; }
+
+  /* ── 4. TRANSICIÓN CIRCULAR RIPPLE PARA MODO LACTANCIA ── */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+  ::view-transition-old(root) {
+    z-index: 1;
+  }
+  ::view-transition-new(root) {
+    z-index: 9999999;
+  }
 
   /* Barra de scroll */
   .scroll-progress-bar {
@@ -295,7 +317,7 @@
   
   .nav-actions { display: flex; align-items: center; gap: 1.2rem; }
   
-  /* ── PÍLDORAS ENCAPSULADAS DE NAVEGACIÓN ── */
+  /* Píldoras encapsuladas */
   .nav-links { display: flex; gap: 0.6rem; }
   .nav-pill {
     background: rgba(255, 255, 255, 0.5); 
@@ -335,12 +357,23 @@
   }
   .theme-toggle:hover { background: var(--text-main); color: var(--bg-body); transform: translateY(-1px); }
 
-  /* ── HERO PANORÁMICO ── */
+  /* ── HERO PANORÁMICO Y PARTICULAS FLOTANTES ── */
   .hero-wrapper-scenic {
     background: var(--bg-hero-grad);
     position: relative;
     overflow: hidden;
     border-bottom: 1px solid rgba(74, 45, 100, 0.06);
+  }
+
+  /* ── 2. CANVAS DE MOTITAS / POLEN FLOTANTE ── */
+  #heroPollenCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
   }
 
   .scenic-illustration-bg {
@@ -499,7 +532,7 @@
     border-color: #ffffff;
   }
 
-  /* Estadísticas sin el bloque 100 gratuito */
+  /* Estadísticas sin el 100 gratuito */
   .hero-stats { display: flex; align-items: center; }
   .stat-item { position: relative; padding-right: 2.8rem; margin-right: 2.8rem; }
   .stat-item:not(:last-child)::after {
@@ -553,6 +586,42 @@
     height: auto; 
     display: block; 
     filter: drop-shadow(0 20px 40px rgba(50, 30, 84, 0.16));
+  }
+
+  /* ── 3. SELLO CENTENARIO FLOTANTE CON ROTACIÓN AL SCROLL ── */
+  .vintage-centennial-seal {
+    position: fixed;
+    bottom: 28px;
+    left: 28px;
+    width: 88px;
+    height: 88px;
+    z-index: 99;
+    pointer-events: none;
+    border-radius: 50%;
+    background: var(--badge-bg);
+    border: 1px solid var(--badge-border);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 24px rgba(74, 45, 100, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.4s ease, border-color 0.4s ease, opacity 0.4s ease;
+  }
+  .seal-svg-ring {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: center center;
+    will-change: transform;
+  }
+  .seal-center-drop {
+    font-size: 1.15rem;
+    color: var(--badge-text);
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
   }
 
   /* ── SECCIÓN HISTÓRICA OSCURA ── */
@@ -650,7 +719,7 @@
   .mq-track { display: flex; gap: 3.5rem; width: max-content; animation: marquee 30s linear infinite; }
   .mq-item { display: flex; align-items: center; gap: 1rem; font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-sub); font-weight: 700; opacity: 0.9; }
 
-  /* ── PROGRAMAS CON CABECERA BICOLOR Y BADGES ── */
+  /* ── PROGRAMAS BICOLOR ── */
   .main-content { 
     padding: 6.5rem 4.5rem 4.5rem; 
     background: transparent; 
@@ -795,7 +864,7 @@
   .faq-item[open] summary::after { transform: rotate(180deg); color: var(--accent-blue); }
   .faq-item p { margin-top: 1rem; font-size: 0.96rem; color: var(--text-sub); line-height: 1.7; }
 
-  /* ── TRANSPARENCIA & SEDE CON ENCABEZADO BICOLOR ── */
+  /* ── TRANSPARENCIA & SEDE ── */
   .legal-section { padding: 3.5rem 4.5rem 5.5rem; max-width: 1330px; margin: 0 auto; position: relative; }
   .legal-layout { display: grid; grid-template-columns: 1.2fr 1.1fr; gap: 2.2rem; }
   
@@ -1000,6 +1069,7 @@
   @media(max-width: 992px) {
     nav { padding: 0 1.5rem; }
     .nav-links { display: none; }
+    .vintage-centennial-seal { display: none; } /* En móviles se oculta para no tapar contenido */
     .hero { padding: 3.5rem 1.5rem; } 
     .hero-container { flex-direction: column; text-align: center; }
     .hero-left { max-width: 100%; display: flex; flex-direction: column; align-items: center; }
@@ -1083,6 +1153,17 @@
 <div class="custom-cursor-dot" id="cursorDot"></div>
 <div class="custom-cursor-ring" id="cursorRing"></div>
 
+<!-- 3. SELLO CENTENARIO FLOTANTE CON ROTACIÓN AL SCROLL -->
+<div class="vintage-centennial-seal" id="vintageSeal">
+  <svg class="seal-svg-ring" id="sealSvgRing" viewBox="0 0 100 100">
+    <path id="sealCurve" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
+    <text font-size="8.8" font-weight="800" letter-spacing="2.2" fill="currentColor" opacity="0.85">
+      <textPath href="#sealCurve">CORPORACIÓN GOTA DE LECHE · 1918 ·</textPath>
+    </text>
+  </svg>
+  <div class="seal-center-drop"><i class="fa-solid fa-droplet"></i></div>
+</div>
+
 <div class="preloader" id="preloader">
   <img src="https://raw.githubusercontent.com/Christian-Infor/Web-Gota-de-Leche/main/Gota_de_Leche-.png" alt="Corporación Gota de Leche de Miramar" class="preloader-logo">
   <div style="font-size: 0.78rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--text-main); margin-top: -5px; opacity: 0.85;">Cargando Ecosistema</div>
@@ -1108,8 +1189,11 @@
   </div>
 </nav>
 
-<!-- 1. HERO -->
+<!-- 1. HERO CON CANVAS DE MOTITAS FLOTANTES -->
 <div class="hero-wrapper-scenic">
+  <!-- Canvas de partículas de polen animado con GPU -->
+  <canvas id="heroPollenCanvas"></canvas>
+
   <div class="scenic-illustration-bg">
     <svg viewBox="0 0 1440 800" preserveAspectRatio="xMidYMax slice" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M-100 800C120 620 400 680 650 800H-100Z" fill="#dfc9f2" fill-opacity="0.45"/>
@@ -1153,7 +1237,7 @@
           </a>
         </div>
         
-        <!-- Estadísticas limpias sin el 100 gratuito -->
+        <!-- Estadísticas limpias sin el bloque de 100 gratuito -->
         <div class="hero-stats">
           <div class="stat-item"><span class="stat-num" data-target="108">0</span><span class="stat-label">años de historia</span></div>
           <div class="stat-item"><span class="stat-num" data-target="500">0</span><span class="stat-label">familias apoyadas</span></div>
@@ -1581,30 +1665,159 @@ window.addEventListener('load', () => {
 });
 setTimeout(() => { document.body.classList.add('loaded'); }, 2500);
 
-// ── LENIS SMOOTH SCROLL ──
+// ── 2. MOTOR DE PARTÍCULAS / POLEN FLOTANTE EN HERO ──
+const canvas = document.getElementById('heroPollenCanvas');
+if (canvas) {
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  let particles = [];
+  let pMouseX = -1000, pMouseY = -1000;
+
+  function resizeCanvas() {
+    width = canvas.width = canvas.parentElement.offsetWidth;
+    height = canvas.height = canvas.parentElement.offsetHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  window.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    pMouseX = e.clientX - rect.left;
+    pMouseY = e.clientY - rect.top;
+  });
+
+  // Generar 24 partículas sutiles
+  for (let i = 0; i < 24; i++) {
+    particles.push({
+      x: Math.random() * (width || window.innerWidth),
+      y: Math.random() * (height || 800),
+      radius: Math.random() * 2 + 1.2,
+      baseAlpha: Math.random() * 0.45 + 0.25,
+      alpha: 0.3,
+      speedX: (Math.random() - 0.45) * 0.45,
+      speedY: (Math.random() - 0.6) * 0.35,
+      angle: Math.random() * Math.PI * 2
+    });
+  }
+
+  function animatePollen() {
+    ctx.clearRect(0, 0, width, height);
+    const isDark = document.body.classList.contains('lactancia-mode');
+
+    for (let p of particles) {
+      p.x += p.speedX;
+      p.y += p.speedY;
+      p.angle += 0.02;
+      p.alpha = p.baseAlpha + Math.sin(p.angle) * 0.15;
+
+      // Interacción suave con el mouse (se apartan)
+      const dx = p.x - pMouseX;
+      const dy = p.y - pMouseY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 80) {
+        p.x += (dx / dist) * 1.5;
+        p.y += (dy / dist) * 1.5;
+      }
+
+      // Reinicio al salir de pantalla
+      if (p.x < 0) p.x = width;
+      if (p.x > width) p.x = 0;
+      if (p.y < 0) p.y = height;
+      if (p.y > height) p.y = 0;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = isDark 
+        ? `rgba(206, 189, 245, ${Math.max(0.1, p.alpha * 0.85)})` 
+        : `rgba(168, 85, 247, ${Math.max(0.1, p.alpha * 0.75)})`;
+      ctx.shadowBlur = 6;
+      ctx.shadowColor = isDark ? '#dcd0f7' : '#c084fc';
+      ctx.fill();
+    }
+    requestAnimationFrame(animatePollen);
+  }
+  animatePollen();
+}
+
+// ── 3. ROTACIÓN DEL SELLO CENTENARIO AL SCROLL + LENIS ──
 const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 let lenis = null;
+const sealSvgRing = document.getElementById('sealSvgRing');
+const scrollBar = document.getElementById('scrollBar');
 
 if (!isTouchDevice) {
   lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
   function raf(time) {
     lenis.raf(time);
-    updateScrollProgress();
+    updateScrollEffects();
     requestAnimationFrame(raf); 
   }
   requestAnimationFrame(raf);
 } else {
-  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  window.addEventListener('scroll', updateScrollEffects, { passive: true });
 }
 
-const scrollBar = document.getElementById('scrollBar');
-function updateScrollProgress() {
+function updateScrollEffects() {
+  const scrollY = window.scrollY || window.pageYOffset;
   const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+  
   if (totalHeight > 0 && scrollBar) {
-    const progress = (window.scrollY / totalHeight) * 100;
+    const progress = (scrollY / totalHeight) * 100;
     scrollBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
   }
+
+  // Rotación del sello proporcional al scroll
+  if (sealSvgRing) {
+    sealSvgRing.style.transform = `rotate(${scrollY * 0.15}deg)`;
+  }
 }
+
+// ── 4. TRANSICIÓN DE EXPANSIÓN CIRCULAR EN MODO LACTANCIA ──
+const themeBtn = document.getElementById('themeBtn');
+
+themeBtn.addEventListener('click', (e) => {
+  const toggleTheme = () => {
+    document.body.classList.toggle('lactancia-mode');
+    const isDark = document.body.classList.contains('lactancia-mode');
+    themeBtn.innerHTML = isDark 
+      ? '<i class="fa-solid fa-sun"></i> Modo Día' 
+      : '<i class="fa-solid fa-moon"></i> Modo Lactancia';
+  };
+
+  // Si el navegador soporta View Transitions con clip-path (Chrome/Edge/Opera/Safari recientes)
+  if (document.startViewTransition) {
+    const rect = themeBtn.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    const maxRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+
+    const transition = document.startViewTransition(() => {
+      toggleTheme();
+    });
+
+    transition.ready.then(() => {
+      document.documentElement.animate(
+        {
+          clipPath: [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${maxRadius}px at ${x}px ${y}px)`
+          ]
+        },
+        {
+          duration: 600,
+          easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+          pseudoElement: '::view-transition-new(root)'
+        }
+      );
+    });
+  } else {
+    // Fallback estándar en navegadores anteriores
+    toggleTheme();
+  }
+});
 
 // ── CURSOR SÓLO EN PC CON MOUSE ──
 if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
@@ -1646,17 +1859,6 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     });
   });
 }
-
-// ── MODO LACTANCIA ──
-const themeBtn = document.getElementById('themeBtn');
-themeBtn.addEventListener('click', () => {
-  document.body.classList.toggle('lactancia-mode');
-  if (document.body.classList.contains('lactancia-mode')) {
-    themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i> Modo Día';
-  } else {
-    themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i> Modo Lactancia';
-  }
-});
 
 // ── SELECTOR DE IMPACTO DE DONACIONES ──
 const amtBtns = document.querySelectorAll('.amt-btn');
