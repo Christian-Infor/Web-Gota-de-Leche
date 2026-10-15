@@ -85,7 +85,7 @@
     
     --footer-bg: rgba(255, 255, 255, 0.9);
 
-    /* Variables de botones donaciones */
+    /* Botones de selección de aporte */
     --amt-bg: rgba(255, 255, 255, 0.7);
     --amt-border: rgba(74, 45, 100, 0.18);
     --amt-txt: #5c437a;
@@ -101,8 +101,8 @@
     --bg-dots: rgba(255, 255, 255, 0.04);
     --bg-hero-grad: linear-gradient(180deg, #180f2b 0%, #150a24 100%);
     --bg-nav: rgba(13, 8, 23, 0.88);
-    --text-main: #eee6fa;
-    --text-sub: #aa9bc7;
+    --text-main: #f3ecfc;
+    --text-sub: #c3b4de;
     --hero-wave: #160e26;
     --btn-fill-bg: #cebdf5;
     --btn-fill-txt: #0d0817;
@@ -111,28 +111,28 @@
     
     --section-dark-bg: #090510;
     --section-dark-text: #eee6fa;
-    --section-dark-sub: #9a8bb6;
+    --section-dark-sub: #a89bc3;
     
-    --card-bg: rgba(28, 18, 43, 0.88);
-    --card-border: rgba(230, 224, 248, 0.08);
-    --card-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
-    --icon-bg: rgba(230, 224, 248, 0.08);
-    --icon-color: #cebdf5;
-    --neon-hover: rgba(206, 189, 245, 0.2);
+    --card-bg: rgba(26, 17, 43, 0.92);
+    --card-border: rgba(230, 224, 248, 0.14);
+    --card-shadow: 0 15px 40px rgba(0, 0, 0, 0.55);
+    --icon-bg: rgba(206, 189, 245, 0.12);
+    --icon-color: #dfd3fa;
+    --neon-hover: rgba(206, 189, 245, 0.25);
     --accent-blue: #60a5fa;
-    --spotlight-color: rgba(206, 189, 245, 0.07);
+    --spotlight-color: rgba(206, 189, 245, 0.09);
     
     --footer-bg: rgba(13, 8, 23, 0.95);
 
-    /* Botones donaciones visibles y nítidos en Modo Lactancia */
-    --amt-bg: rgba(45, 28, 68, 0.75);
-    --amt-border: rgba(206, 189, 245, 0.25);
-    --amt-txt: #eee6fa;
+    /* Botones donaciones con alto contraste */
+    --amt-bg: rgba(41, 26, 64, 0.85);
+    --amt-border: rgba(206, 189, 245, 0.28);
+    --amt-txt: #f3ecfc;
     --amt-hover-border: #60a5fa;
-    --amt-hover-txt: #60a5fa;
+    --amt-hover-txt: #93c5fd;
     --amt-sel-bg: #60a5fa;
     --amt-sel-border: #60a5fa;
-    --amt-sel-txt: #0d0817;
+    --amt-sel-txt: #090510;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -211,9 +211,12 @@
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); font-weight: 700;
     backdrop-filter: blur(8px);
   }
+  body.lactancia-mode .theme-toggle {
+    background: rgba(41, 26, 64, 0.7);
+  }
   .theme-toggle:hover { background: var(--text-main); color: var(--bg-body); transform: translateY(-1px); }
 
-  /* ── ESTILOS DEL HERO PANORÁMICO ── */
+  /* ── ESTILOS DEL HERO PANORÁMICO (RESPONSIVE OPTIMIZADO) ── */
   .hero-wrapper-scenic {
     background: var(--bg-hero-grad);
     position: relative;
@@ -230,7 +233,12 @@
     pointer-events: none;
     z-index: 1;
   }
-  .scenic-illustration-bg svg { width: 100%; height: 100%; object-fit: cover; }
+  .scenic-illustration-bg svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: bottom center;
+  }
 
   .hero {
     min-height: calc(100vh - 76px);
@@ -248,7 +256,7 @@
   .hero-left { flex: 0 0 54%; max-width: 640px; padding-bottom: 2rem; }
 
   .hero-left h1 {
-    font-size: clamp(2.7rem, 4.5vw, 4rem); font-weight: 800;
+    font-size: clamp(2.5rem, 4.2vw, 3.8rem); font-weight: 800;
     line-height: 1.12; color: var(--text-main); letter-spacing: -1.8px;
     margin-bottom: 1.4rem; transition: color 0.6s ease;
   }
@@ -272,6 +280,9 @@
     border: none;
     box-shadow: 0 8px 24px rgba(67, 48, 104, 0.25);
   }
+  body.lactancia-mode .btn-1 {
+    box-shadow: 0 8px 24px rgba(206, 189, 245, 0.25);
+  }
   .btn-1:hover { box-shadow: 0 12px 30px rgba(67, 48, 104, 0.35); }
   .btn-2 { 
     background-color: rgba(255, 255, 255, 0.7); 
@@ -279,11 +290,14 @@
     border: 1.5px solid var(--btn-ghost-border); 
     backdrop-filter: blur(8px);
   }
+  body.lactancia-mode .btn-2 {
+    background-color: rgba(30, 18, 48, 0.7);
+  }
 
   .hero-stats { display: flex; align-items: center; }
   .stat-item { position: relative; padding-right: 2.6rem; margin-right: 2.6rem; }
   .stat-item:not(:last-child)::after {
-    content: ''; position: absolute; right: 0; top: 15%; height: 70%; width: 1.5px; background-color: var(--text-sub); opacity: 0.25;
+    content: ''; position: absolute; right: 0; top: 15%; height: 70%; width: 1.5px; background-color: var(--text-sub); opacity: 0.3;
   }
   .stat-item:last-child { padding-right: 0; margin-right: 0; }
   .stat-num { display: block; font-size: 2.6rem; font-weight: 800; color: var(--text-main); line-height: 1.1; letter-spacing: -1px; }
@@ -322,6 +336,9 @@
     filter: blur(32px);
     z-index: -1;
     pointer-events: none;
+  }
+  body.lactancia-mode .hero-logo-halo::before {
+    background: radial-gradient(circle, rgba(206, 189, 245, 0.25) 0%, rgba(74, 45, 100, 0.4) 55%, transparent 75%);
   }
 
   .hero-right img { 
@@ -380,6 +397,10 @@
     border-bottom: 1px solid rgba(74, 45, 100, 0.08);
     backdrop-filter: blur(10px); 
   }
+  body.lactancia-mode .mq-wrap {
+    background: rgba(22, 14, 38, 0.7);
+    border-color: rgba(255, 255, 255, 0.05);
+  }
   .mq-track { display: flex; gap: 3.5rem; width: max-content; animation: marquee 30s linear infinite; }
   .mq-item { display: flex; align-items: center; gap: 1rem; font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-sub); font-weight: 700; opacity: 0.9; }
 
@@ -428,7 +449,7 @@
   .bento-card h3 { font-size: 1.18rem; font-weight: 700; color: var(--text-main); margin-bottom: .6rem; letter-spacing: -0.3px; position: relative; z-index: 2; }
   .bento-card p { font-size: .96rem; color: var(--text-sub); line-height: 1.68; position: relative; z-index: 2; }
 
-  /* ── FAQ (AHORA SOBRE TRANSPARENCIA Y SEDE) ── */
+  /* ── FAQ CON CONTRASTE AUDITADO ── */
   .faq-section { padding: 4.5rem 4.5rem 3.5rem; max-width: 1000px; margin: 0 auto; }
   .faq-header { text-align: center; margin-bottom: 2.6rem; }
   .faq-accordion { display: flex; flex-direction: column; gap: 1.2rem; }
@@ -451,7 +472,7 @@
   .faq-item[open] summary::after { transform: rotate(180deg); color: var(--accent-blue); }
   .faq-item p { margin-top: 1rem; font-size: 0.96rem; color: var(--text-sub); line-height: 1.7; }
 
-  /* ── TRANSPARENCIA & SEDE CON MAPA ── */
+  /* ── TRANSPARENCIA & SEDE CON MAPA (CONTRASTE OPTIMIZADO) ── */
   .legal-section { padding: 3.5rem 4.5rem 5.5rem; max-width: 1330px; margin: 0 auto; }
   .legal-layout { display: grid; grid-template-columns: 1.2fr 1.1fr; gap: 2.2rem; }
   
@@ -492,7 +513,7 @@
   .contact-info span, .contact-info a { font-size: 0.9rem; color: var(--text-sub); text-decoration: none; }
   .contact-info a:hover { color: var(--accent-blue); text-decoration: underline; }
 
-  /* ── CONTENEDOR INFERIOR ILUSTRADO ── */
+  /* ── CONTENEDOR INFERIOR ILUSTRADO (RESPONSIVE OPTIMIZADO) ── */
   .bottom-landscape-wrapper {
     position: relative;
     background: linear-gradient(180deg, rgba(235, 223, 245, 0) 0%, #ebdff5 25%, #dfc9f2 70%, #d2b7ec 100%);
@@ -512,7 +533,12 @@
     pointer-events: none;
     z-index: 1;
   }
-  .bottom-scenic-art svg { width: 100%; height: 100%; object-fit: cover; }
+  .bottom-scenic-art svg { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    object-position: bottom center; 
+  }
 
   .bottom-content-layer {
     position: relative;
@@ -593,6 +619,7 @@
 
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
+  /* ── REGLAS ESPECÍFICAS PARA PANTALLAS PEQUEÑAS Y CELULARES ── */
   @media(max-width: 992px) {
     nav { padding: 0 1.5rem; }
     .nav-links { display: none; }
@@ -612,6 +639,30 @@
     .legal-layout { grid-template-columns: 1fr; }
     .legal-grid { grid-template-columns: 1fr; }
     .stories-section, .donation-section, .legal-section, .faq-section { padding: 3rem 1.5rem; }
+    
+    /* Control de proporciones de paisaje en móviles */
+    .scenic-illustration-bg {
+      height: 65%;
+      bottom: 0;
+    }
+    .bottom-scenic-art {
+      height: 55%;
+      bottom: 0;
+    }
+  }
+
+  @media(max-width: 600px) {
+    .scenic-illustration-bg {
+      height: 50%;
+      opacity: 0.9;
+    }
+    .bottom-scenic-art {
+      height: 42%;
+      opacity: 0.95;
+    }
+    .hero-left h1 {
+      font-size: 2.2rem;
+    }
   }
 </style>
 </head>
@@ -642,10 +693,10 @@
   </div>
 </nav>
 
-<!-- 1. HERO CON ESCENA DE FONDO (LIMPIO, SIN PÍLDORA Y CON 100%) -->
+<!-- 1. HERO CON ESCENA DE FONDO ADAPTADA A TODAS LAS PANTALLAS -->
 <div class="hero-wrapper-scenic">
   <div class="scenic-illustration-bg">
-    <svg viewBox="0 0 1440 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 1440 800" preserveAspectRatio="xMidYMax slice" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M-100 800C120 620 400 680 650 800H-100Z" fill="#dfc9f2" fill-opacity="0.45"/>
       <path d="M700 800C950 640 1200 610 1550 800H700Z" fill="#d5bced" fill-opacity="0.4"/>
       <path d="M-50 800C250 710 600 730 900 690C1200 650 1350 720 1500 800H-50Z" fill="#caaee7" fill-opacity="0.35"/>
@@ -807,7 +858,7 @@
   </div>
 </section>
 
-<!-- 4. PREGUNTAS FRECUENTES (REUBICADA ARRIBA DE TRANSPARENCIA Y SEDE) -->
+<!-- 4. PREGUNTAS FRECUENTES (ARRIBA DE TRANSPARENCIA Y SEDE) -->
 <section class="faq-section" id="faq">
   <div class="faq-header">
     <div class="sec-tag">Orientación a la Comunidad</div>
@@ -912,11 +963,11 @@
   </div>
 </section>
 
-<!-- 6. CONTENEDOR INFERIOR ILUSTRADO (HISTORIAS, DONACIONES Y FOOTER) -->
+<!-- 6. CONTENEDOR INFERIOR ILUSTRADO ADAPTADO -->
 <div class="bottom-landscape-wrapper">
   
   <div class="bottom-scenic-art">
-    <svg viewBox="0 0 1440 1200" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 1440 1200" preserveAspectRatio="xMidYMax slice" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M180 140C160 140 145 155 145 175C130 175 120 188 120 200C120 215 132 225 148 225H235C250 225 260 212 260 200C260 185 248 175 235 175C232 155 210 140 180 140Z" fill="#ffffff" fill-opacity="0.35"/>
       <path d="M1200 80C1185 80 1170 92 1170 108C1158 108 1150 118 1150 128C1150 140 1160 148 1172 148H1245C1258 148 1265 138 1265 128C1265 116 1255 108 1245 108C1242 92 1225 80 1200 80Z" fill="#ffffff" fill-opacity="0.3"/>
 
@@ -996,7 +1047,6 @@
       </div>
     </section>
 
-    <!-- DONACIONES CON CONTRASTE COMPLETO EN MODO LACTANCIA -->
     <section class="donation-section">
       <div class="donation-box">
         <h2>Súmate a nuestro propósito</h2>
