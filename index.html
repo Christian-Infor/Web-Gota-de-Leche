@@ -144,7 +144,7 @@
     margin: 0; 
     padding: 0; 
     box-sizing: border-box; 
-    -webkit-tap-highlight-color: transparent; /* Quita el recuadro gris feo al tocar en celulares */
+    -webkit-tap-highlight-color: transparent;
   }
   
   body { 
@@ -160,7 +160,7 @@
   
   body:not(.loaded) { overflow: hidden; }
 
-  /* ── 1. BARRA DE SCROLL "GOTA LÍQUIDA" RESPONSIVE ── */
+  /* Barra de scroll */
   .scroll-progress-bar {
     position: fixed;
     top: 0;
@@ -190,10 +190,10 @@
     50% { transform: rotate(-45deg) scale(1.2); }
   }
 
-  /* ── 2. CURSOR EXCLUSIVO PARA COMPUTADORES (OFF EN CELULARES) ── */
+  /* Cursor para Desktop */
   .custom-cursor-dot,
   .custom-cursor-ring {
-    display: none; /* Por defecto apagado */
+    display: none;
   }
 
   @media (hover: hover) and (pointer: fine) {
@@ -341,7 +341,6 @@
   
   .hero-left { flex: 0 0 54%; max-width: 640px; padding-bottom: 2rem; }
 
-  /* Split-text */
   .reveal-line {
     overflow: hidden;
     display: block;
@@ -368,32 +367,109 @@
     transition: color 0.6s ease;
   }
   
-  .hero-btns { display: flex; gap: 1.1rem; margin-bottom: 3.8rem; }
-  .magnetic-wrap { display: inline-block; padding: 10px; margin: -10px; cursor: pointer; }
-  .btn {
-    border-radius: 50px; padding: 0.9rem 2.3rem; font-size: 0.95rem; font-weight: 700; 
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s, color 0.3s, box-shadow 0.3s;
-    display: inline-block; cursor: pointer; text-decoration: none;
+  /* ── BOTONES QUIETOS Y FIRMES CON EFECTO SHIMMER ── */
+  .hero-btns { 
+    display: flex; 
+    gap: 1.1rem; 
+    margin-bottom: 3.8rem; 
   }
-  .btn.active-drag { transition: none; }
+
+  .btn {
+    position: relative;
+    border-radius: 50px; 
+    padding: 0.95rem 2.4rem; 
+    font-size: 0.96rem; 
+    font-weight: 700; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer; 
+    text-decoration: none;
+    overflow: hidden;
+    /* Sin desplazamientos físicos: completamente quieto */
+    transform: none !important;
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Haz de luz líquido que cruza el botón (Shimmer) */
+  .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.28) 50%,
+      transparent 100%
+    );
+    transform: skewX(-22deg);
+    transition: left 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+  .btn:hover::before {
+    left: 140%;
+  }
+
+  /* Botón 1 Primario Oscuro */
   .btn-1 { 
     background-color: var(--btn-fill-bg); 
     color: var(--btn-fill-txt); 
     border: none;
-    box-shadow: 0 8px 24px rgba(67, 48, 104, 0.25);
+    box-shadow: 0 8px 22px rgba(67, 48, 104, 0.24);
+  }
+  .btn-1:hover { 
+    box-shadow: 0 10px 28px rgba(67, 48, 104, 0.38);
+    background-color: #382457;
   }
   body.lactancia-mode .btn-1 {
-    box-shadow: 0 8px 24px rgba(206, 189, 245, 0.25);
+    box-shadow: 0 8px 24px rgba(206, 189, 245, 0.2);
   }
-  .btn-1:hover { box-shadow: 0 12px 30px rgba(67, 48, 104, 0.35); }
+  body.lactancia-mode .btn-1:hover {
+    box-shadow: 0 10px 30px rgba(206, 189, 245, 0.35);
+    background-color: #dfd4fa;
+  }
+
+  /* Flecha con micro-impulso sin mover el botón */
+  .btn-arrow {
+    display: inline-block;
+    margin-left: 8px;
+    transition: transform 0.25s ease;
+  }
+  .btn:hover .btn-arrow {
+    transform: translateX(4px);
+  }
+
+  /* Corazón con micro-pulso */
+  .btn-heart {
+    display: inline-block;
+    margin-left: 8px;
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .btn:hover .btn-heart {
+    transform: scale(1.22);
+  }
+
+  /* Botón 2 Secundario Claro */
   .btn-2 { 
-    background-color: rgba(255, 255, 255, 0.7); 
+    background-color: rgba(255, 255, 255, 0.75); 
     color: var(--btn-ghost-txt); 
     border: 1.5px solid var(--btn-ghost-border); 
     backdrop-filter: blur(8px);
   }
+  .btn-2:hover {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-color: #6d4694;
+    box-shadow: 0 6px 18px rgba(50, 30, 84, 0.12);
+  }
   body.lactancia-mode .btn-2 {
     background-color: rgba(30, 18, 48, 0.7);
+  }
+  body.lactancia-mode .btn-2:hover {
+    background-color: rgba(45, 28, 70, 0.95);
+    border-color: #ffffff;
   }
 
   .hero-stats { display: flex; align-items: center; }
@@ -518,12 +594,11 @@
     align-items: flex-start;
     backdrop-filter: blur(12px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-    transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+    transition: background 0.3s ease, border-color 0.3s ease;
   }
   .timeline-node:hover {
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(203, 189, 242, 0.35);
-    transform: translateX(6px);
   }
   .time-badge {
     font-size: 1.45rem; font-weight: 800; color: #dcd1fb; letter-spacing: -0.5px;
@@ -561,7 +636,6 @@
     display: grid; 
     grid-template-columns: repeat(2, 1fr); 
     gap: 1.6rem;
-    perspective: 1200px;
   }
   .bento-card {
     background: var(--card-bg); 
@@ -574,8 +648,7 @@
     box-shadow: var(--card-shadow);
     position: relative;
     overflow: hidden;
-    transform-style: preserve-3d;
-    transition: transform 0.2s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
   }
   .bento-card::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: inherit;
@@ -709,9 +782,9 @@
     background: var(--card-bg); border: 1px solid var(--card-border);
     border-radius: 26px; padding: 1.8rem; display: flex; flex-direction: column; gap: 1.3rem;
     box-shadow: var(--card-shadow); user-select: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
   }
-  .story-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px var(--neon-hover); }
+  .story-card:hover { box-shadow: 0 16px 40px var(--neon-hover); }
   .story-img {
     width: 100%; height: 190px; border-radius: 18px; object-fit: cover;
     filter: grayscale(100%) sepia(15%); transition: filter 0.4s ease; pointer-events: none;
@@ -746,7 +819,6 @@
   .amt-btn:hover { 
     border-color: var(--amt-hover-border); 
     color: var(--amt-hover-txt); 
-    transform: translateY(-2px); 
   }
   .amt-btn.selected { 
     background: var(--amt-sel-bg); 
@@ -811,11 +883,9 @@
     .content-inner { grid-template-columns: 1fr; gap: 3.5rem; }
     .about-sidebar { position: static; text-align: center; }
     
-    /* En pantallas móviles se desactiva el 3D para scroll limpio */
-    .srv-grid { grid-template-columns: 1fr; perspective: none; }
+    .srv-grid { grid-template-columns: 1fr; }
     .card-wide { grid-column: span 1; flex-direction: column; text-align: center; }
     .card-wide .srv-icon { margin: 0 auto 1.5rem; }
-    .bento-card { transform: none !important; }
     
     .legal-layout { grid-template-columns: 1fr; }
     .legal-grid { grid-template-columns: 1fr; }
@@ -869,7 +939,7 @@
   <div class="scroll-progress-drop"></div>
 </div>
 
-<!-- CURSOR ORGÁNICO MAGNÉTICO (SÓLO SE ACTIVA EN COMPUTADORES CON MOUSE) -->
+<!-- CURSOR ORGÁNICO MAGNÉTICO (SÓLO EN DESKTOP CON MOUSE) -->
 <div class="custom-cursor-dot" id="cursorDot"></div>
 <div class="custom-cursor-ring" id="cursorRing"></div>
 
@@ -898,7 +968,7 @@
   </div>
 </nav>
 
-<!-- 1. HERO CON ESCENA DE FONDO Y SPLIT-TEXT -->
+<!-- 1. HERO -->
 <div class="hero-wrapper-scenic">
   <div class="scenic-illustration-bg">
     <svg viewBox="0 0 1440 800" preserveAspectRatio="xMidYMax slice" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -933,9 +1003,15 @@
           Fundada en 1918 en Viña del Mar, apoyamos a lactantes, niños y niñas en situación de alta vulnerabilidad socioeconómica mediante la entrega gratuita de insumos esenciales y el fomento de buenas prácticas de crianza.
         </p>
         
+        <!-- BOTONES FIRMES CON SHIMMER -->
         <div class="hero-btns">
-          <div class="magnetic-wrap"><a href="#programas" class="btn btn-1 magnetic magnetic-target">Nuestra labor →</a></div>
-          <div class="magnetic-wrap"><a href="#sede" class="btn btn-2 magnetic magnetic-target">Horarios de atención</a></div>
+          <a href="#programas" class="btn btn-1 magnetic-target">
+            <span>Nuestra labor</span>
+            <span class="btn-arrow">→</span>
+          </a>
+          <a href="#sede" class="btn btn-2 magnetic-target">
+            <span>Horarios de atención</span>
+          </a>
         </div>
         
         <div class="hero-stats">
@@ -1053,7 +1129,7 @@
     </div>
 
     <div class="srv-grid" id="programas">
-      <div class="bento-card card-wide tilt-card magnetic-target">
+      <div class="bento-card card-wide magnetic-target">
         <div class="srv-icon"><i class="fa-solid fa-bottle-droplet"></i></div>
         <div>
           <h3>Entrega de Insumos de Primera Necesidad</h3>
@@ -1061,31 +1137,31 @@
         </div>
       </div>
       
-      <div class="bento-card tilt-card magnetic-target">
+      <div class="bento-card magnetic-target">
         <div class="srv-icon"><i class="fa-solid fa-heart-pulse"></i></div>
         <h3>Parentalidad Positiva</h3>
         <p>Instancias participativas orientadas al fortalecimiento de buenas prácticas de crianza, vínculo afectivo y salud mental.</p>
       </div>
       
-      <div class="bento-card tilt-card magnetic-target">
+      <div class="bento-card magnetic-target">
         <div class="srv-icon"><i class="fa-solid fa-shield-halved"></i></div>
         <h3>Prevención Comunitaria</h3>
         <p>Sensibilización y herramientas de prevención del maltrato infantil y del consumo problemático de alcohol y drogas.</p>
       </div>
       
-      <div class="bento-card tilt-card magnetic-target">
+      <div class="bento-card magnetic-target">
         <div class="srv-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
         <h3>Orientación Familiar</h3>
         <p>Acompañamiento a madres y cuidadores en situaciones de alta vulnerabilidad socioeconómica.</p>
       </div>
       
-      <div class="bento-card tilt-card magnetic-target">
+      <div class="bento-card magnetic-target">
         <div class="srv-icon"><i class="fa-solid fa-users"></i></div>
         <h3>Comunidad de Apoyo</h3>
         <p>Espacios solidarios donde compartir vivencias en torno a los desafíos de la maternidad y primera infancia.</p>
       </div>
       
-      <div class="bento-card card-wide tilt-card magnetic-target">
+      <div class="bento-card card-wide magnetic-target">
         <div class="srv-icon"><i class="fa-solid fa-baby"></i></div>
         <div>
           <h3>Fomento del Desarrollo Infantil</h3>
@@ -1279,7 +1355,7 @@
       </div>
     </section>
 
-    <!-- DONACIONES CON IMPACTO TANGIBLE INTERACTIVO -->
+    <!-- DONACIONES CON BOTÓN FIRME Y SHIMMER -->
     <section class="donation-section">
       <div class="donation-box magnetic-target">
         <h2>Súmate a nuestro propósito</h2>
@@ -1299,7 +1375,10 @@
           </div>
         </div>
         
-        <a href="mailto:administracion@gotadelechevinadelmar.cl?subject=Colaboraci%C3%B3n%20Corporaci%C3%B3n%20Gota%20de%20Leche" class="btn btn-1 magnetic magnetic-target" style="padding: 1.05rem 3.2rem; font-size: 1.02rem; font-weight:700;">Coordinar Aporte <i class="fa-solid fa-heart" style="margin-left: 8px;"></i></a>
+        <a href="mailto:administracion@gotadelechevinadelmar.cl?subject=Colaboraci%C3%B3n%20Corporaci%C3%B3n%20Gota%20de%20Leche" class="btn btn-1 magnetic-target" style="padding: 1.05rem 3.2rem; font-size: 1.02rem;">
+          <span>Coordinar Aporte</span>
+          <i class="fa-solid fa-heart btn-heart"></i>
+        </a>
       </div>
     </section>
 
@@ -1318,17 +1397,16 @@
 <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
 
 <script>
-// ── PRELOADER CON SALVAVIDAS ──
+// ── PRELOADER ──
 window.addEventListener('load', () => {
   setTimeout(() => { document.body.classList.add('loaded'); }, 900); 
 });
-setTimeout(() => { document.body.classList.add('loaded'); }, 2500); // En caso de conexión lenta
+setTimeout(() => { document.body.classList.add('loaded'); }, 2500);
 
 // ── LENIS SMOOTH SCROLL CON INDICADOR RESPONSIVE ──
 const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 let lenis = null;
 
-// En computadores usamos Lenis para máxima suavidad a 144Hz; en móviles se usa scroll nativo ultra optimizado
 if (!isTouchDevice) {
   lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
   function raf(time) {
@@ -1350,7 +1428,7 @@ function updateScrollProgress() {
   }
 }
 
-// ── CURSOR ORGÁNICO: SÓLO EN PANTALLAS CON MOUSE ──
+// ── CURSOR SÓLO EN PC CON MOUSE ──
 if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
   const cursorDot = document.getElementById('cursorDot');
   const cursorRing = document.getElementById('cursorRing');
@@ -1381,39 +1459,12 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     el.addEventListener('mouseleave', () => cursorRing && cursorRing.classList.remove('cursor-hover'));
   });
 
-  // 3D TILT SÓLO EN DESKTOP
-  document.querySelectorAll('.tilt-card').forEach(card => {
+  // Spotlight en tarjetas bento
+  document.querySelectorAll('.bento-card').forEach(card => {
     card.addEventListener('mousemove', e => {
       const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      card.style.setProperty('--mouse-x', `${x}px`);
-      card.style.setProperty('--mouse-y', `${y}px`);
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -6;
-      const rotateY = ((x - centerX) / centerX) * 6;
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
-    });
-  });
-
-  // BOTONES MAGNÉTICOS EN DESKTOP
-  document.querySelectorAll('.magnetic').forEach(btn => {
-    btn.addEventListener('mousemove', function(e) {
-      const position = btn.parentElement.getBoundingClientRect();
-      const x = e.clientX - position.left - position.width / 2;
-      const y = e.clientY - position.top - position.height / 2;
-      btn.classList.add('active-drag');
-      btn.style.transform = `translate(${x * 0.28}px, ${y * 0.28}px)`;
-    });
-    btn.addEventListener('mouseleave', function() {
-      btn.classList.remove('active-drag');
-      btn.style.transform = 'translate(0px, 0px)';
+      card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+      card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
     });
   });
 }
@@ -1429,7 +1480,7 @@ themeBtn.addEventListener('click', () => {
   }
 });
 
-// ── SELECTOR DE IMPACTO DE DONACIONES (TÁCTIL Y DESKTOP) ──
+// ── SELECTOR DE IMPACTO DE DONACIONES ──
 const amtBtns = document.querySelectorAll('.amt-btn');
 const impactIndicator = document.getElementById('impactIndicator');
 const impactText = document.getElementById('impactText');
@@ -1452,7 +1503,7 @@ amtBtns.forEach(btn => {
   });
 });
 
-// ── ARRASTRE DEL CARRUSEL (TOUCH Y MOUSE) ──
+// ── ARRASTRE DEL CARRUSEL ──
 const slider = document.getElementById('storiesCarousel');
 let isDown = false; let startX; let scrollLeft;
 slider.addEventListener('mousedown', (e) => {
