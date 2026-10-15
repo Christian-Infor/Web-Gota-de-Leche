@@ -172,7 +172,6 @@
   
   body { 
     font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; 
-    /* Fondo celeste puro con transición suave a gradiente vertical sin tramas */
     background: var(--bg-body);
     background-image: linear-gradient(180deg, #d8eefa 0%, #e8f4fc 35%, #d5edf9 70%, #c4e4f7 100%);
     background-attachment: fixed;
@@ -419,7 +418,6 @@
     transition: color 0.6s ease;
   }
   
-  /* Botones firmes */
   .hero-btns { 
     display: flex; 
     gap: 1.1rem; 
@@ -825,6 +823,185 @@
     line-height: 1.68; 
   }
 
+  /* ── SECCIÓN GALERÍA PATRIMONIAL Y COMUNITARIA CON LIGHTBOX ── */
+  .gallery-section {
+    padding: 3rem 4.5rem 5.5rem;
+    max-width: 1330px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .gallery-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 3rem;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.8rem;
+  }
+  .gallery-item {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+  .gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 45px var(--neon-hover);
+    border-color: rgba(56, 189, 248, 0.45);
+  }
+  .gallery-thumb-wrap {
+    width: 100%;
+    height: 230px;
+    overflow: hidden;
+    position: relative;
+  }
+  .gallery-thumb-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(85%) contrast(105%);
+    transition: filter 0.5s ease, transform 0.5s ease;
+  }
+  .gallery-item:hover .gallery-thumb-wrap img {
+    filter: grayscale(0%) contrast(100%);
+    transform: scale(1.05);
+  }
+  .gallery-zoom-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(20, 50, 84, 0.65);
+    backdrop-filter: blur(8px);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+  }
+  .gallery-item:hover .gallery-zoom-badge {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .gallery-caption {
+    padding: 1.3rem 1.6rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .gallery-year {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent-blue);
+  }
+  .gallery-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+  .gallery-desc {
+    font-size: 0.88rem;
+    color: var(--text-sub);
+    line-height: 1.5;
+  }
+
+  /* Modal Lightbox */
+  .lightbox-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(6, 14, 23, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+    padding: 2rem;
+  }
+  .lightbox-modal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  .lightbox-content {
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    transform: scale(0.92);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .lightbox-modal.active .lightbox-content {
+    transform: scale(1);
+  }
+  .lightbox-img {
+    max-width: 100%;
+    max-height: 72vh;
+    border-radius: 18px;
+    object-fit: contain;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  .lightbox-info {
+    margin-top: 1.2rem;
+    text-align: center;
+    color: #ffffff;
+  }
+  .lightbox-info h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .lightbox-info p {
+    font-size: 0.92rem;
+    color: #bae6fd;
+    opacity: 0.9;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: -46px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    font-size: 1.1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+  .lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+  }
+
   /* ── FAQ ── */
   .faq-section { padding: 4.5rem 4.5rem 3.5rem; max-width: 1000px; margin: 0 auto; }
   .faq-header { text-align: center; margin-bottom: 2.6rem; }
@@ -1137,8 +1314,9 @@
     .srv-grid { grid-template-columns: 1fr; }
     .card-wide { grid-column: span 1; }
 
+    .gallery-grid { grid-template-columns: 1fr; }
     .legal-grid { grid-template-columns: 1fr; }
-    .stories-section, .donation-section, .faq-section { padding: 2.5rem 1.25rem; }
+    .gallery-section, .stories-section, .donation-section, .faq-section { padding: 2.5rem 1.25rem; }
     
     .scenic-illustration-bg {
       height: 60%;
@@ -1222,23 +1400,22 @@
     <div class="nav-brand">CORPORACIÓN GOTA DE LECHE <span>de Miramar · 1918</span></div>
   </a>
   <div class="nav-actions">
-    <!-- Óvalo contenedor de los enlaces -->
     <div class="nav-links">
       <a href="#historia" class="nav-pill">Historia</a>
       <a href="#proposito" class="nav-pill">Nosotros</a>
       <a href="#programas" class="nav-pill">Programas</a>
+      <a href="#galeria" class="nav-pill">Galería</a>
       <a href="#faq" class="nav-pill">Preguntas</a>
       <a href="#transparencia" class="nav-pill">Transparencia</a>
       <a href="#sede" class="nav-pill">Sede</a>
     </div>
-    <!-- Botón independiente -->
     <button class="theme-toggle" id="themeBtn">
       <i class="fa-solid fa-moon"></i> Modo Lactancia
     </button>
   </div>
 </nav>
 
-<!-- 1. HERO CON CANVAS DE MOTITAS FLOTANTES -->
+<!-- 1. HERO -->
 <div class="hero-wrapper-scenic">
   <canvas id="heroPollenCanvas"></canvas>
 
@@ -1318,7 +1495,7 @@
       </g>
 
       <path d="M120 90Q120 105 105 105Q120 105 120 120Q120 105 135 105Q120 105 120 90Z" fill="#ffffff" opacity="0.45"/>
-      <path d="M680 70Q680 82 670 82Q680 82 680 94Q680 82 690 82Q680 82 680 70Z" fill="#ffffff" opacity="0.4"/>
+      <path d="M680 70Q680 82 670 82Q680 82 690 82Q680 82 680 70Z" fill="#ffffff" opacity="0.4"/>
       <path d="M1360 130Q1360 142 1350 142Q1360 142 1360 154Q1360 142 1370 142Q1360 142 1360 130Z" fill="#ffffff" opacity="0.35"/>
       <path d="M720 520Q720 532 710 532Q720 532 720 544Q720 532 730 532Q720 532 720 520Z" fill="#ffffff" opacity="0.3"/>
       <path d="M1390 480Q1390 492 1380 492Q1390 492 1390 504Q1390 492 1400 492Q1390 492 1390 480Z" fill="#ffffff" opacity="0.4"/>
@@ -1399,7 +1576,6 @@
     </div>
 
     <div class="srv-grid" id="programas">
-      <!-- Card 1 -->
       <div class="bento-card card-wide">
         <div class="card-header-bar">
           <div class="srv-icon"><i class="fa-solid fa-bottle-droplet"></i></div>
@@ -1411,7 +1587,6 @@
         </div>
       </div>
       
-      <!-- Card 2 -->
       <div class="bento-card">
         <div class="card-header-bar">
           <div class="srv-icon"><i class="fa-solid fa-heart-pulse"></i></div>
@@ -1423,7 +1598,6 @@
         </div>
       </div>
       
-      <!-- Card 3 -->
       <div class="bento-card">
         <div class="card-header-bar">
           <div class="srv-icon"><i class="fa-solid fa-shield-halved"></i></div>
@@ -1435,7 +1609,6 @@
         </div>
       </div>
       
-      <!-- Card 4 -->
       <div class="bento-card">
         <div class="card-header-bar">
           <div class="srv-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
@@ -1447,7 +1620,6 @@
         </div>
       </div>
       
-      <!-- Card 5 -->
       <div class="bento-card">
         <div class="card-header-bar">
           <div class="srv-icon"><i class="fa-solid fa-users"></i></div>
@@ -1459,7 +1631,6 @@
         </div>
       </div>
       
-      <!-- Card 6 -->
       <div class="bento-card card-wide">
         <div class="card-header-bar">
           <div class="srv-icon"><i class="fa-solid fa-baby"></i></div>
@@ -1474,7 +1645,108 @@
   </div>
 </section>
 
-<!-- 4. PREGUNTAS FRECUENTES -->
+<!-- 4. GALERÍA PATRIMONIAL Y COMUNITARIA CON LIGHTBOX -->
+<section class="gallery-section" id="galeria">
+  <div class="gallery-header">
+    <div class="sec-tag">Registro Histórico y Social</div>
+    <h2 class="sec-title">Nuestra Memoria en Imágenes</h2>
+    <p class="sec-desc">Desde las primeras jornadas benéficas de inicios del siglo XX hasta las instancias de apoyo comunitario en nuestra sede de Santa Inés.</p>
+  </div>
+
+  <div class="gallery-grid">
+    <!-- Foto 1: Histórica -->
+    <div class="gallery-item" data-full="https://github.com/Christian-Infor/Web-Gota-de-Leche/blob/main/Primera%20Casa.jpg" data-title="Fachada de Gota de Leche, Viña del Mar, año 1920" data-desc="Registro histórico de la fachada de Gota de Leche en el año 1920, Viña Del Mar.">
+      <div class="gallery-thumb-wrap">
+        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80" alt="Consultas Infantiles Históricas">
+        <div class="gallery-zoom-badge"><i class="fa-solid fa-expand"></i></div>
+      </div>
+      <div class="gallery-caption">
+        <span class="gallery-year">Archivo 1925</span>
+        <div class="gallery-title">Primeras Consultas de Salud</div>
+        <div class="gallery-desc">Control médico y nutricional para lactantes en los inicios de la corporación.</div>
+      </div>
+    </div>
+
+    <!-- Foto 2: Histórica Sede -->
+    <div class="gallery-item" data-full="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=1200&q=80" data-title="Comité Femenino Benéfico" data-desc="Reunión directiva de damas viñamarinas coordinando la distribución de fórmulas lácteas pasteurizadas en Miramar y Santa Inés (c. 1940).">
+      <div class="gallery-thumb-wrap">
+        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=600&q=80" alt="Comité Benéfico">
+        <div class="gallery-zoom-badge"><i class="fa-solid fa-expand"></i></div>
+      </div>
+      <div class="gallery-caption">
+        <span class="gallery-year">Archivo 1940</span>
+        <div class="gallery-title">Comité Solidario Viñamarino</div>
+        <div class="gallery-desc">Organización voluntaria para el abastecimiento continuo de alimentos básicos.</div>
+      </div>
+    </div>
+
+    <!-- Foto 3: Tradición de Entrega -->
+    <div class="gallery-item" data-full="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=1200&q=80" data-title="Lactancia y Cuidado Materno" data-desc="Fomento del apego y entrega de mamaderas esterilizadas a madres de sectores obreros de Viña del Mar (c. 1955).">
+      <div class="gallery-thumb-wrap">
+        <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=600&q=80" alt="Cuidado Materno">
+        <div class="gallery-zoom-badge"><i class="fa-solid fa-expand"></i></div>
+      </div>
+      <div class="gallery-caption">
+        <span class="gallery-year">Archivo 1955</span>
+        <div class="gallery-title">Protección y Lactancia</div>
+        <div class="gallery-desc">Acompañamiento a madres en el desarrollo de la primera infancia.</div>
+      </div>
+    </div>
+
+    <!-- Foto 4: Contemporánea Sede -->
+    <div class="gallery-item" data-full="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=1200&q=80" data-title="Entrega de Insumos en Santa Inés" data-desc="Jornada regular de distribución de paquetes de pañales y tarros de leche maternizada en Calle Cinco 2045.">
+      <div class="gallery-thumb-wrap">
+        <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=600&q=80" alt="Entrega en Sede">
+        <div class="gallery-zoom-badge"><i class="fa-solid fa-expand"></i></div>
+      </div>
+      <div class="gallery-caption">
+        <span class="gallery-year">Comunidad Actual</span>
+        <div class="gallery-title">Distribución en Sede</div>
+        <div class="gallery-desc">Apoyo presencial directo con pañales y fórmulas de primera necesidad.</div>
+      </div>
+    </div>
+
+    <!-- Foto 5: Talleres de Crianza -->
+    <div class="gallery-item" data-full="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1200&q=80" data-title="Talleres de Parentalidad Positiva" data-desc="Encuentros participativos con cuidadores para compartir herramientas de contención y estimulación temprana.">
+      <div class="gallery-thumb-wrap">
+        <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80" alt="Talleres de Crianza">
+        <div class="gallery-zoom-badge"><i class="fa-solid fa-expand"></i></div>
+      </div>
+      <div class="gallery-caption">
+        <span class="gallery-year">Comunidad Actual</span>
+        <div class="gallery-title">Talleres de Formación</div>
+        <div class="gallery-desc">Espacios seguros de aprendizaje y apoyo emocional entre familias.</div>
+      </div>
+    </div>
+
+    <!-- Foto 6: Sonrisas e Infancia -->
+    <div class="gallery-item" data-full="https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?auto=format&fit=crop&w=1200&q=80" data-title="Bienestar y Futuro Infantil" data-desc="El propósito diario de la Gota de Leche: resguardar el derecho a crecer sanos y protegidos en Viña del Mar.">
+      <div class="gallery-thumb-wrap">
+        <img src="https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?auto=format&fit=crop&w=600&q=80" alt="Bienestar Infantil">
+        <div class="gallery-zoom-badge"><i class="fa-solid fa-expand"></i></div>
+      </div>
+      <div class="gallery-caption">
+        <span class="gallery-year">Propósito 2026</span>
+        <div class="gallery-title">Bienestar y Futuro</div>
+        <div class="gallery-desc">Cuidado y dignidad para los niños y niñas de nuestra ciudad.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL LIGHTBOX NATIVO -->
+<div class="lightbox-modal" id="lightboxModal">
+  <div class="lightbox-content">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar visor"><i class="fa-solid fa-xmark"></i></button>
+    <img src="" alt="" class="lightbox-img" id="lightboxImg">
+    <div class="lightbox-info">
+      <h3 id="lightboxTitle"></h3>
+      <p id="lightboxDesc"></p>
+    </div>
+  </div>
+</div>
+
+<!-- 5. PREGUNTAS FRECUENTES -->
 <section class="faq-section" id="faq">
   <div class="faq-header">
     <div class="sec-tag">Orientación a la Comunidad</div>
@@ -1499,7 +1771,7 @@
   </div>
 </section>
 
-<!-- 5. TRANSPARENCIA Y SEDE CON FONDO OSCURO DE LEGADO CENTENARIO -->
+<!-- 6. TRANSPARENCIA Y SEDE CON FONDO OSCURO DE LEGADO CENTENARIO -->
 <section class="legal-section" id="transparencia">
   <div class="history-bg-art">
     <svg viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1536,7 +1808,6 @@
   </div>
 
   <div class="legal-layout">
-    <!-- Bloque Legal -->
     <div class="legal-card">
       <div class="legal-card-header">
         <div class="legal-card-header-left">
@@ -1550,7 +1821,6 @@
           Antecedentes institucionales oficiales registrados ante el Estado de Chile para auditoría y convenios públicos:
         </p>
 
-        <!-- Bloques centrados de datos legales -->
         <div class="legal-grid">
           <div class="legal-tile">
             <div class="legal-tile-lbl">Razón Social</div>
@@ -1572,7 +1842,6 @@
       </div>
     </div>
 
-    <!-- Bloque Sede -->
     <div class="legal-card" id="sede">
       <div class="legal-card-header">
         <div class="legal-card-header-left">
@@ -1621,9 +1890,8 @@
   </div>
 </section>
 
-<!-- 6. CONTENEDOR INFERIOR ILUSTRADO COSTERO -->
+<!-- 7. CONTENEDOR INFERIOR ILUSTRADO COSTERO -->
 <div class="bottom-landscape-wrapper">
-  
   <div class="bottom-scenic-art">
     <svg viewBox="0 0 1440 1200" preserveAspectRatio="xMidYMax slice" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M180 140C160 140 145 155 145 175C130 175 120 188 120 200C120 215 132 225 148 225H235C250 225 260 212 260 200C260 185 248 175 235 175C232 155 210 140 180 140Z" fill="#ffffff" fill-opacity="0.35"/>
@@ -1735,7 +2003,6 @@
       </div>
     </footer>
   </div>
-
 </div>
 
 <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
@@ -1849,6 +2116,48 @@ function updateScrollEffects() {
     sealSvgRing.style.transform = `rotate(${scrollY * 0.15}deg)`;
   }
 }
+
+// ── CONTROL DE LIGHTBOX DE GALERÍA ──
+const lightboxModal = document.getElementById('lightboxModal');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxTitle = document.getElementById('lightboxTitle');
+const lightboxDesc = document.getElementById('lightboxDesc');
+const lightboxClose = document.getElementById('lightboxClose');
+
+document.querySelectorAll('.gallery-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const fullImg = item.dataset.full;
+    const title = item.dataset.title;
+    const desc = item.dataset.desc;
+
+    if (fullImg && lightboxImg) {
+      lightboxImg.src = fullImg;
+      lightboxTitle.textContent = title || '';
+      lightboxDesc.textContent = desc || '';
+      lightboxModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  });
+});
+
+function closeLightbox() {
+  if (lightboxModal) {
+    lightboxModal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+if (lightboxClose) {
+  lightboxClose.addEventListener('click', closeLightbox);
+}
+if (lightboxModal) {
+  lightboxModal.addEventListener('click', (e) => {
+    if (e.target === lightboxModal) closeLightbox();
+  });
+}
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeLightbox();
+});
 
 // ── TRANSICIÓN DE EXPANSIÓN CIRCULAR EN MODO LACTANCIA ──
 const themeBtn = document.getElementById('themeBtn');
