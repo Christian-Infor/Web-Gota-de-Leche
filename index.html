@@ -70,7 +70,7 @@
     --btn-ghost-border: #433068;
     --btn-ghost-txt: #433068;
     
-    --section-dark-bg: #170f2b;
+    --section-dark-bg: #150d26;
     --section-dark-text: #f0eafc;
     --section-dark-sub: #ad9ec9;
     
@@ -216,7 +216,7 @@
   }
   .theme-toggle:hover { background: var(--text-main); color: var(--bg-body); transform: translateY(-1px); }
 
-  /* ── ESTILOS DEL HERO PANORÁMICO (RESPONSIVE OPTIMIZADO) ── */
+  /* ── HERO PANORÁMICO ── */
   .hero-wrapper-scenic {
     background: var(--bg-hero-grad);
     position: relative;
@@ -349,46 +349,88 @@
     filter: drop-shadow(0 20px 40px rgba(50, 30, 84, 0.16));
   }
 
-  /* ── SECCIÓN HISTÓRICA OSCURA ── */
+  /* ── SECCIÓN HISTÓRICA OSCURA CON ILUSTRACIÓN NOCTURNA ── */
   .history-banner {
     background-color: var(--section-dark-bg);
+    background-image: 
+      radial-gradient(ellipse 60% 70% at 75% 50%, rgba(76, 42, 133, 0.3) 0%, transparent 70%),
+      radial-gradient(circle at 15% 30%, rgba(103, 58, 183, 0.15) 0%, transparent 60%);
     color: var(--section-dark-text);
-    padding: 6rem 5.5%;
+    padding: 6.5rem 5.5%;
     position: relative;
+    overflow: hidden;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
-  .history-inner {
-    max-width: 1280px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1.8fr; gap: 4.5rem; align-items: center;
+
+  /* Capa de fondo ilustrado: Árbol Centenario y Estrellas */
+  .history-bg-art {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
   }
+  .history-bg-art svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .history-inner {
+    max-width: 1320px; 
+    margin: 0 auto;
+    display: grid; 
+    grid-template-columns: 1fr 1.65fr; 
+    gap: 4.8rem; 
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
   .history-lead h2 {
-    font-size: clamp(2.2rem, 3.5vw, 3rem); font-weight: 800; line-height: 1.15;
-    letter-spacing: -1px; margin-bottom: 1.2rem; color: #ffffff;
+    font-size: clamp(2.3rem, 3.6vw, 3.2rem); 
+    font-weight: 800; 
+    line-height: 1.15;
+    letter-spacing: -1.2px; 
+    margin-bottom: 1.3rem; 
+    color: #ffffff;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   }
   .history-lead p {
-    font-size: 1.05rem; line-height: 1.8; color: var(--section-dark-sub);
+    font-size: 1.08rem; 
+    line-height: 1.85; 
+    color: #c4b5e0;
+    max-width: 520px;
   }
   
   .timeline-grid { display: flex; flex-direction: column; gap: 1.6rem; }
   .timeline-node {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    padding: 1.6rem 2rem;
-    display: flex; gap: 1.8rem; align-items: flex-start;
-    transition: background 0.3s ease, transform 0.3s ease;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 22px;
+    padding: 1.7rem 2.2rem;
+    display: flex; 
+    gap: 1.8rem; 
+    align-items: flex-start;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
   }
   .timeline-node:hover {
     background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(203, 189, 242, 0.35);
     transform: translateX(6px);
   }
   .time-badge {
-    font-size: 1.4rem; font-weight: 800; color: #cbbdf2; letter-spacing: -0.5px;
-    background: rgba(203, 189, 242, 0.12); padding: 0.5rem 1rem; border-radius: 12px;
+    font-size: 1.45rem; font-weight: 800; color: #dcd1fb; letter-spacing: -0.5px;
+    background: rgba(203, 189, 242, 0.14); padding: 0.55rem 1.1rem; border-radius: 14px;
+    box-shadow: inset 0 0 12px rgba(203, 189, 242, 0.1);
   }
-  .timeline-node h4 { font-size: 1.15rem; font-weight: 700; color: #ffffff; margin-bottom: 0.35rem; }
-  .timeline-node p { font-size: 0.95rem; line-height: 1.6; color: var(--section-dark-sub); margin: 0; }
+  .timeline-node h4 { font-size: 1.18rem; font-weight: 700; color: #ffffff; margin-bottom: 0.35rem; }
+  .timeline-node p { font-size: 0.96rem; line-height: 1.62; color: #ad9ec9; margin: 0; }
 
   /* ── MARQUEE ── */
   .mq-wrap {
@@ -449,7 +491,7 @@
   .bento-card h3 { font-size: 1.18rem; font-weight: 700; color: var(--text-main); margin-bottom: .6rem; letter-spacing: -0.3px; position: relative; z-index: 2; }
   .bento-card p { font-size: .96rem; color: var(--text-sub); line-height: 1.68; position: relative; z-index: 2; }
 
-  /* ── FAQ CON CONTRASTE AUDITADO ── */
+  /* ── FAQ ── */
   .faq-section { padding: 4.5rem 4.5rem 3.5rem; max-width: 1000px; margin: 0 auto; }
   .faq-header { text-align: center; margin-bottom: 2.6rem; }
   .faq-accordion { display: flex; flex-direction: column; gap: 1.2rem; }
@@ -472,7 +514,7 @@
   .faq-item[open] summary::after { transform: rotate(180deg); color: var(--accent-blue); }
   .faq-item p { margin-top: 1rem; font-size: 0.96rem; color: var(--text-sub); line-height: 1.7; }
 
-  /* ── TRANSPARENCIA & SEDE CON MAPA (CONTRASTE OPTIMIZADO) ── */
+  /* ── TRANSPARENCIA & SEDE CON MAPA ── */
   .legal-section { padding: 3.5rem 4.5rem 5.5rem; max-width: 1330px; margin: 0 auto; }
   .legal-layout { display: grid; grid-template-columns: 1.2fr 1.1fr; gap: 2.2rem; }
   
@@ -513,7 +555,7 @@
   .contact-info span, .contact-info a { font-size: 0.9rem; color: var(--text-sub); text-decoration: none; }
   .contact-info a:hover { color: var(--accent-blue); text-decoration: underline; }
 
-  /* ── CONTENEDOR INFERIOR ILUSTRADO (RESPONSIVE OPTIMIZADO) ── */
+  /* ── CONTENEDOR INFERIOR ILUSTRADO ── */
   .bottom-landscape-wrapper {
     position: relative;
     background: linear-gradient(180deg, rgba(235, 223, 245, 0) 0%, #ebdff5 25%, #dfc9f2 70%, #d2b7ec 100%);
@@ -571,7 +613,7 @@
   .story-quote { font-size: 0.96rem; font-style: italic; color: var(--text-sub); line-height: 1.65; flex-grow: 1; }
   .story-author { font-size: 0.88rem; font-weight: 700; color: var(--text-main); text-align: right; }
 
-  /* ── DONACIONES (SÚMATE A NUESTRO PROPÓSITO) ── */
+  /* ── DONACIONES ── */
   .donation-section { padding: 2rem 4.5rem 6.5rem; max-width: 1330px; margin: 0 auto; }
   .donation-box {
     background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 36px;
@@ -619,7 +661,7 @@
 
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  /* ── REGLAS ESPECÍFICAS PARA PANTALLAS PEQUEÑAS Y CELULARES ── */
+  /* ── RESPONSIVE ── */
   @media(max-width: 992px) {
     nav { padding: 0 1.5rem; }
     .nav-links { display: none; }
@@ -630,6 +672,7 @@
     .hero-stats { justify-content: center; width: 100%; }
     .stat-item { padding-right: 1.5rem; margin-right: 1.5rem; }
     .hero-right { width: 100%; flex: none; margin-top: 3rem; }
+    .history-banner { padding: 4rem 1.5rem; }
     .history-inner { grid-template-columns: 1fr; gap: 3rem; }
     .content-inner { grid-template-columns: 1fr; gap: 4rem; }
     .about-sidebar { position: static; text-align: center; }
@@ -640,7 +683,6 @@
     .legal-grid { grid-template-columns: 1fr; }
     .stories-section, .donation-section, .legal-section, .faq-section { padding: 3rem 1.5rem; }
     
-    /* Control de proporciones de paisaje en móviles */
     .scenic-illustration-bg {
       height: 65%;
       bottom: 0;
@@ -693,7 +735,7 @@
   </div>
 </nav>
 
-<!-- 1. HERO CON ESCENA DE FONDO ADAPTADA A TODAS LAS PANTALLAS -->
+<!-- 1. HERO CON ESCENA DE FONDO -->
 <div class="hero-wrapper-scenic">
   <div class="scenic-illustration-bg">
     <svg viewBox="0 0 1440 800" preserveAspectRatio="xMidYMax slice" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -701,16 +743,12 @@
       <path d="M700 800C950 640 1200 610 1550 800H700Z" fill="#d5bced" fill-opacity="0.4"/>
       <path d="M-50 800C250 710 600 730 900 690C1200 650 1350 720 1500 800H-50Z" fill="#caaee7" fill-opacity="0.35"/>
       
-      <!-- Silueta de Árbol Ilustrado Izquierda -->
       <path d="M-40 420C-40 330 20 280 90 310C160 270 230 330 220 420C270 470 240 550 180 570C150 660 50 670 -20 600C-60 550 -60 470 -40 420Z" fill="#ba9fdc" fill-opacity="0.25"/>
-      <!-- Copa de árbol derecha envolvente -->
       <path d="M1250 350C1230 260 1310 200 1380 230C1440 190 1500 240 1510 330C1560 380 1540 460 1480 490C1470 580 1380 610 1300 550C1250 510 1240 420 1250 350Z" fill="#ba9fdc" fill-opacity="0.22"/>
       
-      <!-- Pequeños pájaros en vuelo -->
       <path d="M420 180C428 172 438 175 444 182C450 175 460 172 468 180" stroke="#7e5da8" stroke-width="2.5" stroke-linecap="round" opacity="0.3"/>
       <path d="M470 210C476 204 484 206 489 211C494 206 502 204 508 210" stroke="#7e5da8" stroke-width="2.5" stroke-linecap="round" opacity="0.25"/>
 
-      <!-- Flores de campo en la base -->
       <circle cx="280" cy="740" r="6" fill="#ffffff" fill-opacity="0.7"/>
       <circle cx="340" cy="760" r="5" fill="#f3a6b8" fill-opacity="0.6"/>
       <circle cx="410" cy="735" r="7" fill="#ffffff" fill-opacity="0.65"/>
@@ -750,8 +788,51 @@
   </section>
 </div>
 
-<!-- 2. SECCIÓN HISTÓRICA OSCURA -->
+<!-- 2. SECCIÓN HISTÓRICA OSCURA CON ILUSTRACIÓN ARTÍSTICA DE FONDO -->
 <section class="history-banner" id="historia">
+  <!-- Fondo ilustrado: Gran Árbol del Legado y Estrellas en el cielo nocturno -->
+  <div class="history-bg-art">
+    <svg viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Árbol centenario ilustrado detrás del texto (Izquierda) -->
+      <g opacity="0.16">
+        <!-- Copa frondosa suave -->
+        <circle cx="210" cy="240" r="140" fill="#9d84d1"/>
+        <circle cx="310" cy="190" r="110" fill="#886dbf"/>
+        <circle cx="130" cy="270" r="95" fill="#7859b5"/>
+        <circle cx="260" cy="310" r="120" fill="#9d84d1"/>
+        <!-- Tronco y ramas firmes -->
+        <path d="M220 300C220 380 200 480 140 590H290C250 490 240 390 245 300Z" fill="#694b9f"/>
+        <!-- Raíces profundas del árbol -->
+        <path d="M160 550C110 570 70 590 30 600M260 550C310 570 370 585 430 600" stroke="#694b9f" stroke-width="6" stroke-linecap="round"/>
+      </g>
+
+      <!-- Follaje suave superior derecho abrazando el fondo de las tarjetas -->
+      <g opacity="0.12">
+        <path d="M1280 0C1200 50 1190 140 1230 200C1170 240 1180 340 1240 370C1320 400 1440 360 1440 300V0H1280Z" fill="#a48fd4"/>
+      </g>
+
+      <!-- Constelación y cielo estrellado suave -->
+      <!-- Estrellas de 4 puntas -->
+      <path d="M120 90Q120 105 105 105Q120 105 120 120Q120 105 135 105Q120 105 120 90Z" fill="#ffffff" opacity="0.45"/>
+      <path d="M680 70Q680 82 670 82Q680 82 680 94Q680 82 690 82Q680 82 680 70Z" fill="#ffffff" opacity="0.4"/>
+      <path d="M1360 130Q1360 142 1350 142Q1360 142 1360 154Q1360 142 1370 142Q1360 142 1360 130Z" fill="#ffffff" opacity="0.35"/>
+      <path d="M720 520Q720 532 710 532Q720 532 720 544Q720 532 730 532Q720 532 720 520Z" fill="#ffffff" opacity="0.3"/>
+      <path d="M1390 480Q1390 492 1380 492Q1390 492 1390 504Q1390 492 1400 492Q1390 492 1390 480Z" fill="#ffffff" opacity="0.4"/>
+
+      <!-- Puntos de estrellas circulares -->
+      <circle cx="280" cy="70" r="2.5" fill="#ffffff" opacity="0.45"/>
+      <circle cx="480" cy="110" r="3" fill="#ffffff" opacity="0.35"/>
+      <circle cx="610" cy="160" r="2" fill="#ffffff" opacity="0.3"/>
+      <circle cx="790" cy="90" r="2.5" fill="#ffffff" opacity="0.4"/>
+      <circle cx="940" cy="50" r="3" fill="#ffffff" opacity="0.35"/>
+      <circle cx="1120" cy="120" r="2" fill="#ffffff" opacity="0.4"/>
+      <circle cx="1270" cy="70" r="2.5" fill="#ffffff" opacity="0.45"/>
+      <circle cx="640" cy="460" r="2" fill="#ffffff" opacity="0.3"/>
+      <circle cx="830" cy="530" r="2.5" fill="#ffffff" opacity="0.35"/>
+      <circle cx="1040" cy="490" r="2" fill="#ffffff" opacity="0.35"/>
+    </svg>
+  </div>
+
   <div class="history-inner">
     <div class="history-lead">
       <div class="sec-tag" style="color: #cbbdf2;">Legado Centenario</div>
@@ -858,7 +939,7 @@
   </div>
 </section>
 
-<!-- 4. PREGUNTAS FRECUENTES (ARRIBA DE TRANSPARENCIA Y SEDE) -->
+<!-- 4. PREGUNTAS FRECUENTES -->
 <section class="faq-section" id="faq">
   <div class="faq-header">
     <div class="sec-tag">Orientación a la Comunidad</div>
@@ -963,7 +1044,7 @@
   </div>
 </section>
 
-<!-- 6. CONTENEDOR INFERIOR ILUSTRADO ADAPTADO -->
+<!-- 6. CONTENEDOR INFERIOR ILUSTRADO -->
 <div class="bottom-landscape-wrapper">
   
   <div class="bottom-scenic-art">
