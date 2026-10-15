@@ -293,10 +293,33 @@
   .nav-brand { font-size: .92rem; font-weight: 800; color: var(--text-main); line-height: 1.2; letter-spacing: -0.3px; }
   .nav-brand span { font-weight: 500; color: var(--text-sub); display: block; font-size: .75rem; letter-spacing: 0; }
   
-  .nav-actions { display: flex; align-items: center; gap: 2.2rem; }
-  .nav-links { display: flex; gap: 2.2rem; }
-  .nav-links a { font-size: .92rem; color: var(--text-sub); text-decoration: none; font-weight: 600; transition: color .2s ease; }
-  .nav-links a:hover { color: var(--text-main); }
+  .nav-actions { display: flex; align-items: center; gap: 1.2rem; }
+  
+  /* ── PÍLDORAS ENCAPSULADAS DE NAVEGACIÓN ── */
+  .nav-links { display: flex; gap: 0.6rem; }
+  .nav-pill {
+    background: rgba(255, 255, 255, 0.5); 
+    border: 1px solid var(--card-border); 
+    border-radius: 50px;
+    color: var(--text-main); 
+    text-decoration: none; 
+    padding: 0.45rem 1.05rem;
+    font-size: 0.85rem; 
+    font-weight: 700;
+    display: inline-flex; 
+    align-items: center;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  body.lactancia-mode .nav-pill {
+    background: rgba(41, 26, 64, 0.7);
+    color: var(--text-main);
+  }
+  .nav-pill:hover { 
+    background: var(--text-main); 
+    color: var(--bg-body); 
+    transform: translateY(-1px); 
+  }
   
   .theme-toggle {
     background: rgba(255, 255, 255, 0.5); 
@@ -476,14 +499,15 @@
     border-color: #ffffff;
   }
 
+  /* Estadísticas sin el bloque 100 gratuito */
   .hero-stats { display: flex; align-items: center; }
-  .stat-item { position: relative; padding-right: 2.6rem; margin-right: 2.6rem; }
+  .stat-item { position: relative; padding-right: 2.8rem; margin-right: 2.8rem; }
   .stat-item:not(:last-child)::after {
     content: ''; position: absolute; right: 0; top: 15%; height: 70%; width: 1.5px; background-color: var(--text-sub); opacity: 0.3;
   }
   .stat-item:last-child { padding-right: 0; margin-right: 0; }
-  .stat-num { display: block; font-size: 2.6rem; font-weight: 800; color: var(--text-main); line-height: 1.1; letter-spacing: -1px; }
-  .stat-label { display: block; font-size: 0.92rem; font-weight: 600; color: var(--text-sub); margin-top: 0.2rem; }
+  .stat-num { display: block; font-size: 2.8rem; font-weight: 800; color: var(--text-main); line-height: 1.1; letter-spacing: -1px; }
+  .stat-label { display: block; font-size: 0.95rem; font-weight: 600; color: var(--text-sub); margin-top: 0.25rem; }
 
   .hero-right { 
     flex: 0 0 44%; 
@@ -626,7 +650,7 @@
   .mq-track { display: flex; gap: 3.5rem; width: max-content; animation: marquee 30s linear infinite; }
   .mq-item { display: flex; align-items: center; gap: 1rem; font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-sub); font-weight: 700; opacity: 0.9; }
 
-  /* ── OPCIÓN 3: ENCABEZADO BICOLOR CURVO + ETIQUETAS TEMÁTICAS ── */
+  /* ── PROGRAMAS CON CABECERA BICOLOR Y BADGES ── */
   .main-content { 
     padding: 6.5rem 4.5rem 4.5rem; 
     background: transparent; 
@@ -660,7 +684,7 @@
     background: var(--card-bg); 
     border: 1px solid var(--card-border);
     border-radius: 26px; 
-    padding: 0; /* Padding controlado por los bloques internos */
+    padding: 0;
     text-align: left;
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
@@ -686,7 +710,6 @@
     transform: translateY(-3px);
   }
 
-  /* 1. Cabecera Bicolor Orgánica */
   .card-header-bar {
     background: var(--card-header-bg);
     padding: 1.4rem 2rem 1.2rem;
@@ -698,7 +721,6 @@
     z-index: 2;
   }
 
-  /* 2. Micro-etiqueta temática (Badge) */
   .card-topic-tag {
     font-size: 0.72rem;
     font-weight: 800;
@@ -731,7 +753,6 @@
   }
   .bento-card:hover .srv-icon { transform: scale(1.08) rotate(3deg); }
 
-  /* 3. Cuerpo de la tarjeta */
   .card-body-content {
     padding: 1.8rem 2rem 2rem;
     position: relative;
@@ -1074,12 +1095,12 @@
   </a>
   <div class="nav-actions">
     <div class="nav-links">
-      <a href="#historia" class="magnetic-target">Historia</a>
-      <a href="#proposito" class="magnetic-target">Nosotros</a>
-      <a href="#programas" class="magnetic-target">Programas</a>
-      <a href="#faq" class="magnetic-target">Preguntas</a>
-      <a href="#transparencia" class="magnetic-target">Transparencia</a>
-      <a href="#sede" class="magnetic-target">Sede</a>
+      <a href="#historia" class="nav-pill magnetic-target">Historia</a>
+      <a href="#proposito" class="nav-pill magnetic-target">Nosotros</a>
+      <a href="#programas" class="nav-pill magnetic-target">Programas</a>
+      <a href="#faq" class="nav-pill magnetic-target">Preguntas</a>
+      <a href="#transparencia" class="nav-pill magnetic-target">Transparencia</a>
+      <a href="#sede" class="nav-pill magnetic-target">Sede</a>
     </div>
     <button class="theme-toggle magnetic-target" id="themeBtn">
       <i class="fa-solid fa-moon"></i> Modo Lactancia
@@ -1132,10 +1153,10 @@
           </a>
         </div>
         
+        <!-- Estadísticas limpias sin el 100 gratuito -->
         <div class="hero-stats">
-          <div class="stat-item"><span class="stat-num" data-target="108">0</span><span class="stat-label">años</span></div>
-          <div class="stat-item"><span class="stat-num" data-target="500">0</span><span class="stat-label">familias</span></div>
-          <div class="stat-item"><span class="stat-num" data-target="100">0%</span><span class="stat-label">gratuito</span></div>
+          <div class="stat-item"><span class="stat-num" data-target="108">0</span><span class="stat-label">años de historia</span></div>
+          <div class="stat-item"><span class="stat-num" data-target="500">0</span><span class="stat-label">familias apoyadas</span></div>
         </div>
       </div>
 
@@ -1234,7 +1255,7 @@
   </div>
 </div>
 
-<!-- 3. PROGRAMAS: OPCIÓN 3 CON ENCABEZADOS BICOLOR Y BADGES -->
+<!-- 3. PROGRAMAS -->
 <section class="main-content" id="proposito">
   <div class="content-inner">
     <div class="about-sidebar">
@@ -1347,7 +1368,7 @@
   </div>
 </section>
 
-<!-- 5. TRANSPARENCIA Y SEDE CON ENCABEZADO BICOLOR -->
+<!-- 5. TRANSPARENCIA Y SEDE -->
 <section class="legal-section" id="transparencia">
   <div class="legal-layout">
     <!-- Bloque Legal -->
@@ -1684,16 +1705,15 @@ const obs = new IntersectionObserver(entries => {
       const numEl = e.target.querySelector('.stat-num');
       if (numEl) {
         const target = parseInt(numEl.dataset.target, 10);
-        const isPercent = e.target.parentElement.querySelector('.stat-label').textContent.includes('gratuito');
         let current = 0;
         const timer = setInterval(() => {
           current += target / 60;
           if (current >= target) { 
             current = target; 
             clearInterval(timer); 
-            numEl.textContent = current + (isPercent ? '%' : '');
+            numEl.textContent = current;
           } else {
-            numEl.textContent = Math.floor(current) + (isPercent ? '%' : '');
+            numEl.textContent = Math.floor(current);
           }
         }, 20);
       }
