@@ -58,11 +58,10 @@
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
   
   :root {
-    /* ── PALETA CELESTE / AZUL INSTITUCIONAL ── */
-    --bg-body: #e8f4fa;
-    --bg-dots: rgba(28, 75, 120, 0.08);
-    --bg-hero-grad: linear-gradient(180deg, #ddf0fb 0%, #edf7fc 50%, #d4ebf8 100%);
-    --bg-nav: rgba(232, 244, 250, 0.92);
+    /* ── PALETA CELESTE LIMPIA Y SEDOSA ── */
+    --bg-body: #dceffa;
+    --bg-hero-grad: linear-gradient(180deg, #d2ebf9 0%, #eaf4fc 50%, #c9e6f8 100%);
+    --bg-nav: rgba(220, 239, 250, 0.94);
     --text-main: #143254;
     --text-sub: #37597d;
     --hero-wave: #ffffff;
@@ -76,9 +75,9 @@
     --section-dark-sub: #8eaecf;
     
     /* Configuración Bicolor */
-    --card-bg: rgba(255, 255, 255, 0.94);
-    --card-border: rgba(255, 255, 255, 0.96);
-    --card-header-bg: linear-gradient(180deg, #dcf0fb 0%, #cee6f7 100%);
+    --card-bg: rgba(255, 255, 255, 0.96);
+    --card-border: rgba(255, 255, 255, 0.98);
+    --card-header-bg: linear-gradient(180deg, #d6edf9 0%, #c7e5f7 100%);
     --card-header-border: rgba(28, 75, 120, 0.08);
     --card-tag-bg: rgba(255, 255, 255, 0.92);
     --card-tag-txt: #1c4b78;
@@ -90,9 +89,9 @@
     --accent-blue: #0284c7;
     --spotlight-color: rgba(56, 189, 248, 0.08);
     
-    --footer-bg: rgba(255, 255, 255, 0.88);
+    --footer-bg: rgba(255, 255, 255, 0.92);
 
-    --amt-bg: rgba(255, 255, 255, 0.75);
+    --amt-bg: rgba(255, 255, 255, 0.8);
     --amt-border: rgba(28, 75, 120, 0.18);
     --amt-txt: #37597d;
     --amt-hover-border: #0284c7;
@@ -102,20 +101,19 @@
     --amt-sel-txt: #ffffff;
 
     /* Sello Centenario */
-    --badge-bg: rgba(255, 255, 255, 0.85);
-    --badge-border: rgba(28, 75, 120, 0.18);
+    --badge-bg: rgba(255, 255, 255, 0.9);
+    --badge-border: rgba(28, 75, 120, 0.2);
     --badge-text: #143254;
 
     /* Óvalo contenedor de navegación */
-    --nav-dock-bg: rgba(186, 230, 253, 0.42);
-    --nav-dock-border: rgba(28, 75, 120, 0.12);
-    --nav-pill-bg: rgba(255, 255, 255, 0.75);
-    --nav-pill-border: rgba(255, 255, 255, 0.85);
+    --nav-dock-bg: rgba(186, 230, 253, 0.55);
+    --nav-dock-border: rgba(28, 75, 120, 0.16);
+    --nav-pill-bg: rgba(255, 255, 255, 0.85);
+    --nav-pill-border: rgba(255, 255, 255, 0.95);
   }
 
   body.lactancia-mode {
     --bg-body: #060e17;
-    --bg-dots: rgba(255, 255, 255, 0.04);
     --bg-hero-grad: linear-gradient(180deg, #0d1a29 0%, #08121d 100%);
     --bg-nav: rgba(6, 14, 23, 0.92);
     --text-main: #edf5fc;
@@ -130,10 +128,10 @@
     --section-dark-text: #e6f2fc;
     --section-dark-sub: #7fa4ca;
     
-    --card-bg: rgba(13, 23, 38, 0.92);
-    --card-border: rgba(186, 230, 253, 0.14);
-    --card-header-bg: linear-gradient(180deg, rgba(22, 45, 74, 0.65) 0%, rgba(15, 32, 53, 0.65) 100%);
-    --card-header-border: rgba(186, 230, 253, 0.1);
+    --card-bg: rgba(13, 23, 38, 0.94);
+    --card-border: rgba(186, 230, 253, 0.16);
+    --card-header-bg: linear-gradient(180deg, rgba(22, 45, 74, 0.75) 0%, rgba(15, 32, 53, 0.75) 100%);
+    --card-header-border: rgba(186, 230, 253, 0.12);
     --card-tag-bg: rgba(186, 230, 253, 0.14);
     --card-tag-txt: #bae6fd;
     --card-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
@@ -174,13 +172,20 @@
   
   body { 
     font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; 
-    background-color: var(--bg-body); 
-    background-image: radial-gradient(var(--bg-dots) 1.2px, transparent 1.2px);
-    background-size: 26px 26px;
+    /* Fondo celeste puro con transición suave a gradiente vertical sin tramas */
+    background: var(--bg-body);
+    background-image: linear-gradient(180deg, #d8eefa 0%, #e8f4fc 35%, #d5edf9 70%, #c4e4f7 100%);
+    background-attachment: fixed;
     color: var(--text-main); 
     overflow-x: hidden; 
-    transition: background-color 0.5s ease, color 0.5s ease;
+    transition: background 0.5s ease, color 0.5s ease;
     -webkit-font-smoothing: antialiased;
+  }
+
+  body.lactancia-mode {
+    background: #060e17;
+    background-image: linear-gradient(180deg, #091421 0%, #060e17 50%, #081320 100%);
+    background-attachment: fixed;
   }
   
   body:not(.loaded) { overflow: hidden; }
@@ -288,7 +293,7 @@
     border: 1px solid var(--nav-dock-border);
     padding: 0.35rem 0.45rem;
     border-radius: 50px;
-    box-shadow: inset 0 1px 3px rgba(28, 75, 120, 0.06);
+    box-shadow: inset 0 1px 3px rgba(28, 75, 120, 0.08);
     backdrop-filter: blur(10px);
     transition: all 0.35s ease;
   }
@@ -978,7 +983,7 @@
   /* ── CONTENEDOR INFERIOR ILUSTRADO COSTERO ── */
   .bottom-landscape-wrapper {
     position: relative;
-    background: linear-gradient(180deg, rgba(232, 244, 250, 0) 0%, #e8f4fa 25%, #d1e7f5 70%, #bcdbf0 100%);
+    background: linear-gradient(180deg, rgba(220, 239, 250, 0) 0%, #dceffa 25%, #c6e2f5 70%, #b0d4ed 100%);
     overflow: hidden;
   }
 
@@ -1496,7 +1501,6 @@
 
 <!-- 5. TRANSPARENCIA Y SEDE CON FONDO OSCURO DE LEGADO CENTENARIO -->
 <section class="legal-section" id="transparencia">
-  <!-- Ilustración artística de cielo nocturno idéntica a Historia -->
   <div class="history-bg-art">
     <svg viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g opacity="0.16">
@@ -1513,7 +1517,7 @@
       </g>
 
       <path d="M120 90Q120 105 105 105Q120 105 120 120Q120 105 135 105Q120 105 120 90Z" fill="#ffffff" opacity="0.45"/>
-      <path d="M680 70Q680 82 670 82Q680 82 680 94Q680 82 690 82Q680 82 680 70Z" fill="#ffffff" opacity="0.4"/>
+      <path d="M680 70Q680 82 670 82Q680 82 690 82Q680 82 680 70Z" fill="#ffffff" opacity="0.4"/>
       <path d="M1360 130Q1360 142 1350 142Q1360 142 1360 154Q1360 142 1370 142Q1360 142 1360 130Z" fill="#ffffff" opacity="0.35"/>
       <path d="M720 520Q720 532 710 532Q720 532 720 544Q720 532 730 532Q720 532 720 520Z" fill="#ffffff" opacity="0.3"/>
       <path d="M1390 480Q1390 492 1380 492Q1390 492 1390 504Q1390 492 1400 492Q1390 492 1390 480Z" fill="#ffffff" opacity="0.4"/>
