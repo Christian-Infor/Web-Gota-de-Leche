@@ -1117,7 +1117,8 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center; /* Centrado vertical perfecto de los cuadros */
+    gap: 1.5rem; /* Espaciado simétrico entre filas */
   }
 
   /* ── CENTRADO DE LOS BLOQUES DE DATOS LEGALES ── */
@@ -1913,14 +1914,6 @@
               <span>Móvil: <a href="tel:+56996798157">+56 9 9679 8157</a></span>
             </div>
           </div>
-
-          <div class="contact-row">
-            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
-            <div class="contact-info">
-              <strong>Correo Electrónico</strong>
-              <span><a href="mailto:administracion@gotadelechevinadelmar.cl">administracion@gotadelechevinadelmar.cl</a></span>
-            </div>
-          </div>
         </div>
 
         <div class="map-container">
@@ -2262,10 +2255,6 @@ document.querySelectorAll('.bento-card').forEach(card => {
 const amtBtns = document.querySelectorAll('.amt-btn');
 const impactIndicator = document.getElementById('impactIndicator');
 const impactText = document.getElementById('impactText');
-
-amtBtns.forEach(file => {
-  // handled in loop
-});
 
 amtBtns.forEach(btn => {
   btn.addEventListener('click', () => {
